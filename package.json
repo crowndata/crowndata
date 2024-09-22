@@ -9,14 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/drei": "^9.113.0",
+    "@react-three/fiber": "^8.17.7",
     "aws-sdk": "^2.1691.0",
     "chart.js": "^4.4.4",
     "next": "14.2.13",
+    "papaparse": "^5.4.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "three": "^0.168.0"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/papaparse": "^5.3.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^8.6.0",
