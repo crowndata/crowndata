@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from './FolderDisplay.module.css'; // Import the CSS module
+import styles from "./FolderDisplay.module.css"; // Import the CSS module
 
 type FolderProps = {
   folderName: string;
@@ -10,7 +10,7 @@ type FolderProps = {
 const FolderDisplay: React.FC<FolderProps> = ({ folderName }) => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Data Folder Name: {folderName}</h2>
+      <h2 className={styles.title}>Data Name: {folderName}</h2>
     </div>
   );
 };
