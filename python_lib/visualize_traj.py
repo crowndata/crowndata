@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.spatial.transform import Rotation as R
 import tensorflow_datasets as tfds
+from termcolor import cprint
 
 class TrajectoryPlotter:
     def __init__(self, data_path):
@@ -65,12 +66,21 @@ class TrajectoryPlotter:
         plt.show()
 
 def main():
-    # builder = tfds.builder_from_directory(builder_dir="data/droid/1.0.0")
-    # builder.info.features
+    builder = tfds.builder_from_directory(builder_dir="python_lib/data/droid_100/1.0.0")
+    builder.info.features
+    cprint(builder.info.features, "green")
 
-    data_path = ''
-    plotter = TrajectoryPlotter(data_path)
-    plotter.plot_trajectories()
+    ds = tfds.load("droid_100", data_dir="python_lib/data/", split="train")
+    
+    
+
+    
+
+    # open the dataset
+
+    # data_path = ''
+    # plotter = TrajectoryPlotter(data_path)
+    # plotter.plot_trajectories()
 
 if __name__ == '__main__':
     main()
