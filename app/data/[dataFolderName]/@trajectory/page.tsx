@@ -3,5 +3,5 @@ export default function Page({
 }: {
   params: { dataFolderName: string };
 }) {
-  return <div>My Trajectory</div>;
+  return <div>My Trajectory {params.dataFolderName}</div>;
 }

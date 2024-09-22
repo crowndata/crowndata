@@ -3,17 +3,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Evaluation.module.css"; // Import the CSS module
 
-// Define the type for the JSON data
-interface EvalData {
-  coverageScore?: string;
-}
-
 // Define the props type for the component
 interface EvaluationProps {
-  folderName: string;
-}
-
-interface GetCoverageScoreProps {
   folderName: string;
 }
 
@@ -24,13 +15,11 @@ interface CoverageScoreResponse {
 const Evaluation: React.FC<EvaluationProps> = ({ folderName }) => {
   const [coverageScore, setCoverageScore] =
     useState<CoverageScoreResponse | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchCoverageScore = async () => {
       try {
-        setLoading(true);
         const response = await fetch(
           `/api/coverageScore?arg1=${encodeURIComponent(folderName)}`,
         );
@@ -46,8 +35,6 @@ const Evaluation: React.FC<EvaluationProps> = ({ folderName }) => {
         } else {
           setError("An unknown error occurred");
         }
-      } finally {
-        setLoading(false);
       }
     };
 
