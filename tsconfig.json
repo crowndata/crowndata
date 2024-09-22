@@ -24,7 +24,7 @@
       "python_lib/*": ["python_lib/*"],
       "robot_data_example/*": ["robot_data_example/*"]
     },
-    "baseUrl": "." // Set the base URL to the root of your project
+    "baseUrl": "."
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

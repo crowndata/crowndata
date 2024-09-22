@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import styles from './Information.module.css'; // Import the CSS module
+import styles from "./Information.module.css"; // Import the CSS module
 
 // Define the type for the JSON data
 interface InfoData {
