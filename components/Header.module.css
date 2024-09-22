@@ -1,0 +1,9 @@
+/* NavBar.module.css */
+
+/* Styling for the header */
+.header {
+  background-color: #333;
+  padding: 10px 20px;
+  position: relative;
+  z-index: 1000;
+}
