@@ -1,3 +1,7 @@
-export default function Page() {
-  return <div>My Trajectory</div>;
+export default function Page({
+  params,
+}: {
+  params: { dataFolderName: string };
+}) {
+  return <div>My Trajectory {params.dataFolderName}</div>;
 }
