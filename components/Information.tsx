@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import styles from './Information.module.css'; // Import the CSS module
 
 // Define the type for the JSON data
 interface InfoData {
@@ -51,10 +52,9 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
   }
 
   return (
-    <div>
-      <h2 style={{ margin: "20px 0" }}>Experiment Information</h2>{" "}
-      {/* Adds space before and after */}
-      <ul style={{ listStyleType: "none", padding: 0 }}>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Experiment Information</h2>
+      <ul className={styles.list}>
         {[
           { label: "Data Folder Name", value: info.dataFolderName },
           { label: "Timestamp", value: info.timestamp },
@@ -73,18 +73,9 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
           { label: "Operator Name", value: info.operatorName },
           { label: "Task Name", value: info.taskName },
         ].map((item, index) => (
-          <li
-            key={index}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "6px",
-            }}
-          >
-            <strong style={{ flexBasis: "40%" }}>{item.label}:</strong>
-            <span style={{ flexBasis: "55%", textAlign: "left" }}>
-              {item.value}
-            </span>
+          <li key={index} className={styles.listItem}>
+            <strong className={styles.label}>{item.label}:</strong>
+            <span className={styles.value}>{item.value}</span>
           </li>
         ))}
       </ul>
