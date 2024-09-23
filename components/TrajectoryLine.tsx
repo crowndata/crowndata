@@ -4,13 +4,9 @@ import * as THREE from "three";
 
 interface TrajectoryLineProps {
   positions: [number, number, number][];
-  rotations: [number, number, number][];
 }
 
-const TrajectoryLine: React.FC<TrajectoryLineProps> = ({
-  positions,
-  rotations,
-}) => {
+const TrajectoryLine: React.FC<TrajectoryLineProps> = ({ positions }) => {
   // Correctly typing the ref for a THREE.Line object
   const lineRef = useRef<THREE.Line>(null);
 
