@@ -9,12 +9,16 @@ interface InfoData {
   timestamp?: string;
   startTime?: string;
   endTime?: string;
-  robotSeriesNumber?: string;
+  robotEmbodiment?: string;
+  robotSerialNumber?: string;
   videoSamplingRate?: number;
   armSamplingRate?: number;
-  graspSamplingRate?: number;
+  sensorSamplingRate?: number;
   operatorName?: string;
-  taskName?: string;
+  taskDescription?: string;
+  subtaskDescription?: string;
+  taskState?: string;
+  subtaskState?: string;
 }
 
 // Define the props type for the component
@@ -57,25 +61,42 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
       <ul className={styles.list}>
         {[
           { label: "Data Folder Name", value: info.dataFolderName },
-          { label: "Timestamp", value: info.timestamp },
           { label: "Start Time", value: info.startTime },
           { label: "End Time", value: info.endTime },
-          { label: "Robot Series Number", value: info.robotSeriesNumber },
+          { label: "Robot Embodiment", value: info.robotEmbodiment },
+          { label: "Robot Serial Number", value: info.robotSerialNumber },
           {
             label: "Video Sampling Rate",
             value: `${info.videoSamplingRate} FPS`,
           },
           { label: "Arm Sampling Rate", value: `${info.armSamplingRate} Hz` },
           {
-            label: "Grasp Sampling Rate",
-            value: `${info.graspSamplingRate} Hz`,
+            label: "Sensor Sampling Rate",
+            value: `${info.sensorSamplingRate} Hz`,
           },
           { label: "Operator Name", value: info.operatorName },
-          { label: "Task Name", value: info.taskName },
+          { label: "Task Description", value: info.taskDescription },
+          { label: "Subtask Description", value: info.subtaskDescription },
+          { label: "Task State", value: info.taskState },
+          { label: "Subtask State", value: info.subtaskState },
         ].map((item, index) => (
           <li key={index} className={styles.listItem}>
             <strong className={styles.label}>{item.label}:</strong>
-            <span className={styles.value}>{item.value}</span>
+            <span className={styles.value}>
+              {item.value === undefined ? (
+                <span>"N/A"</span> // Display the actual value if it's neither success nor failure
+              ) : item.value.toLowerCase() === "success" ? (
+                <span className={styles.successSymbol}>
+                  {item.value.toUpperCase()}
+                </span> // checkmark symbol for success
+              ) : item.value.toLowerCase() === "failure" ? (
+                <span className={styles.failureSymbol}>
+                  {item.value.toUpperCase()}
+                </span> // cross symbol for failure
+              ) : (
+                <span>{item.value}</span> // Display the actual value if it's neither success nor failure
+              )}
+            </span>
           </li>
         ))}
       </ul>

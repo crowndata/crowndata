@@ -1,12 +1,15 @@
 {
   "dataFolderName": "robot_data_example",
-  "timestamp": "2024-09-21T12:34:56Z",
   "startTime": "2024-09-21T10:00:00Z",
   "endTime": "2024-09-21T12:00:00Z",
-  "robotSeriesNumber": "RS123456",
+  "robotEmbodiment": "ALOHA",
+  "robotSerialNumber": "RS123456",
   "videoSamplingRate": 30,
   "armSamplingRate": 50,
-  "graspSamplingRate": 60,
+  "sensorSamplingRate": 60,
   "operatorName": "John Doe",
-  "taskName": "Sample Task"
+  "taskDescription": "Sample Task",
+  "subtaskDescription": "Subtask Description",
+  "taskState": "FAILURE",
+  "subtaskState": "SUCCESS"
 }

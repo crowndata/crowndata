@@ -74,7 +74,7 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({ positions, rotations }) => {
       {/* Render the ArrowHelper */}
       <primitive
         ref={arrowRef}
-        object={new THREE.ArrowHelper(rotationVector, pointPos, 1, 0xffff00)}
+        object={new THREE.ArrowHelper(rotationVector, pointPos, 1, 0x0000ff)}
       />
     </>
   );

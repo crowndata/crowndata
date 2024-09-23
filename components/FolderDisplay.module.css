@@ -13,11 +13,6 @@
   margin: 20px 0; /* Adds vertical margin */
 }
 
-.container:hover {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-  transform: translateY(-5px); /* Lifting effect */
-}
-
 .title {
   font-size: 28px;
   font-weight: 700;
