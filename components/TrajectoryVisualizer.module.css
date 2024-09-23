@@ -1,0 +1,6 @@
+.canvasContainer {
+  height: 95%;
+  aspect-ratio: 1 / 1; /* Ensures the width is equal to the height */
+  margin: 0 auto; /* Center the canvas horizontally */
+  display: block;
+}

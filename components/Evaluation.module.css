@@ -1,5 +1,6 @@
 /* General container styling for spacing and centering */
 .container {
+  width: 95%;
   background-color: #f9f9f9;
   padding: 20px;
   border-radius: 10px;
