@@ -18,7 +18,6 @@
     text-align: center;
     font-weight: bold;
     border-bottom: 2px solid #eaeaea;
-    padding-bottom: 10px;
 }
 
 /* Styling the list with improved readability and spacing */
@@ -32,10 +31,11 @@
 .listItem {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid #eaeaea;
-    transition: background-color 0.3s ease;
+    align-items: center;
+    padding: 4px 0;
+    /* Reduce padding for tighter spacing */
+    border-bottom: 1px solid #ddd;
+    /* Optional: add a light divider */
 }
 
 /* Hover effect for list items */

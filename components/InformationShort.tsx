@@ -1,17 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import styles from "@/styles/InformationShort.module.css"; // Import the CSS module
 import { InfoData } from "@/types/dataInterfaces";
-import styles from "@/styles/Information.module.css"; // Import the CSS module
-
-// Define the type for the JSON data
 
 // Define the props type for the component
-interface InformationProps {
+interface InformationShortProps {
   folderName: string;
 }
 
-const Information: React.FC<InformationProps> = ({ folderName }) => {
+const InformationShort: React.FC<InformationShortProps> = ({ folderName }) => {
   const [info, setInfo] = useState<InfoData | null>(null); // State for holding the fetched data
   const [error, setError] = useState<string | null>(null); // State for handling errors
 
@@ -42,24 +40,10 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Experiment Information</h2>
       <ul className={styles.list}>
         {[
-          { label: "Data Folder Name", value: info.dataFolderName },
           { label: "Start Time", value: info.startTime },
-          { label: "End Time", value: info.endTime },
           { label: "Robot Embodiment", value: info.robotEmbodiment },
-          { label: "Robot Serial Number", value: info.robotSerialNumber },
-          {
-            label: "Video Sampling Rate",
-            value: `${info.videoSamplingRate} FPS`,
-          },
-          { label: "Arm Sampling Rate", value: `${info.armSamplingRate} Hz` },
-          {
-            label: "Sensor Sampling Rate",
-            value: `${info.sensorSamplingRate} Hz`,
-          },
-          { label: "Operator Name", value: info.operatorName },
           { label: "Task Description", value: info.taskDescription },
           { label: "Subtask Description", value: info.subtaskDescription },
           { label: "Task State", value: info.taskState },
@@ -89,4 +73,4 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
   );
 };
 
-export default Information;
+export default InformationShort;

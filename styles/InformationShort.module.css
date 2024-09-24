@@ -1,0 +1,52 @@
+.container {
+    padding: 10px;
+    /* Reduce padding to tighten the layout */
+    margin: 0 auto;
+    max-width: 600px;
+    /* Set a max width for the container */
+}
+
+.title {
+    font-size: 18px;
+    /* Decrease the font size */
+    margin-bottom: 8px;
+    /* Less margin for title spacing */
+}
+
+.list {
+    list-style-type: none;
+    /* Remove default list style */
+    padding: 0;
+    margin: 0;
+}
+
+.listItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    /* Reduce padding for tighter spacing */
+    border-bottom: 1px solid #ddd;
+    /* Optional: add a light divider */
+}
+
+.label {
+    font-size: 14px;
+    /* Reduce label font size */
+    font-weight: bold;
+}
+
+.value {
+    font-size: 14px;
+    /* Reduce value font size */
+}
+
+.successSymbol {
+    color: green;
+    font-weight: bold;
+}
+
+.failureSymbol {
+    color: red;
+    font-weight: bold;
+}

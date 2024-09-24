@@ -20,10 +20,11 @@
     "paths": {
       "@/*": ["./*"],
       "components/*": ["components/*"],
-      "styles/*": ["styles/*"],
-      "utils/*": ["utils/*"],
       "python_lib/*": ["python_lib/*"],
-      "robot_data_example/*": ["robot_data_example/*"]
+      "robot_data_example/*": ["robot_data_example/*"],
+      "styles/*": ["styles/*"],
+      "types/*": ["types/*"],
+      "utils/*": ["utils/*"]
     },
     "baseUrl": "."
   },
