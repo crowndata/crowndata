@@ -32,7 +32,16 @@ const TrajectoryDeviceOrientationAnimation: React.FC<
       {/* Render the ArrowHelper */}
       <primitive
         ref={arrowRef}
-        object={new THREE.ArrowHelper(rotationVector, pointPos, 1, 0x0000ff)}
+        object={
+          new THREE.ArrowHelper(
+            rotationVector,
+            pointPos,
+            0.1,
+            0x0000ff,
+            0.02,
+            0.02,
+          )
+        }
       />
     </>
   );
