@@ -8,12 +8,12 @@ import CameraSetup from "./CameraSetup";
 import ScatterPlot from "./TrajectoryDeviceOrientationAnimationPlot";
 
 interface TrajectoryPoint {
-  x: number;
-  y: number;
-  z: number;
-  roll: number;
-  pitch: number;
-  yaw: number;
+  x: string | number;
+  y: string | number;
+  z: string | number;
+  roll: string | number;
+  pitch: string | number;
+  yaw: string | number;
 }
 
 // Define the props type for the component
@@ -31,31 +31,24 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
   useEffect(() => {
     if (folderName) {
       // Use PapaParse to load and parse the CSV file
-      Papa.parse(`/${folderName}/trajectory.csv`, {
-        download: true,
-        header: true,
-        complete: (
-          result: ParseResult<{
-            x: string;
-            y: string;
-            z: string;
-            roll: string;
-            pitch: string;
-            yaw: string;
-          }>,
-        ) => {
-          const data = result.data;
-          const formattedData = data.map((row) => ({
-            x: parseFloat(row.x),
-            y: parseFloat(row.y),
-            z: parseFloat(row.z),
-            roll: parseFloat(row.roll),
-            pitch: parseFloat(row.pitch),
-            yaw: parseFloat(row.yaw),
+      fetch(`/${folderName}/trajectory.json`)
+        .then((response) => response.json())
+        .then((data) => {
+          const formattedData = data.map((row: TrajectoryPoint) => ({
+            x: typeof row.x === "string" ? parseFloat(row.x) : row.x,
+            y: typeof row.y === "string" ? parseFloat(row.y) : row.y,
+            z: typeof row.z === "string" ? parseFloat(row.z) : row.z,
+            roll:
+              typeof row.roll === "string" ? parseFloat(row.roll) : row.roll,
+            pitch:
+              typeof row.pitch === "string" ? parseFloat(row.pitch) : row.pitch,
+            yaw: typeof row.yaw === "string" ? parseFloat(row.yaw) : row.yaw,
           }));
           setTrajectoryData(formattedData);
-        },
-      });
+        })
+        .catch((error) => {
+          console.error("Error loading JSON file:", error);
+        });
     }
   }, [folderName]);
 
