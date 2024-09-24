@@ -2,86 +2,87 @@
 
 /* Navbar styling */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Logo styles */
 .logo a {
-  color: white;
-  text-decoration: none;
-  font-size: 24px;
-  font-weight: bold;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 /* Navigation links */
 .navLinks {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 /* Navigation items */
 .navLinks li {
-  margin-left: 20px;
+    margin-left: 20px;
 }
 
 /* Navigation links styling */
 .navLinks li a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s ease;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
 }
 
 /* Hover effect for links */
 .navLinks li a:hover {
-  color: #ddd;
+    color: #ddd;
 }
 
 /* Hamburger menu for mobile */
 .hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
 }
 
 .hamburger span {
-  background-color: white;
-  height: 3px;
-  margin: 4px 0;
-  width: 25px;
+    background-color: white;
+    height: 3px;
+    margin: 4px 0;
+    width: 25px;
 }
 
 /* Media query for responsive design */
 @media (max-width: 768px) {
-  /* Display hamburger menu on mobile */
-  .hamburger {
-    display: flex;
-  }
 
-  /* Hide nav links by default on small screens */
-  .navLinks {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background-color: #333;
-    flex-direction: column;
-    align-items: center;
-    display: none;
-    padding: 10px;
-  }
+    /* Display hamburger menu on mobile */
+    .hamburger {
+        display: flex;
+    }
 
-  /* Show the links when the menu is active */
-  .active {
-    display: flex;
-  }
+    /* Hide nav links by default on small screens */
+    .navLinks {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #333;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        padding: 10px;
+    }
 
-  /* Space out items vertically on mobile */
-  .navLinks li {
-    margin: 15px 0;
-  }
+    /* Show the links when the menu is active */
+    .active {
+        display: flex;
+    }
+
+    /* Space out items vertically on mobile */
+    .navLinks li {
+        margin: 15px 0;
+    }
 }

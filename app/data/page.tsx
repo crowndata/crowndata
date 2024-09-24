@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import DataCard from "@/components/DataCard";
 import styles from "@/styles/Page.module.css"; // New CSS module for the page
 
-const ITEMS_PER_PAGE = 20;
+const ITEMS_PER_PAGE = 5;
 
 const Page = () => {
   const [folders, setFolders] = useState<string[]>([]);
@@ -48,8 +48,8 @@ const Page = () => {
   const currentFolders = folders.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
-    <div>
-      <h1>Data Folders</h1>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Data</h2>
       <div className={styles.grid}>
         {currentFolders.map((folder) => (
           <DataCard key={folder} folderName={folder} />
