@@ -1,70 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import Papa, { ParseResult } from "papaparse";
+import { SharedState } from "@/utils/useTrajectoryData";
 import TrajectoryLine from "./TrajectoryLine";
 import styles from "./TrajectoryVisualizer.module.css";
 import CameraSetup from "./CameraSetup";
-import ScatterPlot from "./ScatterPlot";
-
-interface TrajectoryPoint {
-  x: number;
-  y: number;
-  z: number;
-  roll: number;
-  pitch: number;
-  yaw: number;
-}
+import TrajectoryDeviceOrientationAnimation from "./TrajectoryDeviceOrientationAnimation";
 
 // Define the props type for the component
 interface TrajectoryVisualizerProps {
-  folderName: string;
+  sharedState: SharedState;
+  positions: [number, number, number][];
+  rotations: [number, number, number][];
 }
 
 const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
-  folderName,
+  sharedState,
+  positions,
+  rotations,
 }) => {
-  const [trajectoryData, setTrajectoryData] = useState<TrajectoryPoint[]>([]);
-
-  useEffect(() => {
-    if (folderName) {
-      // Use PapaParse to load and parse the CSV file
-      Papa.parse(`/${folderName}/trajectory.csv`, {
-        download: true,
-        header: true,
-        complete: (
-          result: ParseResult<{
-            x: string;
-            y: string;
-            z: string;
-            roll: string;
-            pitch: string;
-            yaw: string;
-          }>,
-        ) => {
-          const data = result.data;
-          const formattedData = data.map((row) => ({
-            x: parseFloat(row.x),
-            y: parseFloat(row.y),
-            z: parseFloat(row.z),
-            roll: parseFloat(row.roll),
-            pitch: parseFloat(row.pitch),
-            yaw: parseFloat(row.yaw),
-          }));
-          setTrajectoryData(formattedData);
-        },
-      });
-    }
-  }, [folderName]);
-
-  const positions: [number, number, number][] = trajectoryData.map(
-    (step) => [step.x, step.y, step.z] as [number, number, number],
-  );
-
-  const rotations: [number, number, number][] = trajectoryData.map(
-    (step) => [step.roll, step.pitch, step.yaw] as [number, number, number],
-  );
-
   return (
     <div className={styles.canvasContainer}>
       <Canvas>
@@ -74,23 +28,29 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
           near={1}
           far={500}
           positionX={0}
-          positionY={0}
-          positionZ={10}
+          positionY={-5}
+          positionZ={0}
           lookAtX={0}
           lookAtY={0}
           lookAtZ={0}
         />
-        <OrbitControls />
+        <OrbitControls
+          enablePan={true} // Panning is enabled by default, but you can ensure it is enabled
+          panSpeed={1.5} // Adjust pan speed (default is 1)
+          screenSpacePanning={false} // If true, panning moves in screen space, false moves in world space
+        />
         <ambientLight intensity={0.5} />
 
         {/* AxesHelper to show the coordinate system */}
         <axesHelper args={[5]} />
 
-        {trajectoryData.length > 0 && <TrajectoryLine positions={positions} />}
+        <TrajectoryLine positions={positions} />
 
-        {trajectoryData.length > 0 && (
-          <ScatterPlot positions={positions} rotations={rotations} />
-        )}
+        <TrajectoryDeviceOrientationAnimation
+          sharedState={sharedState}
+          positions={positions}
+          rotations={rotations}
+        />
       </Canvas>
     </div>
   );

@@ -1,15 +1,15 @@
-import styles from "./Layout.module.css";
+import styles from "@/styles/Layout.module.css";
 
 export default function Layout({
   children,
   information,
   evaluation,
-  trajectory,
+  animation,
 }: {
   children: React.ReactNode;
   information: React.ReactNode;
   evaluation: React.ReactNode;
-  trajectory: React.ReactNode;
+  animation: React.ReactNode;
 }) {
   return (
     <>
@@ -20,7 +20,7 @@ export default function Layout({
           <div className={styles.evaluation}>{evaluation}</div>
         </div>
         <div className={styles.right}>
-          <div className={styles.trajectory}>{trajectory}</div>
+          <div className={styles.animation}>{animation}</div>
         </div>
       </div>
     </>
