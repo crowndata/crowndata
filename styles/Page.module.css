@@ -1,0 +1,22 @@
+/* Page.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.imageAnimation {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.trajectoryVisualizer {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* You can further customize the styling here */

@@ -16,6 +16,7 @@
 
 .right {
   display: flex;
+  flex-direction: column;
   gap: 20px;
   width: 65%;
   margin: 0; /* Reduces margin */
@@ -35,10 +36,18 @@
   margin: 0; /* Reduces margin */
 }
 
+.animation {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin: 0; /* Reduces margin */
+}
+
 .trajectory {
   display: flex;
   gap: 20px;
   width: 100%;
+  aspect-ratio: 1 / 1; /* Ensures the height is equal to the width */
   margin: 0; /* Reduces margin */
 }
 

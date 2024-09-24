@@ -1,20 +1,15 @@
 import React, { useRef } from "react";
 import * as THREE from "three";
+import { SharedState } from "@/utils/useTrajectoryData";
 
-// Define the shared state interface
-interface SharedState {
-  currentPoint: number;
-  setCurrentPoint: React.Dispatch<React.SetStateAction<number>>;
-}
-
-interface TrajectoryDeviceOrientationAnimationPlotProps {
+interface TrajectoryDeviceOrientationAnimationProps {
   sharedState: SharedState;
   positions: [number, number, number][];
   rotations: [number, number, number][];
 }
 
-const TrajectoryDeviceOrientationAnimationPlot: React.FC<
-  TrajectoryDeviceOrientationAnimationPlotProps
+const TrajectoryDeviceOrientationAnimation: React.FC<
+  TrajectoryDeviceOrientationAnimationProps
 > = ({ sharedState, positions, rotations }) => {
   const arrowRef = useRef<THREE.ArrowHelper>(null);
   const { currentPoint } = sharedState;
@@ -43,4 +38,4 @@ const TrajectoryDeviceOrientationAnimationPlot: React.FC<
   );
 };
 
-export default TrajectoryDeviceOrientationAnimationPlot;
+export default TrajectoryDeviceOrientationAnimation;
