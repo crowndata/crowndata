@@ -34,7 +34,11 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
           lookAtY={0}
           lookAtZ={0}
         />
-        <OrbitControls />
+        <OrbitControls
+          enablePan={true} // Panning is enabled by default, but you can ensure it is enabled
+          panSpeed={1.5} // Adjust pan speed (default is 1)
+          screenSpacePanning={false} // If true, panning moves in screen space, false moves in world space
+        />
         <ambientLight intensity={0.5} />
 
         {/* AxesHelper to show the coordinate system */}
