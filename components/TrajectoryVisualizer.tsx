@@ -9,7 +9,7 @@ import TrajectoryDeviceOrientationAnimation from "./TrajectoryDeviceOrientationA
 
 // Define the props type for the component
 interface TrajectoryVisualizerProps {
-  currentPoint: SharedState;
+  sharedState: SharedState;
   positions: [number, number, number][];
   rotations: [number, number, number][];
 }

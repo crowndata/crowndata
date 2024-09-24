@@ -13,7 +13,7 @@ const ImageAnimation: React.FC<ImageAnimationProps> = ({
   folderName,
   images,
 }) => {
-  const { currentPoint, setCurrentPoint } = sharedState;
+  const { currentPoint } = sharedState;
 
   return (
     <div className={styles.imageContainer}>

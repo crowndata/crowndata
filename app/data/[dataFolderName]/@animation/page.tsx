@@ -12,7 +12,7 @@ export default function Page({
   params: { dataFolderName: string };
 }) {
   const folderName = params.dataFolderName;
-  const [currentPoint, setCurrentPoint] = useState(0);
+  const [, setCurrentPoint] = useState(0);
   const { sharedState, positions, rotations, images } =
     useTrajectoryData(folderName);
 
