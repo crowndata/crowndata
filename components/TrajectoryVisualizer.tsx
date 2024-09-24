@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { SharedState } from "@/utils/useTrajectoryData";
 import TrajectoryLine from "./TrajectoryLine";
-import styles from "./TrajectoryVisualizer.module.css";
+import styles from "@/styles/TrajectoryVisualizer.module.css";
 import CameraSetup from "./CameraSetup";
 import TrajectoryDeviceOrientationAnimation from "./TrajectoryDeviceOrientationAnimation";
 

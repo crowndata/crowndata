@@ -19,4 +19,32 @@
   max-width: 800px;
 }
 
-/* You can further customize the styling here */
+.grid {
+  width: 95%;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  display: grid;
+  gap: 20px;
+}
+
+.pagination {
+  width: 95%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.pageButton {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.pageButton.disabled {
+  background-color: #ddd;
+  color: #666;
+  cursor: default;
+}

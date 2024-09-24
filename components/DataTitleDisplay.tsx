@@ -1,14 +1,17 @@
 "use client";
 
 import React from "react";
-import styles from "./FolderDisplay.module.css"; // Import the CSS module
+import styles from "@/styles/DataTitleDisplay.module.css"; // Import the CSS module
 
-type FolderProps = {
+type DataTitleDisplayProps = {
   displayTitle: string;
   folderName: string;
 };
 
-const FolderDisplay: React.FC<FolderProps> = ({ displayTitle, folderName }) => {
+const DataTitleDisplay: React.FC<DataTitleDisplayProps> = ({
+  displayTitle,
+  folderName,
+}) => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>
@@ -18,4 +21,4 @@ const FolderDisplay: React.FC<FolderProps> = ({ displayTitle, folderName }) => {
   );
 };
 
-export default FolderDisplay;
+export default DataTitleDisplay;

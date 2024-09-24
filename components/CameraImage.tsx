@@ -1,6 +1,6 @@
 import { memo } from "react";
 import Image from "next/image";
-import styles from "./CameraImage.module.css"; // Assuming your CSS module is imported here
+import styles from "@/styles/CameraImage.module.css"; // Assuming your CSS module is imported here
 
 // Define prop types
 type CameraImageProps = {

@@ -1,6 +1,6 @@
 import { SharedState } from "@/utils/useTrajectoryData";
 import { useCameraName } from "@/utils/useCameraName";
-import styles from "./CameraImageAnimation.module.css";
+import styles from "@/styles/CameraImageAnimation.module.css";
 import CameraImage from "@/components/CameraImage";
 
 interface CameraImageAnimationProps {

@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
+import DataCard from "@/components/DataCard";
+import styles from "@/styles/Page.module.css"; // New CSS module for the page
 
 const ITEMS_PER_PAGE = 20;
 
-const DataPage = () => {
+const Page = () => {
   const [folders, setFolders] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -15,10 +16,17 @@ const DataPage = () => {
 
   useEffect(() => {
     const fetchFolders = async () => {
-      const res = await fetch("/api/data");
-      const folderList = await res.json();
-      setFolders(folderList);
-      setTotalPages(Math.ceil(folderList.length / ITEMS_PER_PAGE));
+      try {
+        const res = await fetch("/api/data");
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const folderList = await res.json();
+        setFolders(folderList);
+        setTotalPages(Math.ceil(folderList.length / ITEMS_PER_PAGE));
+      } catch (error) {
+        console.error("Error fetching folders:", error);
+      }
     };
 
     fetchFolders();
@@ -42,21 +50,22 @@ const DataPage = () => {
   return (
     <div>
       <h1>Data Folders</h1>
-      <ul>
+      <div className={styles.grid}>
         {currentFolders.map((folder) => (
-          <li key={folder}>
-            <Link href={`/data/${folder}`}>{folder}</Link>
-          </li>
+          <DataCard key={folder} folderName={folder} />
         ))}
-      </ul>
+      </div>
 
       {/* Pagination */}
-      <div>
+      <div className={styles.pagination}>
         {Array.from({ length: totalPages }, (_, i) => (
           <button
             key={i + 1}
             onClick={() => handlePageChange(i + 1)}
             disabled={currentPage === i + 1}
+            className={`${styles.pageButton} ${
+              currentPage === i + 1 ? styles.disabled : ""
+            }`}
           >
             {i + 1}
           </button>
@@ -66,4 +75,4 @@ const DataPage = () => {
   );
 };
 
-export default DataPage;
+export default Page;
