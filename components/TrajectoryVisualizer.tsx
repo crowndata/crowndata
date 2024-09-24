@@ -5,7 +5,7 @@ import Papa, { ParseResult } from "papaparse";
 import TrajectoryLine from "./TrajectoryLine";
 import styles from "./TrajectoryVisualizer.module.css";
 import CameraSetup from "./CameraSetup";
-import ScatterPlot from "./ScatterPlot";
+import ScatterPlot from "./TrajectoryDeviceOrientationAnimationPlot";
 
 interface TrajectoryPoint {
   x: number;
@@ -25,6 +25,8 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
   folderName,
 }) => {
   const [trajectoryData, setTrajectoryData] = useState<TrajectoryPoint[]>([]);
+  const [currentPoint, setCurrentPoint] = useState(0);
+  const sharedState = { currentPoint, setCurrentPoint };
 
   useEffect(() => {
     if (folderName) {
@@ -65,6 +67,20 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
     (step) => [step.roll, step.pitch, step.yaw] as [number, number, number],
   );
 
+  // Add an effect to loop through trajectory points
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPoint((prevPoint) => {
+        if (trajectoryData.length > 0) {
+          return (prevPoint + 1) % trajectoryData.length;
+        }
+        return prevPoint;
+      });
+    }, 10); // Adjust speed (1000ms = 1 second)
+
+    return () => clearInterval(interval); // Cleanup on component unmount
+  }, [trajectoryData]);
+
   return (
     <div className={styles.canvasContainer}>
       <Canvas>
@@ -74,8 +90,8 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
           near={1}
           far={500}
           positionX={0}
-          positionY={0}
-          positionZ={10}
+          positionY={-10}
+          positionZ={0}
           lookAtX={0}
           lookAtY={0}
           lookAtZ={0}
@@ -89,7 +105,11 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
         {trajectoryData.length > 0 && <TrajectoryLine positions={positions} />}
 
         {trajectoryData.length > 0 && (
-          <ScatterPlot positions={positions} rotations={rotations} />
+          <ScatterPlot
+            sharedState={sharedState}
+            positions={positions}
+            rotations={rotations}
+          />
         )}
       </Canvas>
     </div>

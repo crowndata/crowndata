@@ -84,7 +84,7 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
             <strong className={styles.label}>{item.label}:</strong>
             <span className={styles.value}>
               {item.value === undefined ? (
-                <span>"N/A"</span> // Display the actual value if it's neither success nor failure
+                <span>N/A</span> // Display the actual value if it's neither success nor failure
               ) : item.value.toLowerCase() === "success" ? (
                 <span className={styles.successSymbol}>
                   {item.value.toUpperCase()}
