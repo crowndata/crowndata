@@ -12,6 +12,10 @@ const TrajectoryDeviceOrientationAnimation: React.FC<
   TrajectoryDeviceOrientationAnimationProps
 > = ({ sharedState, positions, rotations }) => {
   const arrowRef = useRef<THREE.ArrowHelper>(null);
+  // If any of the required props are undefined, return an empty fragment
+  if (!sharedState || !positions || !rotations || positions.length < 1) {
+    return <></>;
+  }
   const { currentPoint } = sharedState;
 
   // Get the corresponding position  for the current point

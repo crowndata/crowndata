@@ -33,7 +33,7 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
   // Fetch the JSON data based on the provided file name
   useEffect(() => {
     if (folderName) {
-      fetch(`/${folderName}/information.json`)
+      fetch(`/data/${folderName}/information.json`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");

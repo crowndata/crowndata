@@ -37,4 +37,3 @@ next-env.d.ts
 
 # data
 python_lib/data
-public/data_*

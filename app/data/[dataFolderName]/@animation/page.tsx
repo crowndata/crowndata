@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useTrajectoryData } from "@/utils/useTrajectoryData";
 import TrajectoryVisualizer from "@/components/TrajectoryVisualizer";
-import ImageAnimation from "@/components/ImageAnimation";
+import CameraImageAnimation from "@/components/CameraImageAnimation";
 import styles from "@/styles/Page.module.css";
 
 export default function Page({
@@ -29,7 +29,7 @@ export default function Page({
   return (
     <div className={styles.container}>
       <div className={styles.imageAnimation}>
-        <ImageAnimation
+        <CameraImageAnimation
           sharedState={sharedState}
           folderName={folderName}
           images={images}

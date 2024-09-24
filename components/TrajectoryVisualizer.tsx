@@ -21,6 +21,7 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
 }) => {
   return (
     <div className={styles.canvasContainer}>
+      <h2 className={styles.title}>Trajectory Visualizer</h2>
       <Canvas>
         <CameraSetup
           fov={45}
@@ -28,7 +29,7 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
           near={1}
           far={500}
           positionX={0}
-          positionY={-5}
+          positionY={-2}
           positionZ={0}
           lookAtX={0}
           lookAtY={0}

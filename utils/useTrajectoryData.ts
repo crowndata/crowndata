@@ -33,7 +33,7 @@ export const useTrajectoryData = (
   useEffect(() => {
     if (folderName) {
       // Fetch the JSON file and process the data
-      fetch(`/${folderName}/trajectory.json`)
+      fetch(`/data/${folderName}/trajectory.json`)
         .then((response) => response.json())
         .then((data) => {
           const formattedData = data.map((row: TrajectoryPoint) => ({
