@@ -47,6 +47,7 @@
 .label {
     flex-basis: 40%;
     font-weight: 600;
+    text-align: left;
     color: #555;
 }
 

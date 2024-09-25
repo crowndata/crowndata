@@ -1,9 +1,16 @@
 .container {
+    width: 100%;
     padding: 10px;
     /* Reduce padding to tighten the layout */
     margin: 0 auto;
     max-width: 600px;
     /* Set a max width for the container */
+    display: flex;
+    align-items: center;
+    /* Vertically aligns the label and value */
+    justify-content: flex-start;
+    /* Aligns items to the left */
+    /* Vertically aligns the label and value */
 }
 
 .title {
@@ -31,14 +38,27 @@
 }
 
 .label {
+    flex-basis: 40%;
+    font-weight: 600;
+    text-align: left;
+    color: #555;
     font-size: 14px;
-    /* Reduce label font size */
     font-weight: bold;
+    white-space: nowrap;
+    /* Prevent label from wrapping into multiple lines */
+    margin-right: 10px;
+    /* Optional: Adds space between the label and the value */
 }
 
 .value {
+    flex-basis: 55%;
+    text-align: left;
+    color: #555;
     font-size: 14px;
-    /* Reduce value font size */
+    text-align: left;
+    /* Align value text to the left */
+    flex: 1;
+    /* Allows value to take up remaining space */
 }
 
 .successSymbol {

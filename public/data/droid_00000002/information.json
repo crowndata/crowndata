@@ -8,8 +8,8 @@
   "armSamplingRate": 50,
   "sensorSamplingRate": 60,
   "operatorName": "John Doe",
-  "taskDescription": "Sample Task",
-  "subtaskDescription": "Subtask Description",
+  "taskDescription": "pick up an item",
+  "subtaskDescription": "reach out and pick up an item",
   "taskState": "SUCCESS",
   "subtaskState": "SUCCESS"
 }

@@ -1,8 +1,5 @@
-.card:hover {
-    transform: scale(1.05);
-}
-
 .link {
+    width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     /* Optional: Add borders to each item for clarity */
