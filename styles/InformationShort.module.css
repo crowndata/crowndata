@@ -1,72 +1,72 @@
 .container {
-    width: 100%;
-    padding: 10px;
-    /* Reduce padding to tighten the layout */
-    margin: 0 auto;
-    max-width: 600px;
-    /* Set a max width for the container */
-    display: flex;
-    align-items: center;
-    /* Vertically aligns the label and value */
-    justify-content: flex-start;
-    /* Aligns items to the left */
-    /* Vertically aligns the label and value */
+  width: 100%;
+  padding: 10px;
+  /* Reduce padding to tighten the layout */
+  margin: 0 auto;
+  max-width: 600px;
+  /* Set a max width for the container */
+  display: flex;
+  align-items: center;
+  /* Vertically aligns the label and value */
+  justify-content: flex-start;
+  /* Aligns items to the left */
+  /* Vertically aligns the label and value */
 }
 
 .title {
-    font-size: 18px;
-    /* Decrease the font size */
-    margin-bottom: 8px;
-    /* Less margin for title spacing */
+  font-size: 18px;
+  /* Decrease the font size */
+  margin-bottom: 8px;
+  /* Less margin for title spacing */
 }
 
 .list {
-    list-style-type: none;
-    /* Remove default list style */
-    padding: 0;
-    margin: 0;
+  list-style-type: none;
+  /* Remove default list style */
+  padding: 0;
+  margin: 0;
 }
 
 .listItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 0;
-    /* Reduce padding for tighter spacing */
-    border-bottom: 1px solid #ddd;
-    /* Optional: add a light divider */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  /* Reduce padding for tighter spacing */
+  border-bottom: 1px solid #ddd;
+  /* Optional: add a light divider */
 }
 
 .label {
-    flex-basis: 40%;
-    font-weight: 600;
-    text-align: left;
-    color: #555;
-    font-size: 14px;
-    font-weight: bold;
-    white-space: nowrap;
-    /* Prevent label from wrapping into multiple lines */
-    margin-right: 10px;
-    /* Optional: Adds space between the label and the value */
+  flex-basis: 40%;
+  font-weight: 600;
+  text-align: left;
+  color: #555;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  /* Prevent label from wrapping into multiple lines */
+  margin-right: 10px;
+  /* Optional: Adds space between the label and the value */
 }
 
 .value {
-    flex-basis: 55%;
-    text-align: left;
-    color: #555;
-    font-size: 14px;
-    text-align: left;
-    /* Align value text to the left */
-    flex: 1;
-    /* Allows value to take up remaining space */
+  flex-basis: 55%;
+  text-align: left;
+  color: #555;
+  font-size: 14px;
+  text-align: left;
+  /* Align value text to the left */
+  flex: 1;
+  /* Allows value to take up remaining space */
 }
 
 .successSymbol {
-    color: green;
-    font-weight: bold;
+  color: green;
+  font-weight: bold;
 }
 
 .failureSymbol {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }

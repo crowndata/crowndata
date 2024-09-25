@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format-css": "find . -name '*.css' -exec npx js-beautify --css --replace {} \\;",
-    "format-all": "npx prettier --write . && npm run format-css"
+    "format-all": "npx prettier --write . "
   },
   "dependencies": {
     "@react-three/drei": "^9.113.0",
