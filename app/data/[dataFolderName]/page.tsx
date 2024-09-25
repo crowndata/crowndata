@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
 
-import FolderDisplay from "@/components/FolderDisplay";
+import React from "react";
+import DataTitleDisplay from "@/components/DataTitleDisplay";
 
 export default function Page({
   params,
@@ -9,7 +9,7 @@ export default function Page({
   params: { dataFolderName: string };
 }) {
   return (
-    <FolderDisplay
+    <DataTitleDisplay
       displayTitle={"Data Name"}
       folderName={params.dataFolderName}
     />

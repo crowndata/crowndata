@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import * as THREE from "three";
-import { SharedState } from "@/utils/useTrajectoryData";
+import { SharedState } from "@/types/pageInterface";
 
 interface TrajectoryDeviceOrientationAnimationProps {
   sharedState: SharedState;
@@ -12,6 +12,10 @@ const TrajectoryDeviceOrientationAnimation: React.FC<
   TrajectoryDeviceOrientationAnimationProps
 > = ({ sharedState, positions, rotations }) => {
   const arrowRef = useRef<THREE.ArrowHelper>(null);
+  // If any of the required props are undefined, return an empty fragment
+  if (!sharedState || !positions || !rotations || positions.length < 1) {
+    return <></>;
+  }
   const { currentPoint } = sharedState;
 
   // Get the corresponding position  for the current point
@@ -32,7 +36,16 @@ const TrajectoryDeviceOrientationAnimation: React.FC<
       {/* Render the ArrowHelper */}
       <primitive
         ref={arrowRef}
-        object={new THREE.ArrowHelper(rotationVector, pointPos, 1, 0x0000ff)}
+        object={
+          new THREE.ArrowHelper(
+            rotationVector,
+            pointPos,
+            0.1,
+            0x0000ff,
+            0.02,
+            0.02,
+          )
+        }
       />
     </>
   );

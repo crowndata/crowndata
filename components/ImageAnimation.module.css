@@ -1,9 +1,0 @@
-/* Image.module.css */
-.imageContainer {
-  width: 100%; /* Full width */
-}
-
-.animatedImage {
-  width: 100%; /* Full width inside the container */
-  height: auto; /* Maintain aspect ratio */
-}

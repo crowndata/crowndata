@@ -1,7 +1,5 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
-import styles from "./Evaluation.module.css"; // Import the CSS module
+import styles from "@/styles/Evaluation.module.css"; // Import the CSS module
 
 // Define the props type for the component
 interface EvaluationProps {

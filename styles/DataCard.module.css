@@ -1,0 +1,49 @@
+.link {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  /* Optional: Add borders to each item for clarity */
+  text-align: center;
+  display: block;
+  width: 100%;
+  /* Ensures the link spans across the entire width */
+  text-decoration: none;
+  color: #0070f3;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: 100%;
+  /* Ensure it takes full width of the parent */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* Spread the items inside the container */
+  gap: 20px;
+  /* Space between columns */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* Ensure padding is included in width calculation */
+  align-items: center;
+  width: 100%;
+  /* Make the card take the full width of its container */
+  margin-bottom: 10px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.column {
+  flex: 1;
+  /* Each column takes equal width */
+}

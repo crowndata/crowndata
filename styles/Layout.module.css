@@ -3,7 +3,8 @@
   display: flex;
   gap: 20px;
   width: 95%;
-  margin: 0; /* Reduces margin */
+  margin: 0;
+  /* Reduces margin */
 }
 
 .left {
@@ -11,7 +12,8 @@
   flex-direction: column;
   gap: 20px;
   width: 35%;
-  margin: 0; /* Reduces margin */
+  margin: 0;
+  /* Reduces margin */
 }
 
 .right {
@@ -19,48 +21,58 @@
   flex-direction: column;
   gap: 20px;
   width: 65%;
-  margin: 0; /* Reduces margin */
+  margin: 0;
+  /* Reduces margin */
 }
 
 .information {
   display: flex;
   gap: 20px;
   width: 100%;
-  margin: 0; /* Reduces margin */
+  margin: 0;
+  /* Reduces margin */
 }
 
 .evaluation {
   display: flex;
   gap: 20px;
   width: 100%;
-  margin: 0; /* Reduces margin */
+  margin: 0;
+  /* Reduces margin */
 }
 
 .animation {
   display: flex;
   gap: 20px;
   width: 100%;
-  margin: 0; /* Reduces margin */
+  margin: 0;
+  /* Reduces margin */
 }
 
 .trajectory {
   display: flex;
   gap: 20px;
   width: 100%;
-  aspect-ratio: 1 / 1; /* Ensures the height is equal to the width */
-  margin: 0; /* Reduces margin */
+  aspect-ratio: 1 / 1;
+  /* Ensures the height is equal to the width */
+  margin: 0;
+  /* Reduces margin */
 }
 
 @media (max-width: 768px) {
   .container {
     display: flex;
-    flex-direction: column; /* Change layout for mobile */
-    gap: 10px; /* Reduced gap for mobile */
-    margin: 10px; /* Add some margin for smaller screens */
+    flex-direction: column;
+    /* Change layout for mobile */
+    gap: 10px;
+    /* Reduced gap for mobile */
+    margin: 10px;
+    /* Add some margin for smaller screens */
   }
 
   .container > div {
     flex: 1;
-    width: 100%; /* Ensure divs take full width in flex layout */
+    width: 100%;
+    /* Ensure divs take full width in flex layout */
   }
 }

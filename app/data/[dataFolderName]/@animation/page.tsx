@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useTrajectoryData } from "@/utils/useTrajectoryData";
+import React, { useEffect } from "react";
 import TrajectoryVisualizer from "@/components/TrajectoryVisualizer";
-import ImageAnimation from "@/components/ImageAnimation";
+import CameraImageAnimation from "@/components/CameraImageAnimation";
+import { useSharedState } from "@/utils/useSharedState";
 import styles from "@/styles/Page.module.css";
+import { useInfoData } from "@/utils/useInfoData";
 
 export default function Page({
   params,
@@ -12,34 +13,37 @@ export default function Page({
   params: { dataFolderName: string };
 }) {
   const folderName = params.dataFolderName;
-  const [, setCurrentPoint] = useState(0);
-  const { sharedState, positions, rotations, images } =
-    useTrajectoryData(folderName);
+
+  // Destructure the returned state values from the useSharedState hook
+  const { currentPoint, setCurrentPoint } = useSharedState();
+  const infoData = useInfoData(folderName);
 
   useEffect(() => {
-    if (positions && positions.length > 0) {
-      const interval = setInterval(() => {
-        setCurrentPoint((prevPoint) => (prevPoint + 1) % positions.length);
-      }, 1000); // Adjust speed (1000ms = 1 second)
+    const interval = setInterval(() => {
+      setCurrentPoint((prevPoint: number) => {
+        const dataLength = infoData?.dataLength ?? 0; // Fallback to 0 if undefined
+        if (dataLength > 0) {
+          return (prevPoint + 1) % dataLength; // Use `dataLength` safely
+        }
+        return prevPoint;
+      });
+    }, 20); // Adjust speed (1000ms = 1 second)
 
-      return () => clearInterval(interval); // Cleanup on component unmount
-    }
-  }, [positions]);
+    return () => clearInterval(interval); // Cleanup on component unmount
+  }, [infoData?.dataLength, setCurrentPoint]); // Depend on `dataLength` and `setCurrentPoint`
 
   return (
     <div className={styles.container}>
       <div className={styles.imageAnimation}>
-        <ImageAnimation
-          sharedState={sharedState}
+        <CameraImageAnimation
+          sharedState={{ currentPoint, setCurrentPoint }}
           folderName={folderName}
-          images={images}
         />
       </div>
       <div className={styles.trajectoryVisualizer}>
         <TrajectoryVisualizer
-          sharedState={sharedState}
-          positions={positions}
-          rotations={rotations}
+          sharedState={{ currentPoint, setCurrentPoint }}
+          folderName={folderName}
         />
       </div>
     </div>

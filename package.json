@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format-all": "npx prettier --write . "
   },
   "dependencies": {
     "@react-three/drei": "^9.113.0",
@@ -28,6 +29,7 @@
     "@typescript-eslint/parser": "^8.6.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.13",
+    "js-beautify": "^1.15.1",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "stylelint": "^16.9.0",

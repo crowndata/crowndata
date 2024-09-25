@@ -1,25 +1,8 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
-import styles from "./Information.module.css"; // Import the CSS module
+import React from "react";
+import styles from "@/styles/Information.module.css"; // Import the CSS module
+import { useInfoData } from "@/utils/useInfoData";
 
 // Define the type for the JSON data
-interface InfoData {
-  dataFolderName: string;
-  timestamp?: string;
-  startTime?: string;
-  endTime?: string;
-  robotEmbodiment?: string;
-  robotSerialNumber?: string;
-  videoSamplingRate?: number;
-  armSamplingRate?: number;
-  sensorSamplingRate?: number;
-  operatorName?: string;
-  taskDescription?: string;
-  subtaskDescription?: string;
-  taskState?: string;
-  subtaskState?: string;
-}
 
 // Define the props type for the component
 interface InformationProps {
@@ -27,31 +10,10 @@ interface InformationProps {
 }
 
 const Information: React.FC<InformationProps> = ({ folderName }) => {
-  const [info, setInfo] = useState<InfoData | null>(null); // State for holding the fetched data
-  const [error, setError] = useState<string | null>(null); // State for handling errors
-
-  // Fetch the JSON data based on the provided file name
-  useEffect(() => {
-    if (folderName) {
-      fetch(`/${folderName}/information.json`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data: InfoData) => setInfo(data))
-        .catch((error) => setError(error.message));
-    }
-  }, [folderName]);
-
-  // Handle errors
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  const infoData = useInfoData(folderName);
 
   // If data is not loaded yet, show a loading message
-  if (!info) {
+  if (!infoData) {
     return <div>Loading...</div>;
   }
 
@@ -60,31 +22,37 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
       <h2 className={styles.title}>Experiment Information</h2>
       <ul className={styles.list}>
         {[
-          { label: "Data Folder Name", value: info.dataFolderName },
-          { label: "Start Time", value: info.startTime },
-          { label: "End Time", value: info.endTime },
-          { label: "Robot Embodiment", value: info.robotEmbodiment },
-          { label: "Robot Serial Number", value: info.robotSerialNumber },
+          { label: "Data Folder Name", value: infoData.dataFolderName },
+          { label: "Start Time", value: infoData.startTime },
+          { label: "End Time", value: infoData.endTime },
+          { label: "Robot Embodiment", value: infoData.robotEmbodiment },
+          { label: "Robot Serial Number", value: infoData.robotSerialNumber },
           {
             label: "Video Sampling Rate",
-            value: `${info.videoSamplingRate} FPS`,
+            value: `${infoData.videoSamplingRate} FPS`,
           },
-          { label: "Arm Sampling Rate", value: `${info.armSamplingRate} Hz` },
+          {
+            label: "Arm Sampling Rate",
+            value: `${infoData.armSamplingRate} Hz`,
+          },
           {
             label: "Sensor Sampling Rate",
-            value: `${info.sensorSamplingRate} Hz`,
+            value: `${infoData.sensorSamplingRate} Hz`,
           },
-          { label: "Operator Name", value: info.operatorName },
-          { label: "Task Description", value: info.taskDescription },
-          { label: "Subtask Description", value: info.subtaskDescription },
-          { label: "Task State", value: info.taskState },
-          { label: "Subtask State", value: info.subtaskState },
+          { label: "Operator Name", value: infoData.operatorName },
+          { label: "Task Description", value: infoData.taskDescription },
+          { label: "Subtask Description", value: infoData.subtaskDescription },
+          { label: "Task State", value: infoData.taskState },
+          { label: "Subtask State", value: infoData.subtaskState },
+          { label: "Data Length", value: infoData.dataLength },
         ].map((item, index) => (
           <li key={index} className={styles.listItem}>
             <strong className={styles.label}>{item.label}:</strong>
             <span className={styles.value}>
               {item.value === undefined ? (
                 <span>N/A</span> // Display the actual value if it's neither success nor failure
+              ) : typeof item.value !== "string" ? (
+                <span>{item.value}</span> // Display the actual value if it's neither success nor failure
               ) : item.value.toLowerCase() === "success" ? (
                 <span className={styles.successSymbol}>
                   {item.value.toUpperCase()}

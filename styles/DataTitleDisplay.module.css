@@ -1,0 +1,37 @@
+.container {
+  background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition:
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
+  width: 100%;
+  /* Make the container take full width */
+  max-width: 100%;
+  /* Ensure it spans the full width of the viewport */
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  margin: 20px 0;
+  /* Adds vertical margin */
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.folderName {
+  font-size: 22px;
+  font-weight: 500;
+  color: #0070f3;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.folderName:hover {
+  color: #005bb5;
+  /* Slightly darker blue on hover */
+}
