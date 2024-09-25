@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format-all": "npx prettier --write . "
+    "format": "npx prettier --write . ",
+    "format-python": "nbqa black python_lib && black python_lib"
   },
   "dependencies": {
     "@react-three/drei": "^9.113.0",

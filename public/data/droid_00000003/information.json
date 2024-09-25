@@ -18,5 +18,7 @@
     "exterior_image_2_left",
     "wrist_image_left"
   ],
-  "joints": ["cartesian_position"]
+  "joints": [
+    "cartesian_position"
+  ]
 }
