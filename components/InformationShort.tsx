@@ -1,8 +1,6 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "@/styles/InformationShort.module.css"; // Import the CSS module
-import { InfoData } from "@/types/dataInterfaces";
+import { useInfoData } from "@/utils/useInfoData";
 
 // Define the props type for the component
 interface InformationShortProps {
@@ -10,31 +8,10 @@ interface InformationShortProps {
 }
 
 const InformationShort: React.FC<InformationShortProps> = ({ folderName }) => {
-  const [info, setInfo] = useState<InfoData | null>(null); // State for holding the fetched data
-  const [error, setError] = useState<string | null>(null); // State for handling errors
-
-  // Fetch the JSON data based on the provided file name
-  useEffect(() => {
-    if (folderName) {
-      fetch(`/data/${folderName}/information.json`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data: InfoData) => setInfo(data))
-        .catch((error) => setError(error.message));
-    }
-  }, [folderName]);
-
-  // Handle errors
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  const infoData = useInfoData(folderName);
 
   // If data is not loaded yet, show a loading message
-  if (!info) {
+  if (!infoData) {
     return <div>Loading...</div>;
   }
 
@@ -42,12 +19,12 @@ const InformationShort: React.FC<InformationShortProps> = ({ folderName }) => {
     <div className={styles.container}>
       <ul className={styles.list}>
         {[
-          { label: "Start Time", value: info.startTime },
-          { label: "Robot Embodiment", value: info.robotEmbodiment },
-          { label: "Task Description", value: info.taskDescription },
-          { label: "Subtask Description", value: info.subtaskDescription },
-          { label: "Task State", value: info.taskState },
-          { label: "Subtask State", value: info.subtaskState },
+          { label: "Start Time", value: infoData.startTime },
+          { label: "Robot Embodiment", value: infoData.robotEmbodiment },
+          { label: "Task Description", value: infoData.taskDescription },
+          { label: "Subtask Description", value: infoData.subtaskDescription },
+          { label: "Task State", value: infoData.taskState },
+          { label: "Subtask State", value: infoData.subtaskState },
         ].map((item, index) => (
           <li key={index} className={styles.listItem}>
             <strong className={styles.label}>{item.label}:</strong>

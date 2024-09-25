@@ -11,5 +11,12 @@
   "taskDescription": "pick up an item",
   "subtaskDescription": "reach out and pick up an item",
   "taskState": "SUCCESS",
-  "subtaskState": "SUCCESS"
+  "subtaskState": "SUCCESS",
+  "dataLength": 205,
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": ["cartesian_position"]
 }

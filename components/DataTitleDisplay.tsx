@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import styles from "@/styles/DataTitleDisplay.module.css"; // Import the CSS module
 

@@ -1,24 +1,31 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { SharedState } from "@/utils/useTrajectoryData";
+import { useTrajectoryData } from "@/utils/useTrajectoryData";
+import { SharedState } from "@/types/pageInterface";
 import TrajectoryLine from "./TrajectoryLine";
 import styles from "@/styles/TrajectoryVisualizer.module.css";
-import CameraSetup from "./CameraSetup";
+import CameraSetup from "@/components/CameraSetup";
 import TrajectoryDeviceOrientationAnimation from "./TrajectoryDeviceOrientationAnimation";
+import { useInfoData } from "@/utils/useInfoData";
 
 // Define the props type for the component
 interface TrajectoryVisualizerProps {
   sharedState: SharedState;
-  positions: [number, number, number][];
-  rotations: [number, number, number][];
+  folderName: string;
 }
 
 const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
   sharedState,
-  positions,
-  rotations,
+  folderName,
 }) => {
+  const infoData = useInfoData(folderName);
+
+  const joints = infoData?.joints ?? [];
+
+  // Use the custom hook
+  const trajectoryDataArray = useTrajectoryData(folderName, joints);
+
   return (
     <div className={styles.canvasContainer}>
       <h2 className={styles.title}>Trajectory Visualizer</h2>
@@ -45,13 +52,23 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
         {/* AxesHelper to show the coordinate system */}
         <axesHelper args={[5]} />
 
-        <TrajectoryLine positions={positions} />
+        {/* Render TrajectoryLines for each joint */}
+        {trajectoryDataArray.map((data, index) => (
+          <TrajectoryLine
+            key={`trajectory-${index}`}
+            positions={data.positions}
+          />
+        ))}
 
-        <TrajectoryDeviceOrientationAnimation
-          sharedState={sharedState}
-          positions={positions}
-          rotations={rotations}
-        />
+        {/* Render Joint Orientation and animation for each joint */}
+        {trajectoryDataArray.map((data, index) => (
+          <TrajectoryDeviceOrientationAnimation
+            key={`arrow-${index}`}
+            sharedState={sharedState}
+            positions={data.positions}
+            rotations={data.rotations}
+          />
+        ))}
       </Canvas>
     </div>
   );

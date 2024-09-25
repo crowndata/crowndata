@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
+import { InfoData } from "@/types/dataInterfaces";
 
-export interface CameraName {
-  cameras: string[];
-}
-
-export const useCameraName = (folderName: string): CameraName | null => {
-  const [cameraName, setCameraName] = useState<CameraName | null>(null);
+export const useInfoData = (folderName: string): InfoData | null => {
+  const [infoData, setInfoData] = useState<InfoData | null>(null);
 
   useEffect(() => {
     if (folderName) {
       // Fetch the JSON file and process the data
-      fetch(`/data/${folderName}/camera.json`) // Corrected to "camera.json"
+      fetch(`/data/${folderName}/information.json`) // Corrected to "camera.json"
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -19,7 +16,7 @@ export const useCameraName = (folderName: string): CameraName | null => {
         })
         .then((data) => {
           if (data && Array.isArray(data.cameras)) {
-            setCameraName(data);
+            setInfoData(data);
           } else {
             throw new Error("Invalid JSON structure");
           }
@@ -30,5 +27,5 @@ export const useCameraName = (folderName: string): CameraName | null => {
     }
   }, [folderName]);
 
-  return cameraName;
+  return infoData;
 };

@@ -4,7 +4,6 @@ import styles from "@/styles/CameraImage.module.css"; // Assuming your CSS modul
 
 // Define prop types
 type CameraImageProps = {
-  camera: string;
   currentPoint: number;
   folderName: string;
   images: string[]; // Assuming images is a list of string paths
@@ -12,20 +11,20 @@ type CameraImageProps = {
 
 // Memoized CameraImage
 const CameraImage = memo(
-  ({ camera, currentPoint, folderName, images }: CameraImageProps) => (
+  ({ currentPoint, folderName, images }: CameraImageProps) => (
     <Image
-      src={`/data/${folderName}/images/${camera}__${images[currentPoint]}`}
+      src={`/data/${folderName}/images/${images[currentPoint]}`}
       alt={`Image ${currentPoint + 1}`}
       width={300}
       height={200}
       className={styles.animatedImage}
-      loading="lazy"
+      loading="eager" // Eager loading to ensure it loads quickly
+      priority={true} // Forces image to load earlier to avoid jumps
     />
   ),
   // Optional custom comparison function for memoization
   (prevProps, nextProps) => {
     return (
-      prevProps.camera === nextProps.camera &&
       prevProps.currentPoint === nextProps.currentPoint &&
       prevProps.folderName === nextProps.folderName &&
       prevProps.images === nextProps.images

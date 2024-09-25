@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import * as THREE from "three";
-import { SharedState } from "@/utils/useTrajectoryData";
+import { SharedState } from "@/types/pageInterface";
 
 interface TrajectoryDeviceOrientationAnimationProps {
   sharedState: SharedState;
