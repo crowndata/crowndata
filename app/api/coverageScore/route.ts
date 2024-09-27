@@ -1,17 +1,24 @@
-// app/api/return-value/route.ts
+// app/api/coverageScore/route.ts
 
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-export async function POST(req: Request) {
-  // Parse the JSON body of the request
-  const body = await req.json();
+export async function GET(req: Request) {
+  // Extract the URL from the request object
+  const { searchParams } = new URL(req.url);
 
-  // Extract the "data" parameter from the request body
-  const { data } = body;
+  // Get the 'arg1' parameter from the query string
+  const folderName = searchParams.get("arg1");
 
-  // Respond with the parameter and the value 0.42
+  if (!folderName) {
+    return NextResponse.json(
+      { error: "Missing folderName parameter" },
+      { status: 400 },
+    );
+  }
+
+  // Respond with the folder name and a sample score
   return NextResponse.json({
-    receivedData: data,
-    value: 0.42,
+    folderName,
+    coverageScore: 0.42,
   });
 }

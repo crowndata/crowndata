@@ -7,7 +7,7 @@ interface EvaluationProps {
 }
 
 interface CoverageScoreResponse {
-  result: number; // Adjust this type based on the actual API response
+  coverageScore: number; // Adjust this type based on the actual API response
 }
 
 const Evaluation: React.FC<EvaluationProps> = ({ folderName }) => {
@@ -55,7 +55,7 @@ const Evaluation: React.FC<EvaluationProps> = ({ folderName }) => {
     <div className={styles.container}>
       <h2 className={styles.title}>Evaluation</h2>
       <ul className={styles.list}>
-        {[{ label: "Coverage Score", value: coverageScore.result }].map(
+        {[{ label: "Coverage Score", value: coverageScore.coverageScore }].map(
           (item, index) => (
             <li key={index} className={styles.listItem}>
               <strong className={styles.label}>{item.label}:</strong>
