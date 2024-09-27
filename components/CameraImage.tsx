@@ -19,6 +19,7 @@ const CameraImage = memo(
       height={200}
       className={styles.animatedImage}
       loading="eager" // Eager loading to ensure it loads quickly
+      unoptimized={true}  // Disable Next.js image optimization
     />
   ),
   // Optional custom comparison function for memoization
