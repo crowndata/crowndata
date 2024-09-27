@@ -14,6 +14,7 @@ export interface InfoData {
   taskState?: string;
   subtaskState?: string;
   dataLength?: number;
+  durationInSeconds?: string;
   cameras?: string[];
   joints?: string[];
 }

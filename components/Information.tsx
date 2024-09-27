@@ -45,6 +45,7 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
           { label: "Task State", value: infoData.taskState },
           { label: "Subtask State", value: infoData.subtaskState },
           { label: "Data Length", value: infoData.dataLength },
+          { label: "Duration In Seconds", value: infoData.durationInSeconds },
         ].map((item, index) => (
           <li key={index} className={styles.listItem}>
             <strong className={styles.label}>{item.label}:</strong>
