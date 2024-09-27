@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import DataCard from "@/components/DataCard";
@@ -73,4 +74,10 @@ const DataCardListing: React.FC = () => {
   );
 };
 
-export default DataCardListing;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading data...</div>}>
+      <DataCardListing />
+    </Suspense>
+  );
+}
