@@ -4,7 +4,7 @@
   "endTime": "2024-09-21T12:00:00Z",
   "robotEmbodiment": "ALOHA",
   "robotSerialNumber": "RS123456",
-  "videoSamplingRate": 30,
+  "videoSamplingRate": 10,
   "armSamplingRate": 50,
   "sensorSamplingRate": 60,
   "operatorName": "John Doe",
@@ -13,6 +13,7 @@
   "taskState": "SUCCESS",
   "subtaskState": "SUCCESS",
   "dataLength": 166,
+  "durationInSeconds": "16.60",
   "cameras": [
     "exterior_image_1_left",
     "exterior_image_2_left",
