@@ -19,7 +19,6 @@ const CameraImage = memo(
       height={200}
       className={styles.animatedImage}
       loading="eager" // Eager loading to ensure it loads quickly
-      priority={true} // Forces image to load earlier to avoid jumps
     />
   ),
   // Optional custom comparison function for memoization
