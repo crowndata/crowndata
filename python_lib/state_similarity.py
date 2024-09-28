@@ -4,6 +4,7 @@ from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 from utils import read_json_file
 
+
 class TrajectorySimilarity:
     def __init__(self, n_clusters=5):
         self.n_clusters = n_clusters
@@ -60,8 +61,12 @@ class TrajectorySimilarity:
 
 if __name__ == "__main__":
     ts = TrajectorySimilarity(n_clusters=5)
-    traj_a = read_json_file("public/data/droid_00000000/trajectories/cartesian_position__trajectory.json")
-    traj_b = read_json_file("public/data/droid_00000000/trajectories/cartesian_position__trajectory.json")
+    traj_a = read_json_file(
+        "public/data/droid_00000000/trajectories/cartesian_position__trajectory.json"
+    )
+    traj_b = read_json_file(
+        "public/data/droid_00000000/trajectories/cartesian_position__trajectory.json"
+    )
     print(traj_a)
     similarity, combined_data, labels = ts.dual_state_similarity(traj_a, traj_b)
     print("Trajectory Similarity:", similarity)
