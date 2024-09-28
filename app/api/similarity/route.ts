@@ -1,53 +1,48 @@
-import { NextResponse } from "next/server"; // Use NextResponse to handle the response
+import { NextRequest, NextResponse } from "next/server"; // Use NextResponse to handle the response
 import { kmeans } from "ml-kmeans"; // Import ml-kmeans for clustering
 import { distance, number } from "mathjs"; // Import mathjs for math operations
-import { useTrajectoryData } from "@/utils/useTrajectoryData";
 
-// Define the GET handler for the API route
-export async function GET(req: Request) {
+// Define the types for the incoming data
+interface DataRequest {
+  n_cluster: number;
+  data1: {
+    positions: number[][];
+  };
+  data2: {
+    positions: number[][];
+  };
+}
+
+// Define the POST handler
+export async function POST(req: NextRequest) {
   try {
-    // Extract query parameters
-    const { searchParams } = new URL(req.url);
-    const nCluster = searchParams.get("n-cluster") || "5"; // Default to 5 if n-cluster is not provided
-    const data1 = searchParams.get("data1");
-    const data2 = searchParams.get("data2");
+    // Parse the JSON body
+    const body: DataRequest = await req.json();
 
-    // Validate query parameters
-    if (!data1 || !data2) {
+    const { n_cluster, data1, data2 } = body;
+
+    // Basic validation
+    if (!data1?.positions || !data2?.positions) {
       return NextResponse.json(
-        { message: "Please provide data1 and data2 as query parameters" },
+        { message: "Invalid input data" },
         { status: 400 },
       );
     }
 
-    // Ensure n-cluster is a valid number
-    const n_clusters = parseInt(nCluster, 10);
-    if (isNaN(n_clusters) || n_clusters <= 0) {
+    // Ensure n_cluster is a valid number
+    if (isNaN(n_cluster) || n_cluster <= 0) {
       return NextResponse.json(
-        { message: "Invalid value for n-cluster. Must be a positive integer." },
+        { message: "Invalid value for n_cluster. Must be a positive integer." },
         { status: 400 },
       );
     }
-
-    // Fetch the JSON files from your server or storage
-    const joints = ["cartesian_position"];
-    const trajectoryData1 = await useTrajectoryData(data1, joints);
-    const trajectoryData2 = await useTrajectoryData(data2, joints);
-
-    // If data fetch failed
-    if (!trajectoryData1 || !trajectoryData2) {
-      return NextResponse.json(
-        { message: "Error fetching trajectory data." },
-        { status: 500 },
-      );
-    }
-
-    const positions1 = trajectoryData1[0]?.positions || [];
-    const positions2 = trajectoryData2[0]?.positions || [];
 
     // Call the TrajectorySimilarity logic
-    const ts = new TrajectorySimilarity(n_clusters);
-    const { similarity } = ts.dualStateSimilarity(positions1, positions2);
+    const ts = new TrajectorySimilarity(n_cluster);
+    const { similarity } = ts.dualStateSimilarity(
+      data1.positions,
+      data2.positions,
+    );
 
     // Return similarity result
     return NextResponse.json({ similarity }, { status: 200 });
@@ -67,18 +62,22 @@ export async function GET(req: Request) {
 // TrajectorySimilarity class
 class TrajectorySimilarity {
   n_clusters: number;
+  seed: number;
 
-  constructor(n_clusters: number) {
+  constructor(n_clusters: number, seed: number = 42) {
+    // Default seed
     this.n_clusters = n_clusters;
+    this.seed = seed;
   }
 
   dualStateSimilarity(trajA: number[][], trajB: number[][]) {
     const combinedData = [...trajA, ...trajB];
 
-    // Options for kmeans clustering
+    // Options for kmeans clustering with a constant seed
     const options = {
       maxIterations: 1000, // Set the maximum number of iterations
       tolerance: 1e-4, // Set the tolerance for convergence
+      seed: this.seed, // Constant random seed for reproducibility
     };
 
     try {

@@ -1,57 +1,83 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import { useTrajectoryData } from "@/utils/useTrajectoryData";
 import styles from "@/styles/Evaluation.module.css"; // Import the CSS module
+import { useSearchParams } from "next/navigation";
 
 // Define the props type for the component
-interface EvaluationDualProps {
-  data1: string;
-  data2: string;
-}
 
 interface EvaluationDualResponse {
   similarity: number; // Adjust this type based on the actual API response
 }
 
-const EvaluationDual: React.FC<EvaluationDualProps> = ({ data1, data2 }) => {
+const EvaluationDual: React.FC = () => {
   const [scores, setScores] = useState<EvaluationDualResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const url = `/api/similarity?data1=${encodeURIComponent(data1)}&data2=${encodeURIComponent(data2)}`;
+  const searchParams = useSearchParams();
+
+  const data1 = searchParams.get("data1") || "default data 1";
+  const data2 = searchParams.get("data2") || "default data 2";
+
+  const joints = ["cartesian_position"];
+  const trajectoryData1 = useTrajectoryData(data1, joints);
+  const trajectoryData2 = useTrajectoryData(data2, joints);
+
+  // Memoize the positions arrays to avoid unnecessary renders
+  const positions1 = useMemo(
+    () => trajectoryData1[0]?.positions || [],
+    [trajectoryData1],
+  );
+  const positions2 = useMemo(
+    () => trajectoryData2[0]?.positions || [],
+    [trajectoryData2],
+  );
+
+  const nCluster = 5;
+  const url = `/api/similarity`;
 
   useEffect(() => {
-    const fetchScore = async () => {
-      try {
-        const response = await fetch(url, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
-        const data: EvaluationDualResponse = await response.json();
-        setScores(data);
-      } catch (err) {
-        // Type guard to check if err is an instance of Error
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unknown error occurred");
-        }
-      }
-    };
+    if (positions1.length > 0 && positions2.length > 0) {
+      const fetchScore = async () => {
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              n_cluster: nCluster,
+              data1: {
+                positions: positions1,
+              },
+              data2: {
+                positions: positions2,
+              },
+            }),
+          });
 
-    if (data1 && data2) {
+          if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+          }
+
+          const data: EvaluationDualResponse = await response.json();
+          setScores(data);
+        } catch (err) {
+          if (err instanceof Error) {
+            setError(err.message);
+          } else {
+            setError("An unknown error occurred");
+          }
+        }
+      };
+
       fetchScore();
     }
-  }, [data1, data2]);
+  }, [url, nCluster, positions1, positions2]);
 
-  // Handle errors
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  // If data is not loaded yet, show a loading message
   if (!scores) {
     return <div>Loading...</div>;
   }

@@ -19,3 +19,11 @@
   font-weight: bold;
   border-bottom: 2px solid #eaeaea;
 }
+
+.container {
+  width: 95%;
+  aspect-ratio: 1 / 1;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+}
