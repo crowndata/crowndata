@@ -1,0 +1,95 @@
+/* styles/Auth.module.css */
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.button {
+  padding: 10px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button:disabled {
+  background-color: #ccc;
+}
+
+.oauthButton {
+  background-color: white;
+  color: black;
+  border: 1px solid #0070f3;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.separator {
+  margin: 20px 0;
+}
+
+.hr {
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+/* styles/Auth.module.css */
+.oauthButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: black;
+  border: 1px solid #0070f3;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+  gap: 10px; /* Space between logo and text */
+}
+
+.oauthButton img {
+  margin-right: 10px;
+}
+
+.button {
+  padding: 10px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button:disabled,
+.oauthButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
