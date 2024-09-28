@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"; // Use NextResponse to handle the response
 import { kmeans } from "ml-kmeans"; // Import ml-kmeans for clustering
-import { distance, number } from "mathjs"; // Import mathjs for math operations
 
 // Define the types for the incoming data
 interface DataRequest {
@@ -80,6 +79,21 @@ class TrajectorySimilarity {
       seed: this.seed, // Constant random seed for reproducibility
     };
 
+    function cosineSimilarity(histA: number[], histB: number[]) {
+      const dotProduct = histA.reduce(
+        (sum, val, idx) => sum + val * histB[idx],
+        0,
+      );
+      const magnitudeA = Math.sqrt(
+        histA.reduce((sum, val) => sum + val * val, 0),
+      );
+      const magnitudeB = Math.sqrt(
+        histB.reduce((sum, val) => sum + val * val, 0),
+      );
+
+      return dotProduct / (magnitudeA * magnitudeB);
+    }
+
     try {
       // Perform k-means clustering with the combined data
       const kmeansModel = kmeans(combinedData, this.n_clusters, options);
@@ -95,7 +109,7 @@ class TrajectorySimilarity {
       const histB = this.calculateHistogram(labelsB, trajB.length);
 
       // Calculate similarity as 1 minus the Euclidean distance between histograms
-      const similarity = 1 - number(distance(histA, histB));
+      const similarity = cosineSimilarity(histA, histB);
 
       return { similarity, combinedData, labels };
     } catch (error) {
