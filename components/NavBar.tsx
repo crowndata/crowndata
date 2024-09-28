@@ -24,6 +24,9 @@ export default function NavBar() {
         <li>
           <Link href="/data">Data</Link>
         </li>
+        <li>
+          <Link href="/data/compare">Compare</Link>
+        </li>
       </ul>
       <div className={styles.hamburger} onClick={toggleMenu}>
         <span></span>

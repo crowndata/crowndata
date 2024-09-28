@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useTrajectoryDataDual } from "@/utils/useTrajectoryData";
 import styles from "@/styles/Evaluation.module.css"; // Import the CSS module
-import { useSearchParams } from "next/navigation";
+
+interface EvaluationDualProps {
+  data1: string;
+  data2: string;
+}
 
 // Define the props type for the component
 interface EvaluationDualResponse {
@@ -21,16 +25,11 @@ const arraysAreSimilar = (
   );
 };
 
-const EvaluationDual: React.FC = () => {
+const EvaluationDual: React.FC<EvaluationDualProps> = ({ data1, data2 }) => {
   const [rawScores, setRawScores] = useState<EvaluationDualResponse | null>(
     null,
   );
   const [error, setError] = useState<string | null>(null);
-
-  const searchParams = useSearchParams();
-
-  const data1 = searchParams.get("data1") || "default data 1";
-  const data2 = searchParams.get("data2") || "default data 2";
 
   const joints = useMemo(() => ["cartesian_position"], []);
 
