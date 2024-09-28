@@ -5,7 +5,7 @@ import Information from "@/components/Information";
 export default function Page({
   params,
 }: {
-  params: { dataFolderName: string };
+  params: { folderName: string };
 }) {
-  return <Information folderName={params.dataFolderName} />;
+  return <Information folderName={params.folderName} />;
 }

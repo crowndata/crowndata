@@ -10,9 +10,9 @@ import { useInfoData } from "@/utils/useInfoData";
 export default function Page({
   params,
 }: {
-  params: { dataFolderName: string };
+  params: { folderName: string };
 }) {
-  const folderName = params.dataFolderName;
+  const folderName = params.folderName;
 
   // Destructure the returned state values from the useSharedState hook
   const { currentPoint, setCurrentPoint } = useSharedState();

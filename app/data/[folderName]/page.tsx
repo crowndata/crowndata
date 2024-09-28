@@ -6,12 +6,12 @@ import DataTitleDisplay from "@/components/DataTitleDisplay";
 export default function Page({
   params,
 }: {
-  params: { dataFolderName: string };
+  params: { folderName: string };
 }) {
   return (
     <DataTitleDisplay
       displayTitle={"Data Name"}
-      folderName={params.dataFolderName}
+      folderName={params.folderName}
     />
   );
 }
