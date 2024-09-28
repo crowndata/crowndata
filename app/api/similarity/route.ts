@@ -38,13 +38,14 @@ export async function POST(req: NextRequest) {
 
     // Call the TrajectorySimilarity logic
     const ts = new TrajectorySimilarity(n_cluster);
-    const { similarity } = ts.dualStateSimilarity(
-      data1.positions,
-      data2.positions,
-    );
+    const { cosineSimilarityScore, calculateSimilarityScore } =
+      ts.dualStateSimilarity(data1.positions, data2.positions);
 
     // Return similarity result
-    return NextResponse.json({ similarity }, { status: 200 });
+    return NextResponse.json(
+      { cosineSimilarityScore, calculateSimilarityScore },
+      { status: 200 },
+    );
   } catch (error) {
     // Handle errors and cast `error` as `Error` type
     const err = error as Error;
@@ -94,6 +95,37 @@ class TrajectorySimilarity {
       return dotProduct / (magnitudeA * magnitudeB);
     }
 
+    // Calculate Euclidean distance between two histograms
+    function euclideanDistance(histA: number[], histB: number[]) {
+      if (histA.length !== histB.length) {
+        throw new Error("Histograms must have the same length");
+      }
+
+      let sumSquaredDiffs = 0;
+
+      for (let i = 0; i < histA.length; i++) {
+        const diff = histA[i] - histB[i];
+        sumSquaredDiffs += diff * diff;
+      }
+
+      return Math.sqrt(sumSquaredDiffs);
+    }
+
+    // Normalize the distance and compute similarity
+    function calculateSimilarity(histA: number[], histB: number[]) {
+      const distance = euclideanDistance(histA, histB);
+
+      // Assuming the maximum possible distance is between a vector of ones and a vector of zeros
+      const maxDistance = Math.sqrt(histA.length); // Max distance when one array is all ones and the other is all zeros
+
+      const normalizedDistance = distance / maxDistance;
+
+      // Ensure similarity is between 0 and 1
+      const similarity = Math.max(0, 1 - normalizedDistance);
+
+      return similarity;
+    }
+
     try {
       // Perform k-means clustering with the combined data
       const kmeansModel = kmeans(combinedData, this.n_clusters, options);
@@ -109,9 +141,15 @@ class TrajectorySimilarity {
       const histB = this.calculateHistogram(labelsB, trajB.length);
 
       // Calculate similarity as 1 minus the Euclidean distance between histograms
-      const similarity = cosineSimilarity(histA, histB);
+      const cosineSimilarityScore = cosineSimilarity(histA, histB);
+      const calculateSimilarityScore = calculateSimilarity(histA, histB);
 
-      return { similarity, combinedData, labels };
+      return {
+        cosineSimilarityScore,
+        calculateSimilarityScore,
+        combinedData,
+        labels,
+      };
     } catch (error) {
       // Cast the error to an `Error` type to access `message`
       throw new Error(

@@ -9,7 +9,8 @@ interface EvaluationDualProps {
 
 // Define the props type for the component
 interface EvaluationDualResponse {
-  similarity: number; // Adjust this type based on the actual API response
+  cosineSimilarityScore: number; // Adjust this type based on the actual API response
+  calculateSimilarityScore: number;
 }
 
 // Helper function to compare arrays of 3D points with tolerance
@@ -112,7 +113,12 @@ const EvaluationDual: React.FC<EvaluationDualProps> = ({ data1, data2 }) => {
 
   // Memoize the scores calculation based on the rawScores
   const scores = useMemo(() => {
-    return rawScores ? { similarity: rawScores.similarity } : null;
+    return rawScores
+      ? {
+          cosineSimilarityScore: rawScores.cosineSimilarityScore,
+          calculateSimilarityScore: rawScores.calculateSimilarityScore,
+        }
+      : null;
   }, [rawScores]);
 
   if (error) {
@@ -129,8 +135,12 @@ const EvaluationDual: React.FC<EvaluationDualProps> = ({ data1, data2 }) => {
       <ul className={styles.list}>
         {[
           {
-            label: "Trajectory Similarity",
-            value: scores.similarity.toFixed(3),
+            label: "Trajectory Cosine Similarity",
+            value: scores.cosineSimilarityScore.toFixed(3),
+          },
+          {
+            label: "Trajectory Normalized Distance Similarity",
+            value: scores.calculateSimilarityScore.toFixed(3),
           },
         ].map((item, index) => (
           <li key={index} className={styles.listItem}>
