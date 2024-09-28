@@ -1,0 +1,73 @@
+.title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
+  gap: 1rem; /* Optional: Add gap between the columns */
+}
+
+.column {
+  padding: 1rem; /* Optional: Add padding for spacing */
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label {
+  margin-right: 10px;
+  min-width: 60px;
+  font-size: 16px; /* Font size for label */
+  font-weight: 600; /* Font weight for label */
+  color: #333; /* Font color for label */
+}
+
+.input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 16px; /* Font size for input */
+  font-weight: 400; /* Font weight for input */
+  color: #333; /* Font color for input */
+}
+
+/* Responsive layout: Stack the columns on smaller screens */
+@media (max-width: 768px) {
+  .columns {
+    flex-direction: column; /* Stack the columns vertically */
+  }
+
+  .column {
+    flex: 1 1 100%; /* Each column takes full width on small screens */
+  }
+}

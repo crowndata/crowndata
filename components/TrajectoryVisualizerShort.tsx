@@ -6,7 +6,7 @@ import { SharedState } from "@/types/pageInterface";
 import TrajectoryLine from "@/components/TrajectoryLine";
 import styles from "@/styles/TrajectoryVisualizer.module.css";
 import CameraSetup from "@/components/CameraSetup";
-import TrajectoryDeviceOrientationAnimation from "./TrajectoryDeviceOrientationAnimation";
+import TrajectoryDeviceOrientationAnimation from "@/components/TrajectoryDeviceOrientationAnimation";
 import { useInfoData } from "@/utils/useInfoData";
 
 // Define the props type for the component
@@ -15,7 +15,7 @@ interface TrajectoryVisualizerProps {
   folderName: string;
 }
 
-const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
+const TrajectoryVisualizerShort: React.FC<TrajectoryVisualizerProps> = ({
   sharedState,
   folderName,
 }) => {
@@ -49,9 +49,6 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
         />
         <ambientLight intensity={0.5} />
 
-        {/* AxesHelper to show the coordinate system */}
-        <axesHelper args={[5]} />
-
         {/* Render TrajectoryLines for each joint */}
         {trajectoryDataArray.map((data, index) => (
           <TrajectoryLine
@@ -74,4 +71,4 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
   );
 };
 
-export default TrajectoryVisualizer;
+export default TrajectoryVisualizerShort;
