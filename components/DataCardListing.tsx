@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import DataCard from "@/components/DataCard";
 import styles from "@/styles/DataCardListing.module.css"; // New CSS module for the page
+import "@/styles/globals.css";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -47,8 +48,8 @@ const DataCardListing: React.FC = () => {
   const currentFolders = folders.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Data</h2>
+    <div className="container">
+      <h2 className="title">Data</h2>
       <div className={styles.grid}>
         {currentFolders.map((folder) => (
           <DataCard key={folder} folderName={folder} />

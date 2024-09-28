@@ -1,10 +1,25 @@
-/* Layout.module.css */
 .container {
+  width: 100%;
+  /* Ensure it takes full width of the parent */
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* Spread the items inside the container */
   gap: 20px;
-  width: 95%;
+  /* Space between columns */
+  padding: 0;
   margin: 0;
-  /* Reduces margin */
+  box-sizing: border-box;
+  /* Ensure padding is included in width calculation */
+  align-items: center;
+  /* Make the card take the full width of its container */
+  margin-bottom: 10px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
 }
 
 .left {
@@ -20,7 +35,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 65%;
+  width: 60%;
   margin: 0;
   /* Reduces margin */
 }
@@ -57,22 +72,4 @@
   /* Ensures the height is equal to the width */
   margin: 0;
   /* Reduces margin */
-}
-
-@media (max-width: 768px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-    /* Change layout for mobile */
-    gap: 10px;
-    /* Reduced gap for mobile */
-    margin: 10px;
-    /* Add some margin for smaller screens */
-  }
-
-  .container > div {
-    flex: 1;
-    width: 100%;
-    /* Ensure divs take full width in flex layout */
-  }
 }

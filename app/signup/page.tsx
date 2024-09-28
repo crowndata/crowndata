@@ -50,7 +50,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <h1>Sign Up</h1>
 
       {/* Email and Password Signup Form */}

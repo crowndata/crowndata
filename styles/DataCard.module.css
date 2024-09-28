@@ -18,29 +18,12 @@
   text-decoration: underline;
 }
 
-.container {
+.columns {
+  display: grid;
   width: 100%;
-  /* Ensure it takes full width of the parent */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* Spread the items inside the container */
-  gap: 20px;
-  /* Space between columns */
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  /* Ensure padding is included in width calculation */
-  align-items: center;
-  width: 100%;
-  /* Make the card take the full width of its container */
-  margin-bottom: 10px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.2s ease-in-out;
+  max-width: 1200px;
+  grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
+  gap: 1rem; /* Optional: Add gap between the columns */
 }
 
 .column {

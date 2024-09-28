@@ -4,6 +4,7 @@ import EvaluationDual from "@/components/EvaluationDual";
 import DataCompareListing from "./DataCompareListing";
 import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import "@/styles/globals.css";
 
 function Loading() {
   return <div>Loading data...</div>;
@@ -43,12 +44,12 @@ const DataCompare: React.FC = () => {
   };
   return (
     <Suspense fallback={<Loading />}>
-      <div className={styles.container}>
-        <h2 className={styles.title}>Data Compare</h2>
+      <div className="container">
+        <h2 className="title">Data Compare</h2>
         <EvaluationDual data1={data1} data2={data2} />
         <div className={styles.columns}>
           <div className={styles.column}>
-            <div className={styles.container}>
+            <div className="container">
               {/* First Column */}
               <div className={styles.inputGroup}>
                 <label htmlFor="data1" className={styles.label}>
@@ -65,7 +66,7 @@ const DataCompare: React.FC = () => {
             </div>
           </div>
           <div className={styles.column}>
-            <div className={styles.container}>
+            <div className="container">
               {/* Second Column */}
               <div className={styles.inputGroup}>
                 <label htmlFor="data2" className={styles.label}>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/NavBar.module.css";
+import "@/styles/globals.css";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);

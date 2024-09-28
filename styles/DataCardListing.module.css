@@ -1,26 +1,3 @@
-.title {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
-  text-align: center;
-  font-weight: bold;
-  border-bottom: 2px solid #eaeaea;
-  padding-bottom: 10px;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-}
-
 .imageAnimation {
   width: 100%;
   margin-bottom: 20px;
@@ -33,23 +10,36 @@
 
 .grid {
   width: 95%;
-  justify-content: center;
-  /* Center horizontally */
-  align-items: center;
-  /* Center vertically */
-
+  /* Ensure it takes full width of the parent */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Spread the items inside the container */
   gap: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
+  /* Space between columns */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* Ensure padding is included in width calculation */
+  align-items: center;
+  /* Make the card take the full width of its container */
+  margin-bottom: 10px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
 }
 
 .pagination {
-  width: 95%;
-  margin-top: 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: row; /* Align items vertically */
+  width: 100%; /* Set width to 100% of its container */
+  max-width: 95%; /* But constrain it to 95% of the available space */
+  margin-top: 20px;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
 .pageButton {
