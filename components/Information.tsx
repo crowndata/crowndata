@@ -22,7 +22,7 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
       <h2 className={styles.title}>Experiment Information</h2>
       <ul className={styles.list}>
         {[
-          { label: "Data Folder Name", value: infoData.dataFolderName },
+          { label: "Data Name", value: infoData.dataName },
           { label: "Start Time", value: infoData.startTime },
           { label: "End Time", value: infoData.endTime },
           { label: "Robot Embodiment", value: infoData.robotEmbodiment },

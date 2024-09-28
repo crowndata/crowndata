@@ -18,16 +18,16 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "components/*": ["components/*"],
-      "python_lib/*": ["python_lib/*"],
-      "robot_data_example/*": ["robot_data_example/*"],
-      "styles/*": ["styles/*"],
-      "types/*": ["types/*"],
-      "utils/*": ["utils/*"]
+      "@/*": ["./*"]
     },
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "next.config.ts"
+  ],
   "exclude": ["node_modules"]
 }

@@ -27,3 +27,15 @@
   border-radius: 10px;
   margin: 20px auto;
 }
+
+.columns {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
+  gap: 1rem; /* Optional: Add gap between the columns */
+}
+
+.column {
+  padding: 1rem; /* Optional: Add padding for spacing */
+}

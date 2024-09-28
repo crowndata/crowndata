@@ -17,9 +17,7 @@ def read_json_file(file_path: str) -> dict:
         data = json.load(file)
 
     xyzrpy_array = np.array(
-        [[d["x"], d["y"], d["z"], 
-          d["roll"], d["pitch"], d["yaw"]] 
-          for d in data]
+        [[d["x"], d["y"], d["z"], d["roll"], d["pitch"], d["yaw"]] for d in data]
     )
 
     return xyzrpy_array

@@ -19,12 +19,14 @@ const InformationShort: React.FC<InformationShortProps> = ({ folderName }) => {
     <div className={styles.container}>
       <ul className={styles.list}>
         {[
+          { label: "Data Name", value: infoData.dataName },
           { label: "Start Time", value: infoData.startTime },
           { label: "Robot Embodiment", value: infoData.robotEmbodiment },
           { label: "Task Description", value: infoData.taskDescription },
           { label: "Subtask Description", value: infoData.subtaskDescription },
           { label: "Task State", value: infoData.taskState },
           { label: "Subtask State", value: infoData.subtaskState },
+          { label: "Duration In Seconds", value: infoData.durationInSeconds },
         ].map((item, index) => (
           <li key={index} className={styles.listItem}>
             <strong className={styles.label}>{item.label}:</strong>

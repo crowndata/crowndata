@@ -1,5 +1,5 @@
 export interface InfoData {
-  dataFolderName: string;
+  dataName: string;
   timestamp?: string;
   startTime?: string;
   endTime?: string;
