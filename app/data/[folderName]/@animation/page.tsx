@@ -7,11 +7,7 @@ import { useSharedState } from "@/utils/useSharedState";
 import styles from "@/styles/Page.module.css";
 import { useInfoData } from "@/utils/useInfoData";
 
-export default function Page({
-  params,
-}: {
-  params: { folderName: string };
-}) {
+export default function Page({ params }: { params: { folderName: string } }) {
   const folderName = params.folderName;
 
   // Destructure the returned state values from the useSharedState hook

@@ -46,6 +46,7 @@
 .label {
   flex-basis: 40%;
   font-weight: 600;
+  text-align: left;
   color: #555;
 }
 
@@ -70,4 +71,14 @@
 /* Add some padding at the bottom */
 .container:last-child {
   padding-bottom: 20px;
+}
+
+.successSymbol {
+  color: green;
+  /* Or any other styles you prefer for success */
+}
+
+.failureSymbol {
+  color: red;
+  /* Or any other styles you prefer for failure */
 }

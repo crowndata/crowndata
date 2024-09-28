@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import styles from "@/styles/DataCompare.module.css"; // New CSS module for the page
 import InformationShort from "@/components/InformationShort";
-import TrajectoryVisualizer from "@/components/TrajectoryVisualizer";
+import TrajectoryVisualizerDual from "@/components/TrajectoryVisualizerDual";
 import { SharedState } from "@/types/pageInterface";
 import { useInfoData } from "@/utils/useInfoData";
 
@@ -111,10 +111,6 @@ const DataCompareListing: React.FC = () => {
               />
             </div>
             <InformationShort folderName={data1} />
-            <TrajectoryVisualizer
-              sharedState={sharedState1}
-              folderName={data1}
-            />
           </div>
         </div>
         <div className={styles.column}>
@@ -133,13 +129,15 @@ const DataCompareListing: React.FC = () => {
               />
             </div>
             <InformationShort folderName={data2} />
-            <TrajectoryVisualizer
-              sharedState={sharedState2}
-              folderName={data2}
-            />
           </div>
         </div>
       </div>
+      <TrajectoryVisualizerDual
+        sharedState1={sharedState1}
+        folderName1={data1}
+        sharedState2={sharedState2}
+        folderName2={data2}
+      />
     </div>
   );
 };
