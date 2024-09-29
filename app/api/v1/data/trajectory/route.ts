@@ -45,7 +45,7 @@ export async function GET(
       }),
     );
 
-    const response = NextResponse.json({ data: allData });
+    const response = NextResponse.json({ data: allData }, { status: 200 });
 
     // Set cache control header (e.g., cache for 10 minutes)
     response.headers.set(

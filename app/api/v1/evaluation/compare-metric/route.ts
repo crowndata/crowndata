@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server"; // Use NextResponse to handle the response
+import { NextRequest, NextResponse } from "next/server";
 import { kmeans } from "ml-kmeans"; // Import ml-kmeans for clustering
 
 // Define the types for the incoming data
