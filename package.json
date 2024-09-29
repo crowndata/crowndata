@@ -20,6 +20,7 @@
     "mathjs": "^13.1.1",
     "ml-kmeans": "^6.0.0",
     "next": "14.2.13",
+    "nextjs-google-analytics": "^2.3.7",
     "papaparse": "^5.4.1",
     "react": "^18",
     "react-dom": "^18",

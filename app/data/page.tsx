@@ -1,7 +1,6 @@
 "use client";
 
 import DataCardListing from "@/components/DataCardListing";
-
 import { useSessionCheck } from "@/hooks/useSessionCheck";
 
 export default function Page() {
@@ -10,5 +9,10 @@ export default function Page() {
   if (sessionCheck) {
     return <div>Loading...</div>;
   }
-  return <DataCardListing />;
+  return (
+    <>
+      {" "}
+      <DataCardListing />
+    </>
+  );
 }
