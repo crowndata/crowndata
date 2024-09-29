@@ -3,6 +3,7 @@ import styles from "@/styles/CameraImageAnimation.module.css";
 import CameraImage from "@/components/CameraImage";
 import { SharedState } from "@/types/pageInterface";
 import { useCameraData } from "@/utils/useCameraData";
+import "@/styles/globals.css";
 
 interface CameraImageAnimationProps {
   sharedState: SharedState;
@@ -28,8 +29,8 @@ const CameraImageAnimation: React.FC<CameraImageAnimationProps> = ({
   }
 
   return (
-    <div className={styles.imageContainer}>
-      <h2 className={styles.title}>Camera Image Animation</h2>
+    <div className={styles.imageAnimation}>
+      <h2 className="title">Camera Image Animation</h2>
       <div className={styles.imageGrid}>
         {cameras.map((camera, index) => (
           <div key={index} className={styles.imageColumn}>

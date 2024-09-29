@@ -2,6 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/NavBar.module.css";
+import "@/styles/globals.css";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -14,7 +15,12 @@ export default function NavBar() {
     <nav className={styles.navbar}>
       <div className={styles.logo}>
         <Link href="/">
-          <Image src="/home.png" alt="Home Icon" width={100} height={20} />
+          <Image
+            src="/images/home.png"
+            alt="Home Icon"
+            width={100}
+            height={20}
+          />
         </Link>
       </div>
       <ul className={`${styles.navLinks} ${menuOpen ? styles.active : ""}`}>
@@ -26,6 +32,15 @@ export default function NavBar() {
         </li>
         <li>
           <Link href="/data/compare">Compare</Link>
+        </li>
+        <li>
+          <Link href="/login">Login</Link>
+        </li>
+        <li>
+          <Link href="/signup">Sign Up</Link>
+        </li>
+        <li>
+          <Link href="/dashboard">Dashboard</Link>
         </li>
       </ul>
       <div className={styles.hamburger} onClick={toggleMenu}>

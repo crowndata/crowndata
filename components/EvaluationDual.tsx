@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useTrajectoryDataDual } from "@/utils/useTrajectoryData";
-import styles from "@/styles/Evaluation.module.css"; // Import the CSS module
+import styles from "@/styles/Information.module.css"; // Import the CSS module
+import "@/styles/globals.css";
 
 interface EvaluationDualProps {
   data1: string;
@@ -130,8 +131,8 @@ const EvaluationDual: React.FC<EvaluationDualProps> = ({ data1, data2 }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Evaluation</h2>
+    <div className="container">
+      <h2 className="title">Evaluation</h2>
       <ul className={styles.list}>
         {[
           {

@@ -6,6 +6,7 @@ import CameraImageAnimation from "@/components/CameraImageAnimation";
 import { useSharedState } from "@/utils/useSharedState";
 import styles from "@/styles/Page.module.css";
 import { useInfoData } from "@/utils/useInfoData";
+import "@/styles/globals.css";
 
 export default function Page({ params }: { params: { folderName: string } }) {
   const folderName = params.folderName;
@@ -29,7 +30,7 @@ export default function Page({ params }: { params: { folderName: string } }) {
   }, [infoData?.dataLength, setCurrentPoint]); // Depend on `dataLength` and `setCurrentPoint`
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <div className={styles.imageAnimation}>
         <CameraImageAnimation
           sharedState={{ currentPoint, setCurrentPoint }}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import styles from "@/styles/Evaluation.module.css"; // Import the CSS module
+import styles from "@/styles/Information.module.css"; // Import the CSS module
+import "@/styles/globals.css";
 
 // Define the props type for the component
 interface EvaluationProps {
@@ -52,14 +53,20 @@ const Evaluation: React.FC<EvaluationProps> = ({ folderName }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Evaluation</h2>
+    <div className="container">
+      <h2 className="title">Evaluation</h2>
       <ul className={styles.list}>
         {[{ label: "Coverage Score", value: coverageScore.coverageScore }].map(
           (item, index) => (
             <li key={index} className={styles.listItem}>
               <strong className={styles.label}>{item.label}:</strong>
-              <span className={styles.value}>{item.value}</span>
+              <span className={styles.value}>
+                {item.value === undefined ? (
+                  <span>N/A</span> // Display the actual value if it's neither success nor failure
+                ) : (
+                  <span>{item.value}</span> // Display the actual value if it's neither success nor failure
+                )}
+              </span>
             </li>
           ),
         )}

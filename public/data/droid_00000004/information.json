@@ -21,5 +21,6 @@
   ],
   "joints": [
     "cartesian_position"
-  ]
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "@/styles/InformationShort.module.css"; // Import the CSS module
 import { useInfoData } from "@/utils/useInfoData";
+import "@/styles/globals.css";
 
 // Define the props type for the component
 interface InformationShortProps {
@@ -16,7 +17,7 @@ const InformationShort: React.FC<InformationShortProps> = ({ folderName }) => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <ul className={styles.list}>
         {[
           { label: "Data Name", value: infoData.dataName },

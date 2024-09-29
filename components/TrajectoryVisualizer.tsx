@@ -8,6 +8,7 @@ import styles from "@/styles/TrajectoryVisualizer.module.css";
 import CameraSetup from "@/components/CameraSetup";
 import TrajectoryDeviceOrientationAnimation from "./TrajectoryDeviceOrientationAnimation";
 import { useInfoData } from "@/utils/useInfoData";
+import "@/styles/globals.css";
 
 // Define the props type for the component
 interface TrajectoryVisualizerProps {
@@ -27,9 +28,9 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
   const trajectoryDataArray = useTrajectoryData(folderName, joints);
 
   return (
-    <div className={styles.canvasContainer}>
-      <h2 className={styles.title}>Trajectory Visualizer</h2>
-      <div className={styles.container}>
+    <>
+      <h2 className="title">Trajectory Visualizer</h2>
+      <div className={styles.canvasContainer}>
         <Canvas>
           <CameraSetup
             fov={45}
@@ -72,7 +73,7 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
           ))}
         </Canvas>
       </div>
-    </div>
+    </>
   );
 };
 

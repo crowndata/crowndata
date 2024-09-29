@@ -4,6 +4,7 @@ import InformationShort from "@/components/InformationShort";
 import TrajectoryVisualizerDual from "@/components/TrajectoryVisualizerDual";
 import { SharedState } from "@/types/pageInterface";
 import { useInfoData } from "@/utils/useInfoData";
+import "@/styles/globals.css";
 
 interface DataCompareListingProps {
   data1: string;
@@ -67,27 +68,25 @@ const DataCompareListing: React.FC<DataCompareListingProps> = ({
   }
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <div className={styles.columns}>
         <div className={styles.column}>
-          <div className={styles.container}>
-            {/* First Column */}
-            <InformationShort folderName={data1} />
-          </div>
+          {/* First Column */}
+          <InformationShort folderName={data1} />
+          <TrajectoryVisualizerDual
+            sharedState={sharedState1}
+            folderName={data1}
+          />
         </div>
         <div className={styles.column}>
-          <div className={styles.container}>
-            {/* Second Column */}
-            <InformationShort folderName={data2} />
-          </div>
+          {/* Second Column */}
+          <InformationShort folderName={data2} />
+          <TrajectoryVisualizerDual
+            sharedState={sharedState2}
+            folderName={data2}
+          />
         </div>
       </div>
-      <TrajectoryVisualizerDual
-        sharedState1={sharedState1}
-        folderName1={data1}
-        sharedState2={sharedState2}
-        folderName2={data2}
-      />
     </div>
   );
 };

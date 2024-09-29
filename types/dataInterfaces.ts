@@ -17,4 +17,5 @@ export interface InfoData {
   durationInSeconds?: string;
   cameras?: string[];
   joints?: string[];
+  dataSource?: string;
 }

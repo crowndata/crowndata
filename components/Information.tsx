@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "@/styles/Information.module.css"; // Import the CSS module
 import { useInfoData } from "@/utils/useInfoData";
+import "@/styles/globals.css";
+import Link from "next/link";
 
 // Define the type for the JSON data
 
@@ -18,8 +20,8 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Experiment Information</h2>
+    <div className="container">
+      <h2 className="title">Experiment Information</h2>
       <ul className={styles.list}>
         {[
           { label: "Data Name", value: infoData.dataName },
@@ -46,12 +48,19 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
           { label: "Subtask State", value: infoData.subtaskState },
           { label: "Data Length", value: infoData.dataLength },
           { label: "Duration In Seconds", value: infoData.durationInSeconds },
+          { label: "Data Source", value: infoData.dataSource },
         ].map((item, index) => (
           <li key={index} className={styles.listItem}>
             <strong className={styles.label}>{item.label}:</strong>
             <span className={styles.value}>
               {item.value === undefined ? (
                 <span>N/A</span> // Display the actual value if it's neither success nor failure
+              ) : item.label === "Data Source" ? (
+                typeof item.value === "string" ? (
+                  <Link href={item.value}>{item.value}</Link>
+                ) : (
+                  <span>{item.value}</span> // Handle the case when it's a number
+                )
               ) : typeof item.value !== "string" ? (
                 <span>{item.value}</span> // Display the actual value if it's neither success nor failure
               ) : item.value.toLowerCase() === "success" ? (

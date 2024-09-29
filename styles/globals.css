@@ -25,3 +25,63 @@ body {
     text-wrap: balance;
   }
 }
+
+.container {
+  width: 100%;
+  /* Ensure it takes full width of the parent */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  /* Spread the items inside the container */
+  gap: 20px;
+  /* Space between columns */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* Ensure padding is included in width calculation */
+  margin-bottom: 10px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Add some padding at the bottom */
+.container:last-child {
+  padding-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    /* Change layout for mobile */
+    gap: 10px;
+    /* Reduced gap for mobile */
+    margin: 10px;
+    /* Add some margin for smaller screens */
+  }
+
+  .container > div {
+    flex: 1;
+    width: 100%;
+  }
+}
+
+.title {
+  width: 100%; /* Set width to 100% of its container */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 10px;
+}

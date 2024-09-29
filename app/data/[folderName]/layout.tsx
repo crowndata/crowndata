@@ -1,4 +1,5 @@
-import styles from "@/styles/Layout.module.css";
+import "@/styles/globals.css";
+import layoutStyles from "@/styles/Layout.module.css";
 
 export default function Layout({
   children,
@@ -12,17 +13,17 @@ export default function Layout({
   animation: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="container">
       {children}
-      <div className={styles.container}>
-        <div className={styles.left}>
-          <div className={styles.information}>{information}</div>
-          <div className={styles.evaluation}>{evaluation}</div>
+      <div className={layoutStyles.container}>
+        <div className={layoutStyles.left}>
+          <div className={layoutStyles.information}>{information}</div>
+          <div className={layoutStyles.evaluation}>{evaluation}</div>
         </div>
-        <div className={styles.right}>
-          <div className={styles.animation}>{animation}</div>
+        <div className={layoutStyles.right}>
+          <div className={layoutStyles.animation}>{animation}</div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

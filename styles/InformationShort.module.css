@@ -1,26 +1,3 @@
-.container {
-  width: 100%;
-  padding: 10px;
-  /* Reduce padding to tighten the layout */
-  margin: 0 auto;
-  max-width: 600px;
-  /* Set a max width for the container */
-  display: flex;
-  align-items: center;
-  /* Vertically aligns the label and value */
-  justify-content: flex-start;
-  /* Aligns items to the left */
-  /* Vertically aligns the label and value */
-}
-
-.title {
-  width: 100%;
-  font-size: 18px;
-  /* Decrease the font size */
-  margin-bottom: 8px;
-  /* Less margin for title spacing */
-}
-
 .list {
   width: 100%;
   list-style-type: none;

@@ -1,6 +1,7 @@
 import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 import * as THREE from "three";
+import "@/styles/globals.css";
 
 // Define the types for the CameraSetup props
 interface CameraSetupProps {

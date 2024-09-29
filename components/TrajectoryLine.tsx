@@ -1,6 +1,7 @@
 import React, { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import "@/styles/globals.css";
 
 interface TrajectoryLineProps {
   positions: [number, number, number][];
