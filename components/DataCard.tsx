@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styles from "@/styles/DataCard.module.css";
 import InformationShort from "@/components/InformationShort";
 import "@/styles/globals.css";
 
@@ -17,14 +16,14 @@ interface DataCardProps {
 const DataCard: React.FC<DataCardProps> = ({ folderName }) => {
   return (
     <div className="container">
-      <div className={styles.columns}>
-        <div className={styles.column}>
-          <Link href={`/data/${folderName}`} className={styles.link}>
+      <div className="columns">
+        <div className="column">
+          <Link href={`/data/${folderName}`} className="link">
             {folderName}
           </Link>
           <InformationShort folderName={folderName} />
         </div>
-        <div className={styles.column}>
+        <div className="column">
           <VideoPlayer
             src={`/data/${folderName}/video.mp4`}
             autoPlay={true}

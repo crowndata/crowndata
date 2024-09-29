@@ -6,7 +6,7 @@ type TitleDisplayProps = {
 };
 
 const TitleDisplay: React.FC<TitleDisplayProps> = ({ title }) => {
-  return <h2 className="title">{title}</h2>;
+  return <h1 className="title">{title}</h1>;
 };
 
 export default TitleDisplay;

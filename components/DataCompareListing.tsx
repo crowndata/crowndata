@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import styles from "@/styles/DataCompare.module.css"; // New CSS module for the page
 import InformationShort from "@/components/InformationShort";
 import TrajectoryVisualizerDual from "@/components/TrajectoryVisualizerDual";
 import { SharedState } from "@/types/pageInterface";
-import { useInfoData } from "@/utils/useInfoData";
+import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
 
 interface DataCompareListingProps {
@@ -69,8 +68,8 @@ const DataCompareListing: React.FC<DataCompareListingProps> = ({
 
   return (
     <div className="container">
-      <div className={styles.columns}>
-        <div className={styles.column}>
+      <div className="columns">
+        <div className="column">
           {/* First Column */}
           <InformationShort folderName={data1} />
           <TrajectoryVisualizerDual
@@ -78,7 +77,7 @@ const DataCompareListing: React.FC<DataCompareListingProps> = ({
             folderName={data1}
           />
         </div>
-        <div className={styles.column}>
+        <div className="column">
           {/* Second Column */}
           <InformationShort folderName={data2} />
           <TrajectoryVisualizerDual

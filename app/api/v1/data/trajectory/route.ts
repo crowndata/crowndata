@@ -1,15 +1,7 @@
 import { NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
-
-export interface TrajectoryPoint {
-  x: number;
-  y: number;
-  z: number;
-  roll: number;
-  pitch: number;
-  yaw: number;
-}
+import { TrajectoryPoint } from "@/types/dataInterface";
 
 export async function GET(
   request: Request,

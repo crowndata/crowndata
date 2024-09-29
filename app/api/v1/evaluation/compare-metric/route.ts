@@ -147,8 +147,6 @@ class TrajectorySimilarity {
       return {
         cosineSimilarityScore,
         calculateSimilarityScore,
-        combinedData,
-        labels,
       };
     } catch (error) {
       // Cast the error to an `Error` type to access `message`

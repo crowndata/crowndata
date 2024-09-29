@@ -5,6 +5,8 @@ import { supabase } from "@/utils/supabaseClient";
 import { useRouter } from "next/navigation"; // Import from next/navigation
 import styles from "@/styles/Auth.module.css";
 import Image from "next/image";
+import TitleDisplay from "@/components/TitleDisplay";
+import "@/styles/globals.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -72,7 +74,7 @@ export default function Login() {
 
   return (
     <div className="container">
-      <h1>Login</h1>
+      <TitleDisplay title="Login" />
 
       {/* Email and Password Login Form */}
       <form onSubmit={handleEmailLogin} className={styles.form}>
@@ -82,7 +84,7 @@ export default function Login() {
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="Email"
-          className={styles.input}
+          className="input"
         />
         <input
           type="password"
@@ -90,7 +92,7 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
           placeholder="Password"
-          className={styles.input}
+          className="input"
         />
         <button type="submit" disabled={loading} className={styles.button}>
           {loading ? "Logging in..." : "Login with Email"}
@@ -107,9 +109,8 @@ export default function Login() {
       </form>
 
       {/* Separator */}
-      <div className={styles.separator}>
-        <hr className={styles.hr} />
-        <p>Or log in with</p>
+      <div className="separator">
+        <hr className="hr" />
       </div>
 
       {/* OAuth Login Options with Logos */}

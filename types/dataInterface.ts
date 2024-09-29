@@ -19,3 +19,12 @@ export interface InfoData {
   joints?: string[];
   dataSource?: string;
 }
+
+export interface TrajectoryPoint {
+  x: number;
+  y: number;
+  z: number;
+  roll: number;
+  pitch: number;
+  yaw: number;
+}
