@@ -3,18 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -29,6 +23,14 @@ html, body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+h1,
+h2,
+h3 {
+  border: none; /* Removes any border under the heading */
+  text-decoration: none; /* Removes any text underline or overline */
+  box-shadow: none; /* Removes any shadow that could appear as a line */
 }
 
 h1 {
@@ -275,7 +277,6 @@ h3 {
   color: #666;
   cursor: default;
 }
-
 
 .grid {
   width: 95%;

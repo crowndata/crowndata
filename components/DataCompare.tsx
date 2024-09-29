@@ -44,8 +44,8 @@ const DataCompare: React.FC = () => {
   };
   return (
     <Suspense fallback={<Loading />}>
-      <TitleDisplay title="Data Compare" />
       <div className="container">
+        <TitleDisplay title="Data Compare" />
         <EvaluationDual data1={data1} data2={data2} />
         <div className="columns">
           <div className="column">

@@ -6,7 +6,7 @@ import "@/styles/globals.css";
 
 export default function Header() {
   return (
-    <header className={styles.header} >
+    <header className={styles.header}>
       <NavBar />
     </header>
   );
