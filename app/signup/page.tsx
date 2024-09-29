@@ -111,20 +111,6 @@ export default function SignUp() {
           />
           {loading ? "Signing up..." : "Sign up with GitHub"}
         </button>
-
-        <button
-          onClick={() => handleOAuthSignUp("slack")}
-          disabled={loading}
-          className={styles.oauthButton}
-        >
-          <Image
-            src="/images/slack-logo.svg"
-            alt="Slack logo"
-            width={20}
-            height={20}
-          />
-          {loading ? "Signing up..." : "Sign up with Slack"}
-        </button>
       </div>
 
       {errorMessage && <p className={styles.error}>{errorMessage}</p>}

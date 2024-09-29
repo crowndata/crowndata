@@ -11,25 +11,46 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
   const router = useRouter();
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setErrorMessage(null);
-
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
       setErrorMessage(error.message);
-      setLoading(false);
+    } else if (!data.user.email_confirmed_at) {
+      // User has not confirmed their email
+      setErrorMessage("Please confirm your email address before logging in.");
     } else {
-      setLoading(false);
-      router.push("/"); // Redirect to home after login
+      // Email confirmed, redirect to dashboard or home
+      router.push("/");
     }
+  };
+
+  // Function to handle resending confirmation email
+  const handleResendEmail = async () => {
+    setLoading(true);
+    setErrorMessage(null);
+    setSuccessMessage(null);
+
+    const { error } = await supabase.auth.resend({
+      type: "signup", // Specify the type as 'signup'
+      email,
+    });
+
+    if (error) {
+      setErrorMessage(error.message);
+    } else {
+      setSuccessMessage("Confirmation email resent successfully!");
+    }
+
+    setLoading(false);
   };
 
   const handleOAuthLogin = async (provider: "google" | "github" | "slack") => {
@@ -74,6 +95,15 @@ export default function Login() {
         <button type="submit" disabled={loading} className={styles.button}>
           {loading ? "Logging in..." : "Login with Email"}
         </button>
+
+        {/* Resend email button */}
+        <button
+          onClick={handleResendEmail}
+          disabled={loading}
+          className={styles.button}
+        >
+          {loading ? "Resending..." : "Resend Confirmation Email"}
+        </button>
       </form>
 
       {/* Separator */}
@@ -111,23 +141,10 @@ export default function Login() {
           />
           {loading ? "Logging in..." : "Login with GitHub"}
         </button>
-
-        <button
-          onClick={() => handleOAuthLogin("slack")}
-          disabled={loading}
-          className={styles.oauthButton}
-        >
-          <Image
-            src="/images/slack-logo.svg"
-            alt="Slack logo"
-            width={20}
-            height={20}
-          />
-          {loading ? "Logging in..." : "Login with Slack"}
-        </button>
       </div>
 
       {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+      {successMessage && <p className={styles.success}>{successMessage}</p>}
     </div>
   );
 }
