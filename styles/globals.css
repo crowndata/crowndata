@@ -14,8 +14,7 @@
   }
 }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -32,12 +31,6 @@ body {
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 h1 {
   font-size: 2.5rem; /* Set size for h1 */
 }
@@ -52,6 +45,7 @@ h3 {
 
 .container {
   width: 100%;
+  max-width: 100vw;
   /* Ensure it takes full width of the parent */
   display: flex;
   flex-direction: column;
@@ -281,6 +275,7 @@ h3 {
   color: #666;
   cursor: default;
 }
+
 
 .grid {
   width: 95%;
