@@ -1,5 +1,6 @@
 "use client";
 
+import TitleDisplay from "@/components/TitleDisplay";
 import { useSessionCheck } from "@/hooks/useSessionCheck";
 
 export default function Page() {
@@ -9,5 +10,10 @@ export default function Page() {
     return <div>Loading...</div>;
   }
 
-  return <div>Welcome to your dashboard!</div>;
+  return (
+    <div className="container">
+      <TitleDisplay title="Dashboard" />
+      <div>Welcome to your dashboard!</div>
+    </div>
+  );
 }

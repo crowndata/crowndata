@@ -5,6 +5,7 @@ import { supabase } from "@/utils/supabaseClient";
 import { useRouter } from "next/navigation";
 import styles from "@/styles/Auth.module.css";
 import Image from "next/image";
+import TitleDisplay from "@/components/TitleDisplay";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -51,7 +52,7 @@ export default function SignUp() {
 
   return (
     <div className="container">
-      <h1>Sign Up</h1>
+      <TitleDisplay title="Sign Up" />
 
       {/* Email and Password Signup Form */}
       <form onSubmit={handleEmailSignUp} className={styles.form}>
@@ -61,7 +62,7 @@ export default function SignUp() {
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="Email"
-          className={styles.input}
+          className="input"
         />
         <input
           type="password"
@@ -69,7 +70,7 @@ export default function SignUp() {
           onChange={(e) => setPassword(e.target.value)}
           required
           placeholder="Password"
-          className={styles.input}
+          className="input"
         />
         <button type="submit" disabled={loading} className={styles.button}>
           {loading ? "Signing up..." : "Sign Up with Email"}
@@ -77,9 +78,8 @@ export default function SignUp() {
       </form>
 
       {/* Separator */}
-      <div className={styles.separator}>
-        <hr className={styles.hr} />
-        <p>Or sign up with</p>
+      <div className="separator">
+        <hr className="hr" />
       </div>
 
       {/* OAuth Sign Up Options with Logos */}

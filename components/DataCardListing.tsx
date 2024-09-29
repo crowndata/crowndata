@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import DataCard from "@/components/DataCard";
-import styles from "@/styles/DataCardListing.module.css"; // New CSS module for the page
 import "@/styles/globals.css";
 
 const ITEMS_PER_PAGE = 5;
@@ -50,22 +49,20 @@ const DataCardListing: React.FC = () => {
   return (
     <div className="container">
       <h2 className="title">Data</h2>
-      <div className={styles.grid}>
+      <div className="grid">
         {currentFolders.map((folder) => (
           <DataCard key={folder} folderName={folder} />
         ))}
       </div>
 
       {/* Pagination */}
-      <div className={styles.pagination}>
+      <div className="pagination">
         {Array.from({ length: totalPages }, (_, i) => (
           <button
             key={i + 1}
             onClick={() => handlePageChange(i + 1)}
             disabled={currentPage === i + 1}
-            className={`${styles.pageButton} ${
-              currentPage === i + 1 ? styles.disabled : ""
-            }`}
+            className={`pageButton ${currentPage === i + 1 ? "disabled" : ""}`}
           >
             {i + 1}
           </button>

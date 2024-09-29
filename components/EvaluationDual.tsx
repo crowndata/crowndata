@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useTrajectoryDataDual } from "@/hooks/useTrajectoryData";
-import styles from "@/styles/Information.module.css"; // Import the CSS module
 import "@/styles/globals.css";
 
 interface EvaluationDualProps {
@@ -132,8 +131,8 @@ const EvaluationDual: React.FC<EvaluationDualProps> = ({ data1, data2 }) => {
 
   return (
     <div className="container">
-      <h2 className="title">Evaluation</h2>
-      <ul className={styles.list}>
+      <h3 className="title">Evaluation</h3>
+      <ul className="list">
         {[
           {
             label: "Trajectory Cosine Similarity",
@@ -144,9 +143,9 @@ const EvaluationDual: React.FC<EvaluationDualProps> = ({ data1, data2 }) => {
             value: scores.calculateSimilarityScore.toFixed(3),
           },
         ].map((item, index) => (
-          <li key={index} className={styles.listItem}>
-            <strong className={styles.label}>{item.label}:</strong>
-            <span className={styles.value}>{item.value}</span>
+          <li key={index} className="listItem">
+            <strong className="label">{item.label}:</strong>
+            <span className="value">{item.value}</span>
           </li>
         ))}
       </ul>

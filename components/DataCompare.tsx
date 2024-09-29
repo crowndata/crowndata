@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import styles from "@/styles/DataCompare.module.css"; // New CSS module for the page
 import EvaluationDual from "@/components/EvaluationDual";
 import DataCompareListing from "./DataCompareListing";
 import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import "@/styles/globals.css";
+import TitleDisplay from "./TitleDisplay";
 
 function Loading() {
   return <div>Loading data...</div>;
@@ -44,15 +44,15 @@ const DataCompare: React.FC = () => {
   };
   return (
     <Suspense fallback={<Loading />}>
+      <TitleDisplay title="Data Compare" />
       <div className="container">
-        <h2 className="title">Data Compare</h2>
         <EvaluationDual data1={data1} data2={data2} />
-        <div className={styles.columns}>
-          <div className={styles.column}>
+        <div className="columns">
+          <div className="column">
             <div className="container">
               {/* First Column */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="data1" className={styles.label}>
+              <div className="inputGroup">
+                <label htmlFor="data1" className="label">
                   Data 1:{" "}
                 </label>
                 <input
@@ -60,16 +60,16 @@ const DataCompare: React.FC = () => {
                   type="text"
                   value={data1}
                   onChange={handleData1Change}
-                  className={styles.input}
+                  className="input"
                 />
               </div>
             </div>
           </div>
-          <div className={styles.column}>
+          <div className="column">
             <div className="container">
               {/* Second Column */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="data2" className={styles.label}>
+              <div className="inputGroup">
+                <label htmlFor="data2" className="label">
                   Data 2:{" "}
                 </label>
                 <input
@@ -77,7 +77,7 @@ const DataCompare: React.FC = () => {
                   type="text"
                   value={data2}
                   onChange={handleData2Change}
-                  className={styles.input}
+                  className="input"
                 />
               </div>
             </div>

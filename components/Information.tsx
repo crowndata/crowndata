@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "@/styles/Information.module.css"; // Import the CSS module
 import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
 import Link from "next/link";
@@ -21,8 +20,8 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
 
   return (
     <div className="container">
-      <h2 className="title">Experiment Information</h2>
-      <ul className={styles.list}>
+      <h3 className="title">Experiment Information</h3>
+      <ul className="list">
         {[
           { label: "Data Name", value: infoData.dataName },
           { label: "Start Time", value: infoData.startTime },
@@ -50,9 +49,9 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
           { label: "Duration In Seconds", value: infoData.durationInSeconds },
           { label: "Data Source", value: infoData.dataSource },
         ].map((item, index) => (
-          <li key={index} className={styles.listItem}>
-            <strong className={styles.label}>{item.label}:</strong>
-            <span className={styles.value}>
+          <li key={index} className="listItem">
+            <strong className="label">{item.label}:</strong>
+            <span className="value">
               {item.value === undefined ? (
                 <span>N/A</span> // Display the actual value if it's neither success nor failure
               ) : item.label === "Data Source" ? (
@@ -64,11 +63,11 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
               ) : typeof item.value !== "string" ? (
                 <span>{item.value}</span> // Display the actual value if it's neither success nor failure
               ) : item.value.toLowerCase() === "success" ? (
-                <span className={styles.successSymbol}>
+                <span className="successSymbol">
                   {item.value.toUpperCase()}
                 </span> // checkmark symbol for success
               ) : item.value.toLowerCase() === "failure" ? (
-                <span className={styles.failureSymbol}>
+                <span className="failureSymbol">
                   {item.value.toUpperCase()}
                 </span> // cross symbol for failure
               ) : (

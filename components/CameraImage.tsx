@@ -1,6 +1,5 @@
 import { memo } from "react";
 import Image from "next/image";
-import styles from "@/styles/CameraImage.module.css"; // Assuming your CSS module is imported here
 import "@/styles/globals.css";
 
 // Define prop types
@@ -18,7 +17,7 @@ const CameraImage = memo(
       alt={`Image ${currentPoint + 1}`}
       width={300}
       height={200}
-      className={styles.animatedImage}
+      className="animatedImageContainer"
       loading="eager" // Eager loading to ensure it loads quickly
       unoptimized={true} // Disable Next.js image optimization
       priority={true} // Preload image to avoid reloading

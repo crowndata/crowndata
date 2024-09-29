@@ -4,7 +4,6 @@ import { OrbitControls } from "@react-three/drei";
 import { useTrajectoryData } from "@/hooks/useTrajectoryData";
 import { SharedState } from "@/types/pageInterface";
 import TrajectoryLine from "@/components/TrajectoryLine";
-import styles from "@/styles/TrajectoryVisualizerDual.module.css";
 import CameraSetup from "@/components/CameraSetup";
 import TrajectoryDeviceOrientationAnimation from "./TrajectoryDeviceOrientationAnimation";
 import { useInfoData } from "@/hooks/useInfoData";
@@ -30,8 +29,8 @@ const TrajectoryVisualizerDual: React.FC<TrajectoryVisualizerProps> = ({
   return (
     <div className="container">
       {/* First Column */}
-      <h2 className="title">Trajectory Visualizer</h2>
-      <div className={styles.canvasContainer}>
+      <h3 className="title">Trajectory 3D Visualizer</h3>
+      <div className="canvasContainer">
         <Canvas>
           <CameraSetup
             fov={45}

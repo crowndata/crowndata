@@ -1,13 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-
-export interface TrajectoryPoint {
-  x: number;
-  y: number;
-  z: number;
-  roll: number;
-  pitch: number;
-  yaw: number;
-}
+import { TrajectoryPoint } from "@/types/dataInterface";
 
 export interface UseTrajectoryDataResult {
   positions: [number, number, number][];

@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import TrajectoryVisualizer from "@/components/TrajectoryVisualizer";
 import CameraImageAnimation from "@/components/CameraImageAnimation";
 import { useSharedState } from "@/hooks/useSharedState";
-import styles from "@/styles/Page.module.css";
 import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
 
@@ -31,13 +30,13 @@ export default function Page({ params }: { params: { folderName: string } }) {
 
   return (
     <div className="container">
-      <div className={styles.imageAnimation}>
+      <div className="imageAnimationContainer">
         <CameraImageAnimation
           sharedState={{ currentPoint, setCurrentPoint }}
           folderName={folderName}
         />
       </div>
-      <div className={styles.trajectoryVisualizer}>
+      <div className="trajectoryVisualizerContainer">
         <TrajectoryVisualizer
           sharedState={{ currentPoint, setCurrentPoint }}
           folderName={folderName}

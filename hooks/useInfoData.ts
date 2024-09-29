@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { InfoData } from "@/types/dataInterfaces";
+import { InfoData } from "@/types/dataInterface";
 
 export const useInfoData = (folderName: string): InfoData | null => {
   const [infoData, setInfoData] = useState<InfoData | null>(null);
