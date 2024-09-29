@@ -1,4 +1,5 @@
-// /hooks/useSessionCheck.ts
+"use client";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Session } from "@supabase/supabase-js";

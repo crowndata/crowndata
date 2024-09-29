@@ -72,6 +72,15 @@ const DataCompareListing: React.FC<DataCompareListingProps> = ({
         <div className="column">
           {/* First Column */}
           <InformationShort folderName={data1} />
+        </div>
+        <div className="column">
+          {/* Second Column */}
+          <InformationShort folderName={data2} />
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column">
+          {/* First Column */}
           <TrajectoryVisualizerDual
             sharedState={sharedState1}
             folderName={data1}
@@ -79,7 +88,6 @@ const DataCompareListing: React.FC<DataCompareListingProps> = ({
         </div>
         <div className="column">
           {/* Second Column */}
-          <InformationShort folderName={data2} />
           <TrajectoryVisualizerDual
             sharedState={sharedState2}
             folderName={data2}

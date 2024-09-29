@@ -1,7 +1,6 @@
 "use client";
 
 import DataCardListing from "@/components/DataCardListing";
-
 import { useSessionCheck } from "@/hooks/useSessionCheck";
 
 export default function Page() {
