@@ -60,7 +60,13 @@ const Evaluation: React.FC<EvaluationProps> = ({ folderName }) => {
           (item, index) => (
             <li key={index} className={styles.listItem}>
               <strong className={styles.label}>{item.label}:</strong>
-              <span className={styles.value}>{item.value}</span>
+              <span className={styles.value}>
+                {item.value === undefined ? (
+                  <span>N/A</span> // Display the actual value if it's neither success nor failure
+                ) : (
+                  <span>{item.value}</span> // Display the actual value if it's neither success nor failure
+                )}
+              </span>
             </li>
           ),
         )}

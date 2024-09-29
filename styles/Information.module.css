@@ -1,5 +1,6 @@
-/* Styling the list with improved readability and spacing */
+/* Styling the container list */
 .list {
+  width: 95%;
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -7,12 +8,13 @@
 
 /* Styling individual list items */
 .listItem {
+  width: 95%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; /* Align the items to the top for better wrapping */
   padding: 8px 0; /* Adjust padding for better spacing */
   border-bottom: 1px solid #ddd;
-  /* Optional: add a light divider */
+  flex-wrap: wrap; /* Allow wrapping to the next line */
 }
 
 /* Hover effect for list items */
@@ -22,18 +24,24 @@
 
 /* Styling the label text */
 .label {
-  font-weight: 600;
   text-align: left;
+  font-weight: 600;
   color: #555;
-  flex-grow: 1; /* Allow label to take up remaining space */
   padding-right: 10px; /* Add spacing between label and value */
+  word-wrap: break-word; /* Allow text to wrap to the next line */
+  white-space: normal; /* Allow the text to break to a second line */
+  overflow: visible; /* Allow overflow to be visible */
+  flex: 1 1 auto; /* Allow label to take available space */
 }
 
 /* Styling the value text */
 .value {
   text-align: right;
   color: #777;
-  white-space: nowrap; /* Prevent value from wrapping */
+  word-wrap: break-word; /* Allow text to wrap to the next line */
+  white-space: normal; /* Allow the value to break to a second line */
+  flex: 1 1 auto; /* Allow value to take available space */
+  overflow: visible; /* Allow overflow to be visible */
 }
 
 /* Optional: Add subtle hover effect to the value text */
@@ -41,18 +49,17 @@
   color: #333;
 }
 
-/* Making the font size more consistent and readable */
+/* Font size for readability */
 .label,
 .value {
   font-size: 16px;
 }
 
+/* Success and failure symbols */
 .successSymbol {
   color: green;
-  /* Or any other styles you prefer for success */
 }
 
 .failureSymbol {
   color: red;
-  /* Or any other styles you prefer for failure */
 }
