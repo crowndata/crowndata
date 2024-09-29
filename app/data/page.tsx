@@ -9,9 +9,5 @@ export default function Page() {
   if (sessionCheck) {
     return <div>Loading...</div>;
   }
-  return (
-    <>
-      <DataCardListing />
-    </>
-  );
+  return <DataCardListing />;
 }

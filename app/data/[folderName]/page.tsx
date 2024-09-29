@@ -10,9 +10,5 @@ export default function Page({ params }: { params: { folderName: string } }) {
   if (sessionCheck) {
     return <div>Loading...</div>;
   }
-  return (
-    <>
-      <TitleDisplay title={`Data Name: ${params.folderName}`} />
-    </>
-  );
+  return <TitleDisplay title={`Data Name: ${params.folderName}`} />;
 }
