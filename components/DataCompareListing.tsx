@@ -3,7 +3,7 @@ import styles from "@/styles/DataCompare.module.css"; // New CSS module for the 
 import InformationShort from "@/components/InformationShort";
 import TrajectoryVisualizerDual from "@/components/TrajectoryVisualizerDual";
 import { SharedState } from "@/types/pageInterface";
-import { useInfoData } from "@/utils/useInfoData";
+import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
 
 interface DataCompareListingProps {

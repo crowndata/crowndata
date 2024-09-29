@@ -1,13 +1,13 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { useTrajectoryData } from "@/utils/useTrajectoryData";
+import { useTrajectoryData } from "@/hooks/useTrajectoryData";
 import { SharedState } from "@/types/pageInterface";
 import TrajectoryLine from "@/components/TrajectoryLine";
 import styles from "@/styles/TrajectoryVisualizer.module.css";
 import CameraSetup from "@/components/CameraSetup";
 import TrajectoryDeviceOrientationAnimation from "./TrajectoryDeviceOrientationAnimation";
-import { useInfoData } from "@/utils/useInfoData";
+import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
 
 // Define the props type for the component

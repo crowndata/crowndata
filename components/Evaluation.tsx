@@ -20,7 +20,7 @@ const Evaluation: React.FC<EvaluationProps> = ({ folderName }) => {
     const fetchCoverageScore = async () => {
       try {
         const response = await fetch(
-          `/api/coverageScore?arg1=${encodeURIComponent(folderName)}`,
+          `/api/v1/evaluation/metric?arg1=${encodeURIComponent(folderName)}`,
         );
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);

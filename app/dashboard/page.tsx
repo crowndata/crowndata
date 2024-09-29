@@ -1,30 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { supabase } from "@/utils/supabaseClient";
+import { useSessionCheck } from "@/hooks/useSessionCheck";
 
 export default function Page() {
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
+  const { sessionCheck } = useSessionCheck();
 
-  useEffect(() => {
-    const checkSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-
-      if (!session) {
-        router.push("/login"); // Client-side redirection
-      } else {
-        setLoading(false);
-      }
-    };
-
-    checkSession();
-  }, [router]);
-
-  if (loading) {
+  if (sessionCheck) {
     return <div>Loading...</div>;
   }
 

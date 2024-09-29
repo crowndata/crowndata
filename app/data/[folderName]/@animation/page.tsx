@@ -3,9 +3,9 @@
 import React, { useEffect } from "react";
 import TrajectoryVisualizer from "@/components/TrajectoryVisualizer";
 import CameraImageAnimation from "@/components/CameraImageAnimation";
-import { useSharedState } from "@/utils/useSharedState";
+import { useSharedState } from "@/hooks/useSharedState";
 import styles from "@/styles/Page.module.css";
-import { useInfoData } from "@/utils/useInfoData";
+import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
 
 export default function Page({ params }: { params: { folderName: string } }) {

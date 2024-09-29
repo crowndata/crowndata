@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "@/styles/Information.module.css"; // Import the CSS module
-import { useInfoData } from "@/utils/useInfoData";
+import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
 import Link from "next/link";
 

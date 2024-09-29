@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/NavBar.module.css";
 import "@/styles/globals.css";
+import LogoutButton from "@/components/LogoutButton";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -41,6 +42,9 @@ export default function NavBar() {
         </li>
         <li>
           <Link href="/dashboard">Dashboard</Link>
+        </li>
+        <li>
+          <LogoutButton />
         </li>
       </ul>
       <div className={styles.hamburger} onClick={toggleMenu}>

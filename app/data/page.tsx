@@ -2,8 +2,13 @@
 
 import DataCardListing from "@/components/DataCardListing";
 
-const Page = () => {
-  return <DataCardListing />;
-};
+import { useSessionCheck } from "@/hooks/useSessionCheck";
 
-export default Page;
+export default function Page() {
+  const { sessionCheck } = useSessionCheck();
+
+  if (sessionCheck) {
+    return <div>Loading...</div>;
+  }
+  return <DataCardListing />;
+}

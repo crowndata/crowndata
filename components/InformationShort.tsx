@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "@/styles/InformationShort.module.css"; // Import the CSS module
-import { useInfoData } from "@/utils/useInfoData";
+import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
 
 // Define the props type for the component

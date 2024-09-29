@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import { useTrajectoryDataDual } from "@/utils/useTrajectoryData";
+import { useTrajectoryDataDual } from "@/hooks/useTrajectoryData";
 import styles from "@/styles/Information.module.css"; // Import the CSS module
 import "@/styles/globals.css";
 
@@ -51,7 +51,7 @@ const EvaluationDual: React.FC<EvaluationDualProps> = ({ data1, data2 }) => {
   const nCluster = 5;
 
   // Memoize the URL to avoid recalculating in useEffect
-  const url = useMemo(() => `/api/similarity`, []);
+  const url = useMemo(() => `/api/v1/evaluation/compare-metric`, []);
 
   // Use a ref to store the previous data1 and data2 to prevent multiple calls
   const previousPositionsRef = useRef<{

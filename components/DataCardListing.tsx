@@ -17,7 +17,7 @@ const DataCardListing: React.FC = () => {
   useEffect(() => {
     const fetchFolders = async () => {
       try {
-        const res = await fetch("/api/data");
+        const res = await fetch("/api/v1/data/listing");
         if (!res.ok) {
           throw new Error("Failed to fetch data");
         }
