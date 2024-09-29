@@ -9,7 +9,7 @@
   "sensorSamplingRate": 10,
   "operatorName": "John Doe",
   "taskDescription": "Put the marker in the pot",
-  "subtaskDescription": "Put the marker in the pot. Get the marker from the table and put it inside the silver pot. Put the marker inside the silver pot. ",
+  "subtaskDescription": "Put the marker in the pot. Get the marker from the table and put it inside the silver pot. Put the marker inside the silver pot.",
   "taskState": "SUCCESS",
   "subtaskState": "SUCCESS",
   "dataLength": 166,
