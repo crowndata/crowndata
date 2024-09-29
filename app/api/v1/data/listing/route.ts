@@ -10,5 +10,5 @@ export async function GET() {
     return fs.statSync(path.join(dataDirectory, file)).isDirectory();
   });
 
-  return NextResponse.json(folderNames);
+  return NextResponse.json(folderNames, { status: 200 });
 }

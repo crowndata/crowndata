@@ -17,8 +17,11 @@ export async function GET(req: Request) {
   }
 
   // Respond with the folder name and a sample score
-  return NextResponse.json({
-    folderName,
-    coverageScore: 0.42,
-  });
+  return NextResponse.json(
+    {
+      folderName,
+      coverageScore: 0.42,
+    },
+    { status: 200 },
+  );
 }
