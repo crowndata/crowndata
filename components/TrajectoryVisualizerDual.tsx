@@ -5,7 +5,7 @@ import { useTrajectoryData } from "@/hooks/useTrajectoryData";
 import { SharedState } from "@/types/pageInterface";
 import TrajectoryLine from "@/components/TrajectoryLine";
 import CameraSetup from "@/components/CameraSetup";
-import TrajectoryDeviceOrientationAnimation from "./TrajectoryDeviceOrientationAnimation";
+import TrajectoryDeviceOrientationAnimation from "@/components/TrajectoryDeviceOrientationAnimation";
 import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
 

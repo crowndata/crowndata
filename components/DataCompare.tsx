@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import EvaluationDual from "@/components/EvaluationDual";
-import DataCompareListing from "./DataCompareListing";
+import DataCompareListing from "@/components/DataCompareListing";
 import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import "@/styles/globals.css";
-import TitleDisplay from "./TitleDisplay";
+import TitleDisplay from "@/components/TitleDisplay";
 
 function Loading() {
   return <div>Loading data...</div>;
