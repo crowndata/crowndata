@@ -17,7 +17,11 @@ export default function Login() {
 
   const router = useRouter();
 
-  const redirectUrl = `${window.location.origin}/`; // Always redirect to the home page
+  let redirectUrl = "/"; // Default to home page
+
+  if (typeof window !== "undefined") {
+    redirectUrl = `${window.location.origin}/`; // Redirect to the home page
+  }
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();

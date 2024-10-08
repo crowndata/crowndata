@@ -2,6 +2,9 @@ import { File } from "@google-cloud/storage";
 import { NextResponse } from "next/server";
 import { bucket } from "@/utils/gcs";
 
+// Explicitly mark the route as dynamic
+export const dynamic = "force-dynamic";
+
 export async function GET(request: Request) {
   try {
     // Extract optional `prefix` query parameter to list folders within a specific directory
