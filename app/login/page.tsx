@@ -17,6 +17,8 @@ export default function Login() {
 
   const router = useRouter();
 
+  const redirectUrl = `${window.location.origin}/`; // Always redirect to the home page
+
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -55,18 +57,9 @@ export default function Login() {
     setLoading(false);
   };
 
-  const redirectUrl = `${window.location.origin}/`; // Always redirect to the home page
-
   const handleOAuthLogin = async (provider: "google" | "github" | "slack") => {
     setLoading(true);
     setErrorMessage(null);
-    console.log("Redirect URL:", redirectUrl);
-    console.log("Options:", {
-      provider: provider,
-      options: {
-        redirectTo: redirectUrl,
-      },
-    });
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: provider,
