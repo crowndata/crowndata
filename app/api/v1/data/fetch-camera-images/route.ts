@@ -6,6 +6,8 @@ function escapeRegex(text: string) {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
 }
 
+export const dynamic = "force-dynamic"; // Explicitly set the route as dynamic
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
