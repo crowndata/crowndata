@@ -81,17 +81,11 @@ const DataCompareListing: React.FC<DataCompareListingProps> = ({
       <div className="columns">
         <div className="column">
           {/* First Column */}
-          <TrajectoryVisualizer
-            sharedState={sharedState1}
-            folderName={data1}
-          />
+          <TrajectoryVisualizer sharedState={sharedState1} folderName={data1} />
         </div>
         <div className="column">
           {/* Second Column */}
-          <TrajectoryVisualizer
-            sharedState={sharedState2}
-            folderName={data2}
-          />
+          <TrajectoryVisualizer sharedState={sharedState2} folderName={data2} />
         </div>
       </div>
     </div>
