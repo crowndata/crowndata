@@ -74,6 +74,8 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
               rotations={data.rotations}
             />
           ))}
+
+          {/* Render Robot Geometry */}
           <TrajectoryDeviceGeometryAnimation
             sharedState={sharedState}
             joints={jointPositionDataArray.joints}

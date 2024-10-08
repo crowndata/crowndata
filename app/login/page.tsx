@@ -55,12 +55,24 @@ export default function Login() {
     setLoading(false);
   };
 
+  const redirectUrl = `${window.location.origin}/`; // Always redirect to the home page
+
   const handleOAuthLogin = async (provider: "google" | "github" | "slack") => {
     setLoading(true);
     setErrorMessage(null);
+    console.log("Redirect URL:", redirectUrl);
+    console.log("Options:", {
+      provider: provider,
+      options: {
+        redirectTo: redirectUrl,
+      },
+    });
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: provider,
+      options: {
+        redirectTo: redirectUrl, // Always redirects to the current domain root
+      },
     });
 
     if (error) {
