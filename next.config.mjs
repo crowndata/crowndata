@@ -2,6 +2,14 @@
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(js|jsx|ts|tsx)$/,
+      exclude: [/mobile/], // Exclude the /mobile folder
+    });
+
+    return config;
+  },
   async headers() {
     return [
       {
