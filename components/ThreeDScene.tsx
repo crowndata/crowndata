@@ -9,6 +9,31 @@ import CameraSetup from "@/components/CameraSetup";
 import "@/styles/globals.css";
 import styles from "@/styles/ThreeDScene.module.css";
 
+type HandleJointChange = (jointName: string, newValue: number) => void;
+
+interface Props {
+  jointName: string;
+  value: number;
+  handleJointChange: HandleJointChange;
+}
+
+const MySlider: React.FC<Props> = ({ jointName, value, handleJointChange }) => {
+  return (
+    <div className={styles.controlItem}>
+      {/* Display the joint name */}
+      <label className={styles.label}>{jointName}</label>
+      <Slider
+        step={0.01}
+        value={value}
+        onChange={(_event: Event, newValue: number | number[]) => {
+          handleJointChange(jointName, newValue as number);
+        }}
+        className={styles.slider}
+      />
+    </div>
+  );
+};
+
 const ThreeDScene: React.FC = () => {
   const [pickedObject] = useState<THREE.Object3D | null>(null);
   const [jointValues, setJointValues] = useState<{ [key: string]: number }>({}); // Object to store joint angles using joint names
@@ -26,12 +51,6 @@ const ThreeDScene: React.FC = () => {
       robot.joints[jointName].setJointValue(newValue);
     }
   };
-
-  const handleTextInputChange =
-    (jointName: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = parseFloat(event.target.value);
-      handleJointChange(jointName, isNaN(newValue) ? 0 : newValue);
-    };
 
   useEffect(() => {
     if (!robotCache.current) {
@@ -95,27 +114,14 @@ const ThreeDScene: React.FC = () => {
           ([jointName, value]) =>
             jointName.includes("panda_joint") ||
             jointName.includes("inner_finger_joint") ||
-            jointName == "finger_joint" ? ( // Check if joint name contains 'pandas_joint'
-              <div key={jointName} className={styles.controlItem}>
-                <label>{jointName}</label>
-                <Slider
-                  min={-Math.PI}
-                  max={Math.PI}
-                  step={0.01}
-                  value={value}
-                  onChange={(_, newValue) =>
-                    handleJointChange(jointName, newValue as number)
-                  }
-                  className={styles.slider}
-                />
-                <input
-                  type="number"
-                  value={value}
-                  onChange={handleTextInputChange(jointName)}
-                  className={styles.textInput}
-                />
-              </div>
-            ) : null, // Return empty for joints that don't match
+            jointName === "finger_joint" ? (
+              <MySlider
+                key={jointName} // Add a key for each MySlider component for better performance
+                jointName={jointName}
+                value={value}
+                handleJointChange={handleJointChange}
+              />
+            ) : null, // Return null for joints that don't match
         )}
       </div>
     </div>

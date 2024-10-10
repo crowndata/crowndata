@@ -22,9 +22,9 @@
 
 .controlItem {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 5px;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px; /* Add spacing between controls */
 }
 
 .label {
