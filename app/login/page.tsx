@@ -17,6 +17,12 @@ export default function Login() {
 
   const router = useRouter();
 
+  let redirectUrl = "/"; // Default to home page
+
+  if (typeof window !== "undefined") {
+    redirectUrl = `${window.location.origin}/`; // Redirect to the home page
+  }
+
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -61,6 +67,9 @@ export default function Login() {
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: provider,
+      options: {
+        redirectTo: redirectUrl, // Always redirects to the current domain root
+      },
     });
 
     if (error) {

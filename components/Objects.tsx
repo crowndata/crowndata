@@ -19,18 +19,18 @@ const Objects = forwardRef<THREE.Object3D[], ObjectsProps>(
           ref={(el) => {
             if (el) objectRefs.current[0] = el; // Track reference to the cube
           }}
-          position={[2, 0.5, 0]}
+          position={[0.5, 0.5, 0]}
           castShadow
           receiveShadow
         >
-          <boxGeometry args={[1, 1, 1]} />
+          <boxGeometry args={[0.1, 0.1, 0.1]} />
           <meshStandardMaterial
             color={pickedObject === objectRefs.current[0] ? 0xffff00 : 0xff0000}
           />
         </mesh>
 
         {/* Plane (Floor) */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+        <mesh receiveShadow>
           <planeGeometry args={[100, 100]} />
           <meshStandardMaterial color={0x808080} />
         </mesh>

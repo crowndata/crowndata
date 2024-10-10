@@ -3,7 +3,7 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const ThreeDScene = dynamic(() => import("../components/ThreeDScene"), {
+const ThreeDScene = dynamic(() => import("@/components/ThreeDScene"), {
   ssr: false,
 });
 

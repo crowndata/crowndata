@@ -1,0 +1,44 @@
+/* style.module.css */
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.canvas {
+  width: 70%;
+  height: 1000px;
+  aspect-ratio: 1;
+  display: block;
+}
+
+.controlsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.controlItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.label {
+  margin-right: 10px;
+  flex-shrink: 0;
+  width: 100px;
+  text-align: left;
+}
+
+.slider {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.textInput {
+  width: 60px;
+}

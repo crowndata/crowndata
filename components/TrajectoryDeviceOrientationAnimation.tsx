@@ -27,7 +27,7 @@ const TrajectoryDeviceOrientationAnimation: React.FC<
   const [roll, pitch, yaw] = rotations[currentPoint];
 
   // Create an Euler object from roll, pitch, and yaw
-  const euler = new THREE.Euler(roll, pitch, yaw, "XYZ");
+  const euler = new THREE.Euler(roll, pitch, yaw, "ZYX");
   const rotationVector = new THREE.Vector3(0, 0, 1)
     .applyEuler(euler)
     .normalize(); // Normalize the rotation

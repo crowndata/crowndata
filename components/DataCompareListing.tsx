@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import InformationShort from "@/components/InformationShort";
-import TrajectoryVisualizerDual from "@/components/TrajectoryVisualizerDual";
+import TrajectoryVisualizer from "@/components/TrajectoryVisualizer";
 import { SharedState } from "@/types/pageInterface";
 import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
@@ -72,18 +72,20 @@ const DataCompareListing: React.FC<DataCompareListingProps> = ({
         <div className="column">
           {/* First Column */}
           <InformationShort folderName={data1} />
-          <TrajectoryVisualizerDual
-            sharedState={sharedState1}
-            folderName={data1}
-          />
         </div>
         <div className="column">
           {/* Second Column */}
           <InformationShort folderName={data2} />
-          <TrajectoryVisualizerDual
-            sharedState={sharedState2}
-            folderName={data2}
-          />
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column">
+          {/* First Column */}
+          <TrajectoryVisualizer sharedState={sharedState1} folderName={data1} />
+        </div>
+        <div className="column">
+          {/* Second Column */}
+          <TrajectoryVisualizer sharedState={sharedState2} folderName={data2} />
         </div>
       </div>
     </div>

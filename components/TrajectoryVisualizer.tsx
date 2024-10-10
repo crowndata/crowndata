@@ -2,10 +2,12 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { useTrajectoryData } from "@/hooks/useTrajectoryData";
+import { useJointPositionData } from "@/hooks/useJointPositionData";
 import { SharedState } from "@/types/pageInterface";
 import TrajectoryLine from "@/components/TrajectoryLine";
 import CameraSetup from "@/components/CameraSetup";
-import TrajectoryDeviceOrientationAnimation from "./TrajectoryDeviceOrientationAnimation";
+import TrajectoryDeviceOrientationAnimation from "@/components/TrajectoryDeviceOrientationAnimation";
+import TrajectoryDeviceGeometryAnimation from "@/components/TrajectoryDeviceGeometryAnimation";
 import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
 
@@ -25,6 +27,7 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
 
   // Use the custom hook
   const trajectoryDataArray = useTrajectoryData(folderName, joints);
+  const jointPositionDataArray = useJointPositionData(folderName);
 
   return (
     <>
@@ -49,6 +52,7 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
             screenSpacePanning={false} // If true, panning moves in screen space, false moves in world space
           />
           <ambientLight intensity={0.5} />
+          <directionalLight position={[5, 5, 5]} intensity={1} />
 
           {/* AxesHelper to show the coordinate system */}
           <axesHelper args={[5]} />
@@ -70,6 +74,12 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
               rotations={data.rotations}
             />
           ))}
+
+          {/* Render Robot Geometry */}
+          <TrajectoryDeviceGeometryAnimation
+            sharedState={sharedState}
+            joints={jointPositionDataArray.joints}
+          />
         </Canvas>
       </div>
     </>
