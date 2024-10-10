@@ -1,5 +1,7 @@
 /* style.module.css */
 .container {
+  width: 100%;
+  position: fixed;
   display: flex;
   flex-direction: row;
   align-items: flex-start;

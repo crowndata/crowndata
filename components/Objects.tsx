@@ -19,7 +19,7 @@ const Objects = forwardRef<THREE.Object3D[], ObjectsProps>(
           ref={(el) => {
             if (el) objectRefs.current[0] = el; // Track reference to the cube
           }}
-          position={[0.5, 0.5, 0]}
+          position={[0.5, 0.5, 0.1]}
           castShadow
           receiveShadow
         >
@@ -31,7 +31,7 @@ const Objects = forwardRef<THREE.Object3D[], ObjectsProps>(
 
         {/* Plane (Floor) */}
         <mesh receiveShadow>
-          <planeGeometry args={[100, 100]} />
+          <planeGeometry args={[2, 2]} />
           <meshStandardMaterial color={0x808080} />
         </mesh>
       </>
