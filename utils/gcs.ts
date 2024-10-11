@@ -1,28 +1,46 @@
 import { Storage } from "@google-cloud/storage";
 import { writeFileSync } from "fs";
 
-// Ensure that the required environment variables are set
-if (!process.env.GCP_KEY_BASE64) throw new Error("GCP_KEY_BASE64 not set");
-if (!process.env.GCP_PROJECT_ID) throw new Error("GCP_PROJECT_ID not set");
-if (!process.env.GCS_BUCKET_NAME) throw new Error("GCS_BUCKET_NAME not set");
+const gcpKeyBase64 = process.env.GCP_KEY_BASE64 ?? "";
+const gcpProjectId = process.env.GCP_PROJECT_ID ?? undefined;
+const gcsBucketName = process.env.GCS_BUCKET_NAME ?? undefined;
 
+if (gcpKeyBase64 != "" && gcpKeyBase64 && gcpProjectId && gcsBucketName) {
+  // Proceed with logic if all necessary environment variables are available
+  console.log("GCP environment variables are set.");
+  // Example: Initialize GCP services, configure Google Cloud Storage, etc.
+} else {
+  // Handle cases where some or all environment variables are missing
+  console.warn("Some or all GCP environment variables are missing.");
+
+  // Optional: Proceed with fallback logic or skip certain features
+  if (!gcpKeyBase64) {
+    console.warn("GCP_KEY_BASE64 is missing.");
+  }
+  if (!gcpProjectId) {
+    console.warn("GCP_PROJECT_ID is missing.");
+  }
+  if (!gcsBucketName) {
+    console.warn("GCS_BUCKET_NAME is missing.");
+  }
+}
 // Temporary location for the key file
 const keyFilename = "/tmp/gcp-key.json";
 
 // Decode the base64 string and write it to a temporary file
 writeFileSync(
   keyFilename,
-  Buffer.from(process.env.GCP_KEY_BASE64, "base64").toString("utf8"),
+  Buffer.from(gcpKeyBase64, "base64").toString("utf8"),
 );
 
 // Initialize Google Cloud Storage
 const storage = new Storage({
-  projectId: process.env.GCP_PROJECT_ID,
+  projectId: gcpProjectId,
   keyFilename, // Use the temporary key file for authentication
 });
 
 // Get the bucket name from the environment variable
-const bucketName = process.env.GCS_BUCKET_NAME as string;
+const bucketName = gcsBucketName as string;
 const bucket = storage.bucket(bucketName);
 
 // Export the storage and bucket for use in other parts of the application
