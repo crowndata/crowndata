@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { supabase } from "@/utils/supabaseClient";
-import { useRouter } from "next/navigation"; // Import from next/navigation
-import styles from "@/styles/Auth.module.css";
-import Image from "next/image";
-import TitleDisplay from "@/components/TitleDisplay";
 import "@/styles/globals.css";
+
+import Image from "next/image";
+import { useRouter } from "next/navigation"; // Import from next/navigation
+import { useState } from "react";
+
+import TitleDisplay from "@/components/TitleDisplay";
+import styles from "@/styles/Auth.module.css";
+import { supabase } from "@/utils/supabaseClient";
 
 export default function Login() {
   const [email, setEmail] = useState("");

@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
-import { useTrajectoryDataDual } from "@/hooks/useTrajectoryData";
 import "@/styles/globals.css";
+
+import React, { useEffect, useMemo, useRef, useState } from "react";
+
+import { useTrajectoryDataDual } from "@/hooks/useTrajectoryData";
 
 interface EvaluationDualProps {
   data1: string;

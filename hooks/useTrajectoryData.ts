@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+
 import { TrajectoryPoint } from "@/types/dataInterface";
 
 export interface UseTrajectoryDataResult {

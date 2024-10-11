@@ -1,6 +1,8 @@
-import React from "react";
-import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
+
+import React from "react";
+
+import { useInfoData } from "@/hooks/useInfoData";
 
 // Define the props type for the component
 interface InformationShortProps {

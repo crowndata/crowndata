@@ -1,8 +1,9 @@
 "use client";
 
+import "@/styles/globals.css";
+
 import { useEffect } from "react";
 import * as THREE from "three";
-import "@/styles/globals.css";
 
 const Background = () => {
   useEffect(() => {

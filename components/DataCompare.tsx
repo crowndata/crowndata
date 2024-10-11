@@ -1,9 +1,11 @@
-import { Suspense } from "react";
-import EvaluationDual from "@/components/EvaluationDual";
-import DataCompareListing from "@/components/DataCompareListing";
-import { useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
 import "@/styles/globals.css";
+
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import { useState } from "react";
+
+import DataCompareListing from "@/components/DataCompareListing";
+import EvaluationDual from "@/components/EvaluationDual";
 import TitleDisplay from "@/components/TitleDisplay";
 
 function Loading() {

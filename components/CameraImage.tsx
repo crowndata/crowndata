@@ -1,6 +1,7 @@
-import { memo } from "react";
-import Image from "next/image";
 import "@/styles/globals.css";
+
+import Image from "next/image";
+import { memo } from "react";
 
 // Define prop types
 type CameraImageProps = {

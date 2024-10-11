@@ -1,15 +1,17 @@
-import React from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { useTrajectoryData } from "@/hooks/useTrajectoryData";
-import { useJointPositionData } from "@/hooks/useJointPositionData";
-import { SharedState } from "@/types/pageInterface";
-import TrajectoryLine from "@/components/TrajectoryLine";
-import CameraSetup from "@/components/CameraSetup";
-import TrajectoryDeviceOrientationAnimation from "@/components/TrajectoryDeviceOrientationAnimation";
-import TrajectoryDeviceGeometryAnimation from "@/components/TrajectoryDeviceGeometryAnimation";
-import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
+
+import { OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import React from "react";
+
+import CameraSetup from "@/components/CameraSetup";
+import TrajectoryDeviceGeometryAnimation from "@/components/TrajectoryDeviceGeometryAnimation";
+import TrajectoryDeviceOrientationAnimation from "@/components/TrajectoryDeviceOrientationAnimation";
+import TrajectoryLine from "@/components/TrajectoryLine";
+import { useInfoData } from "@/hooks/useInfoData";
+import { useJointPositionData } from "@/hooks/useJointPositionData";
+import { useTrajectoryData } from "@/hooks/useTrajectoryData";
+import { SharedState } from "@/types/pageInterface";
 
 // Define the props type for the component
 interface TrajectoryVisualizerProps {

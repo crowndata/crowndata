@@ -1,7 +1,9 @@
 // components/LogoutButton.tsx
-import { supabase } from "@/utils/supabaseClient";
-import { useRouter } from "next/navigation"; // Use next/navigation
 import "@/styles/globals.css";
+
+import { useRouter } from "next/navigation"; // Use next/navigation
+
+import { supabase } from "@/utils/supabaseClient";
 
 export default function LogoutButton() {
   const router = useRouter();
