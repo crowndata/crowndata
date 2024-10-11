@@ -28,6 +28,8 @@ const MySlider: React.FC<Props> = ({ jointName, value, handleJointChange }) => {
         onChange={(_event: Event, newValue: number | number[]) => {
           handleJointChange(jointName, newValue as number);
         }}
+        min={-Math.PI}
+        max={Math.PI}
         className={styles.slider}
       />
     </div>
