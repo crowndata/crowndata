@@ -2,10 +2,10 @@ import { Storage } from "@google-cloud/storage";
 import { writeFileSync } from "fs";
 
 const gcpKeyBase64 = process.env.GCP_KEY_BASE64 ?? "";
-const gcpProjectId = process.env.GCP_PROJECT_ID ?? undefined;
-const gcsBucketName = process.env.GCS_BUCKET_NAME ?? undefined;
+const gcpProjectId = process.env.GCP_PROJECT_ID ?? "";
+const gcsBucketName = process.env.GCS_BUCKET_NAME ?? "";
 
-if (gcpKeyBase64 != "" && gcpKeyBase64 && gcpProjectId && gcsBucketName) {
+if (gcpKeyBase64 && gcpProjectId && gcsBucketName) {
   // Proceed with logic if all necessary environment variables are available
   console.log("GCP environment variables are set.");
   // Example: Initialize GCP services, configure Google Cloud Storage, etc.
