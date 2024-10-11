@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 
-import { useRouter,useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useState } from "react";
 

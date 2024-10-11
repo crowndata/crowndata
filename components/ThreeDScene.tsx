@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import { Slider } from "@mui/material"; // Use Material UI for Slider
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React, { useEffect,useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import URDFLoader, { URDFRobot } from "urdf-loader";
 

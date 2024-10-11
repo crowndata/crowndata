@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Define the props type for the component
 interface EvaluationProps {

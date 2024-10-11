@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 
-import React, { useEffect, useMemo, useRef,useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import { useTrajectoryDataDual } from "@/hooks/useTrajectoryData";
 
