@@ -1,7 +1,9 @@
-import React from "react";
-import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
+
 import Link from "next/link";
+import React from "react";
+
+import { useInfoData } from "@/hooks/useInfoData";
 
 // Define the type for the JSON data
 

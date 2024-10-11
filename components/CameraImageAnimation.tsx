@@ -1,8 +1,9 @@
-import { useInfoData } from "@/hooks/useInfoData";
-import CameraImage from "@/components/CameraImage";
-import { SharedState } from "@/types/pageInterface";
-import { useCameraData } from "@/hooks/useCameraData";
 import "@/styles/globals.css";
+
+import CameraImage from "@/components/CameraImage";
+import { useCameraData } from "@/hooks/useCameraData";
+import { useInfoData } from "@/hooks/useInfoData";
+import { SharedState } from "@/types/pageInterface";
 
 interface CameraImageAnimationProps {
   sharedState: SharedState;

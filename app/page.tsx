@@ -1,7 +1,7 @@
 "use client";
 
-import Head from "next/head";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 
 const ThreeDScene = dynamic(() => import("@/components/ThreeDScene"), {
   ssr: false,

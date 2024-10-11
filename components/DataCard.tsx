@@ -1,8 +1,9 @@
-import Link from "next/link";
-import InformationShort from "@/components/InformationShort";
 import "@/styles/globals.css";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
+
+import InformationShort from "@/components/InformationShort";
 
 // Dynamically import the VideoPlayer component, disabling SSR
 const VideoPlayer = dynamic(() => import("@/components/VideoPlayer"), {

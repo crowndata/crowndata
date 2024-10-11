@@ -1,8 +1,10 @@
+import "@/styles/globals.css";
+
+import { useRouter,useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+
 import DataCard from "@/components/DataCard";
-import "@/styles/globals.css";
 
 const ITEMS_PER_PAGE = 5;
 

@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Session } from "@supabase/supabase-js";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import { supabase } from "@/utils/supabaseClient"; // Adjust path as needed
 
 interface UseSessionCheckReturn {

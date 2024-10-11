@@ -1,7 +1,8 @@
 "use client";
 
-import DataCompare from "@/components/DataCompare";
 import { Suspense } from "react";
+
+import DataCompare from "@/components/DataCompare";
 import { useSessionCheck } from "@/hooks/useSessionCheck";
 
 export default function Page() {

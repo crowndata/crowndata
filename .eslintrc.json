@@ -1,8 +1,9 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "simple-import-sort"],
   "rules": {
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "simple-import-sort/imports": "error"
   }
 }

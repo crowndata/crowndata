@@ -1,5 +1,6 @@
-import React from "react";
 import "@/styles/globals.css";
+
+import React from "react";
 
 type TitleDisplayProps = {
   title: string;

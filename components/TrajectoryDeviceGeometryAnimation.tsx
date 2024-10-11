@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from "react";
 import { useThree } from "@react-three/fiber";
-import URDFLoader, { URDFRobot } from "urdf-loader";
-import { SharedState } from "@/types/pageInterface";
+import React, { useEffect,useRef } from "react";
 import * as THREE from "three";
+import URDFLoader, { URDFRobot } from "urdf-loader";
+
+import { SharedState } from "@/types/pageInterface";
 
 interface TrajectoryDeviceGeometryAnimationProps {
   sharedState: SharedState;

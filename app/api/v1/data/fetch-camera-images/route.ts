@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { bucket } from "@/utils/gcs"; // Adjust the path as needed
 
 // Helper function to escape any special characters for camera patterns if needed

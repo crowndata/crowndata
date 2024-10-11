@@ -1,9 +1,11 @@
+import "@/styles/globals.css";
+
 import { useEffect, useState } from "react";
+
 import InformationShort from "@/components/InformationShort";
 import TrajectoryVisualizer from "@/components/TrajectoryVisualizer";
-import { SharedState } from "@/types/pageInterface";
 import { useInfoData } from "@/hooks/useInfoData";
-import "@/styles/globals.css";
+import { SharedState } from "@/types/pageInterface";
 
 interface DataCompareListingProps {
   data1: string;

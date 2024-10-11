@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import { SharedState } from "@/types/pageInterface";
 
 export const useSharedState = (): SharedState => {

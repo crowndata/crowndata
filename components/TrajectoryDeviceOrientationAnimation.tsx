@@ -1,7 +1,9 @@
+import "@/styles/globals.css";
+
 import React, { useRef } from "react";
 import * as THREE from "three";
+
 import { SharedState } from "@/types/pageInterface";
-import "@/styles/globals.css";
 
 interface TrajectoryDeviceOrientationAnimationProps {
   sharedState: SharedState;

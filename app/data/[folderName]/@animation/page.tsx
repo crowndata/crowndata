@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
-import TrajectoryVisualizer from "@/components/TrajectoryVisualizer";
-import CameraImageAnimation from "@/components/CameraImageAnimation";
-import { useSharedState } from "@/hooks/useSharedState";
-import { useInfoData } from "@/hooks/useInfoData";
 import "@/styles/globals.css";
+
+import React, { useEffect } from "react";
+
+import CameraImageAnimation from "@/components/CameraImageAnimation";
+import TrajectoryVisualizer from "@/components/TrajectoryVisualizer";
+import { useInfoData } from "@/hooks/useInfoData";
+import { useSharedState } from "@/hooks/useSharedState";
 
 export default function Page({ params }: { params: { folderName: string } }) {
   const folderName = params.folderName;
