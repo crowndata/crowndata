@@ -71,8 +71,15 @@ const ThreeDScene: React.FC = () => {
           // Set initial joint values from robot joints
           const initialJointValues: { [key: string]: number } = {};
           Object.keys(robot.joints).forEach((jointName) => {
-            initialJointValues[jointName] =
-              (robot.joints[jointName].angle as number) || 0; // Use the current joint angle or default to 0
+            const joint = robot.joints[jointName];
+            if (joint._jointType === "fixed") {
+              return; // Skip processing this joint
+            }
+            if (joint.type !== "fixed") {
+              // Use strict equality check
+              initialJointValues[jointName] =
+                typeof joint.angle === "number" ? joint.angle : 0; // Ensure angle is a number, otherwise default to 0
+            }
           });
           setJointValues(initialJointValues); // Update state with initial joint values
         },
@@ -116,9 +123,7 @@ const ThreeDScene: React.FC = () => {
       <div className={styles.controlsContainer}>
         {Object.entries(jointValues).map(
           ([jointName, value]) =>
-            jointName.includes("panda_joint") ||
-            jointName.includes("inner_finger_joint") ||
-            jointName === "finger_joint" ? (
+            jointName ? (
               <MySlider
                 key={jointName} // Add a key for each MySlider component for better performance
                 jointName={jointName}
