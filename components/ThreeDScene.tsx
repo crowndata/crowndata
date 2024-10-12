@@ -45,6 +45,44 @@ const ThreeDScene: React.FC = () => {
   const robotRef = useRef<THREE.Group | null>(null);
   const robotCache = useRef<URDFRobot | null>(null); // Cache robot globally
 
+  // State to hold the URDF files and selected file path
+  const [urdfFiles, setUrdfFiles] = useState<{ [key: string]: string }>({});
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+
+  // Handle the change in selection
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedPath = e.target.value;
+    const selectedKey = Object.keys(urdfFiles).find(
+      (key) => urdfFiles[key] === selectedPath,
+    );
+    setSelectedFile(selectedPath);
+    setSelectedKey(selectedKey || null); // Ensure null if no match is found
+  };
+
+  // Fetch URDF file paths from JSON file in public directory
+  useEffect(() => {
+    const fetchURDFFiles = async () => {
+      try {
+        const response = await fetch("/geometries/urdfFiles.json");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setUrdfFiles(data);
+        if (data && Object.keys(data).length > 0) {
+          setSelectedKey(Object.keys(data)[0] as string);
+          setSelectedFile(Object.values(data)[0] as string); // Set the first URDF file as default
+        }
+      } catch (error) {
+        console.error("Failed to fetch URDF files:", error);
+      }
+    };
+
+    fetchURDFFiles();
+  }, []);
+  console.log(selectedFile);
+
   // Handle joint angle updates
   const handleJointChange = (jointName: string, newValue: number) => {
     const updatedJoints = { ...jointValues, [jointName]: newValue };
@@ -57,31 +95,67 @@ const ThreeDScene: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!robotCache.current) {
+    if (selectedFile) {
       const loader = new URDFLoader();
 
-      loader.load(
-        "/geometries/franka_description/panda.urdf",
-        (robot: URDFRobot) => {
-          robotCache.current = robot;
-          const robotGroup = robot as unknown as THREE.Group;
-          robotGroup.position.set(0, 0, 0); // Set position if needed
-          robotRef.current = robotGroup; // Store robot group reference
+      // Clear the previous robot from the cache before loading a new one
+      robotCache.current = null;
 
-          // Set initial joint values from robot joints
-          const initialJointValues: { [key: string]: number } = {};
-          Object.keys(robot.joints).forEach((jointName) => {
-            initialJointValues[jointName] =
-              (robot.joints[jointName].angle as number) || 0; // Use the current joint angle or default to 0
-          });
-          setJointValues(initialJointValues); // Update state with initial joint values
-        },
-      );
+      loader.load(selectedFile, (robot: URDFRobot) => {
+        robotCache.current = robot;
+        console.log("Loaded new robot:", robot);
+        // You can add additional logic here to render the new robot in the scene
+      });
     }
-  }, []);
+  }, [selectedFile]); // Effect will run whenever selectedFile changes
+
+  useEffect(() => {
+    if (selectedFile && !robotCache.current) {
+      const loader = new URDFLoader();
+
+      loader.load(selectedFile, (robot: URDFRobot) => {
+        robotCache.current = robot;
+        const robotGroup = robot as unknown as THREE.Group;
+        robotGroup.position.set(0, 0, 0); // Set position if needed
+        robotRef.current = robotGroup; // Store robot group reference
+
+        // Set initial joint values from robot joints
+        const initialJointValues: { [key: string]: number } = {};
+        Object.keys(robot.joints).forEach((jointName) => {
+          const joint = robot.joints[jointName];
+          if (joint.jointType === "fixed") {
+            return; // Skip processing this joint
+          }
+          if (joint.type !== "fixed") {
+            // Use strict equality check
+            initialJointValues[jointName] =
+              typeof joint.angle === "number" ? joint.angle : 0; // Ensure angle is a number, otherwise default to 0
+          }
+        });
+        setJointValues(initialJointValues); // Update state with initial joint values
+      });
+    }
+  }, [selectedFile]);
 
   return (
     <div className={styles.container}>
+      <div>
+        <label>Select: </label>
+        <select value={selectedFile || ""} onChange={handleSelectChange}>
+          <option value="" disabled>
+            Select a file
+          </option>{" "}
+          {/* Placeholder */}
+          {Object.entries(urdfFiles).map(([key, file]) => (
+            <option key={key} value={file}>
+              {key}
+            </option>
+          ))}
+        </select>
+        <div>
+          <p>Robot Embodiment: {selectedKey}</p>
+        </div>
+      </div>
       <Canvas className={styles.canvas}>
         <CameraSetup
           fov={45}
@@ -116,9 +190,7 @@ const ThreeDScene: React.FC = () => {
       <div className={styles.controlsContainer}>
         {Object.entries(jointValues).map(
           ([jointName, value]) =>
-            jointName.includes("panda_joint") ||
-            jointName.includes("inner_finger_joint") ||
-            jointName === "finger_joint" ? (
+            jointName ? (
               <MySlider
                 key={jointName} // Add a key for each MySlider component for better performance
                 jointName={jointName}

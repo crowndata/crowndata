@@ -31,7 +31,7 @@ const Objects = forwardRef<THREE.Object3D[], ObjectsProps>(
 
         {/* Plane (Floor) */}
         <mesh receiveShadow>
-          <planeGeometry args={[2, 2]} />
+          <planeGeometry args={[4, 4]} />
           <meshStandardMaterial color={0x808080} />
         </mesh>
       </>
