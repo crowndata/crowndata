@@ -123,7 +123,7 @@ const ThreeDScene: React.FC = () => {
         const initialJointValues: { [key: string]: number } = {};
         Object.keys(robot.joints).forEach((jointName) => {
           const joint = robot.joints[jointName];
-          if (joint._jointType === "fixed") {
+          if (joint.jointType === "fixed") {
             return; // Skip processing this joint
           }
           if (joint.type !== "fixed") {
