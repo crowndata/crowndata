@@ -1,0 +1,4 @@
+{
+    "Panda Gazebo": "/geometries/franka_ros/franka_gazebo/test/launch/panda-gazebo.urdf",
+    "DROID": "/geometries/franka_description/panda.urdf"
+  }
