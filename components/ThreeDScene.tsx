@@ -61,7 +61,8 @@ const ThreeDScene: React.FC = () => {
       const loader = new URDFLoader();
 
       loader.load(
-        "/geometries/franka_description/panda.urdf",
+        // "/geometries/franka_description/panda.urdf",
+        "/geometries/franka_ros/franka_gazebo/test/launch/panda-gazebo.urdf",
         (robot: URDFRobot) => {
           robotCache.current = robot;
           const robotGroup = robot as unknown as THREE.Group;
