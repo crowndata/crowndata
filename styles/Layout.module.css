@@ -11,7 +11,7 @@
   margin: 0;
   box-sizing: border-box;
   /* Ensure padding is included in width calculation */
-  align-items: center;
+  align-items: top;
   /* Make the card take the full width of its container */
   margin-bottom: 10px;
   background-color: #2c2c2c; /* Dark background color */

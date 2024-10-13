@@ -1,12 +1,42 @@
 /* style.module.css */
 .container {
   width: 100%;
-  position: fixed;
+  /* Ensure it takes full width of the parent */
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   justify-content: space-between;
-  padding: 10px;
+  /* Spread the items inside the container */
+  gap: 20px;
+  /* Space between columns */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* Ensure padding is included in width calculation */
+  align-items: flex-start;
+  /* Make the card take the full width of its container */
+  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 25%;
+  margin: 0;
+  /* Reduces margin */
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 70%;
+  margin: 0;
+  /* Reduces margin */
 }
 
 .canvas {
@@ -19,7 +49,7 @@
 .controlsContainer {
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 100%;
 }
 
 .controlItem {
