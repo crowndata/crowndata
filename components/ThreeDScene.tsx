@@ -8,7 +8,8 @@ import * as THREE from "three";
 import URDFLoader, { URDFRobot } from "urdf-loader";
 
 import CameraSetup from "@/components/CameraSetup";
-import Objects from "@/components/Objects"; // Custom 3D objects
+import Objects from "@/components/Objects";
+import { useURDFFiles } from "@/hooks/useURDFFiles";
 import styles from "@/styles/ThreeDScene.module.css";
 
 type HandleJointChange = (jointName: string, newValue: number) => void;
@@ -45,46 +46,8 @@ const ThreeDScene: React.FC = () => {
   const robotRef = useRef<THREE.Group | null>(null);
   const robotCache = useRef<URDFRobot | null>(null); // Cache robot globally
 
-  // State to hold the URDF files and selected file path
-  const [urdfFiles, setUrdfFiles] = useState<{ [key: string]: string }>({});
-  const [selectedFile, setSelectedFile] = useState<string | null>(null);
-  const [selectedKey, setSelectedKey] = useState<string | null>(null);
-
-  // Handle the change in selection
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedKey = e.target.value || null; // Ensure null if no value is selected
-    setSelectedKey(selectedKey);
-    if (selectedKey) {
-      // Find the corresponding file path for the selected key
-      const selectedPath = urdfFiles[selectedKey]; // Access the value of the selected key directly
-      setSelectedFile(selectedPath || null); // Set the file path or null if not found
-    } else {
-      setSelectedFile(null); // If no key is selected, set to null
-    }
-  };
-
-  // Fetch URDF file paths from JSON file in public directory
-  useEffect(() => {
-    const fetchURDFFiles = async () => {
-      try {
-        const response = await fetch("/geometries/urdfFiles.json");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setUrdfFiles(data);
-        if (data && Object.keys(data).length > 0) {
-          setSelectedKey(Object.keys(data)[0] as string);
-          setSelectedFile(Object.values(data)[0] as string); // Set the first URDF file as default
-        }
-      } catch (error) {
-        console.error("Failed to fetch URDF files:", error);
-      }
-    };
-
-    fetchURDFFiles();
-  }, []);
-  console.log(selectedFile);
+  const { urdfFiles, selectedKey, selectedFile, handleSelectChange } =
+    useURDFFiles();
 
   // Handle joint angle updates
   const handleJointChange = (jointName: string, newValue: number) => {
@@ -106,8 +69,6 @@ const ThreeDScene: React.FC = () => {
 
       loader.load(selectedFile, (robot: URDFRobot) => {
         robotCache.current = robot;
-        console.log("Loaded new robot:", robot);
-        // You can add additional logic here to render the new robot in the scene
       });
     }
   }, [selectedFile]); // Effect will run whenever selectedFile changes

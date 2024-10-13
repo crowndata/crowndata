@@ -44,6 +44,7 @@
   height: 1000px;
   aspect-ratio: 1;
   display: block;
+  background-color: #f9f9f9;
 }
 
 .controlsContainer {
