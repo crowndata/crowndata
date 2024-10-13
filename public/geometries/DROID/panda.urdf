@@ -250,15 +250,13 @@
 
   <!-- grasper joint-->
   <joint name="panda_joint8" type="fixed">
-    <origin rpy="0 -1.5707963267948966 0" xyz="0 0 0.1"/>
+    <origin rpy="0 -1.5707963267948966 0" xyz="0 0 0.107"/>
     <parent link="panda_link7"/>
     <child link="robotiq_85_adapter_link"/>
   </joint>
   
-
   
-
-<!-- grasper -->
+  <!-- grasper -->
   <link name="robotiq_85_adapter_link">
     <visual>
       <geometry>
