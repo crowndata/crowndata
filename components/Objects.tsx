@@ -28,12 +28,6 @@ const Objects = forwardRef<THREE.Object3D[], ObjectsProps>(
             color={pickedObject === objectRefs.current[0] ? 0xffff00 : 0xff0000}
           />
         </mesh>
-
-        {/* Plane (Floor) */}
-        <mesh receiveShadow>
-          <planeGeometry args={[4, 4]} />
-          <meshStandardMaterial color={0x808080} />
-        </mesh>
       </>
     );
   },
