@@ -60,10 +60,7 @@ const Background = () => {
 
     window.addEventListener("resize", onWindowResize);
 
-    return () => {
-      window.removeEventListener("resize", onWindowResize);
-      document.body.removeChild(renderer.domElement);
-    };
+    return () => {};
   }, []);
 
   return <div className="background"></div>; // Apply the module CSS class

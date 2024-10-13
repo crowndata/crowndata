@@ -8,11 +8,12 @@ import { SharedState } from "@/types/pageInterface";
 interface TrajectoryDeviceGeometryAnimationProps {
   sharedState: SharedState;
   joints: { [key: string]: number[] };
+  urdfFile: string;
 }
 
 const TrajectoryDeviceGeometryAnimation: React.FC<
   TrajectoryDeviceGeometryAnimationProps
-> = ({ sharedState, joints }) => {
+> = ({ sharedState, joints, urdfFile }) => {
   const robotRef = useRef<THREE.Group | null>(null);
   const { scene } = useThree();
   const { currentPoint } = sharedState;
@@ -25,12 +26,9 @@ const TrajectoryDeviceGeometryAnimation: React.FC<
       // Load the URDF model only if it's not cached
       const loader = new URDFLoader();
 
-      loader.load(
-        "/geometries/franka_description/panda.urdf",
-        (robot: URDFRobot) => {
-          robotCache.current = robot;
-        },
-      );
+      loader.load(urdfFile, (robot: URDFRobot) => {
+        robotCache.current = robot;
+      });
     } else {
       // Update joint values if the robot is already loaded
       const robot = robotCache.current;
@@ -54,7 +52,7 @@ const TrajectoryDeviceGeometryAnimation: React.FC<
         scene.remove(currentRobotRef); // Use the copied ref value in the cleanup
       }
     };
-  }, [joints, currentPoint, scene]);
+  }, [joints, currentPoint, scene, urdfFile]);
 
   return null;
 };

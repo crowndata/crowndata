@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React from "react";
+import React, { useEffect } from "react";
 
 import CameraSetup from "@/components/CameraSetup";
 import TrajectoryDeviceGeometryAnimation from "@/components/TrajectoryDeviceGeometryAnimation";
@@ -11,6 +11,7 @@ import TrajectoryLine from "@/components/TrajectoryLine";
 import { useInfoData } from "@/hooks/useInfoData";
 import { useJointPositionData } from "@/hooks/useJointPositionData";
 import { useTrajectoryData } from "@/hooks/useTrajectoryData";
+import { useURDFFiles } from "@/hooks/useURDFFiles";
 import { SharedState } from "@/types/pageInterface";
 
 // Define the props type for the component
@@ -31,6 +32,14 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
   const trajectoryDataArray = useTrajectoryData(folderName, joints);
   const jointPositionDataArray = useJointPositionData(folderName);
 
+  const { handleUrdfFileChange, selectedFile } = useURDFFiles();
+
+  useEffect(() => {
+    if (infoData?.robotEmbodiment) {
+      handleUrdfFileChange(infoData.robotEmbodiment);
+    }
+  }, [infoData?.robotEmbodiment, handleUrdfFileChange]); // Only run when infoData.robotEmbodiment changes
+
   return (
     <>
       <h3 className="title">Trajectory 3D Visualizer</h3>
@@ -43,7 +52,7 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
             far={500}
             positionX={0}
             positionY={-2}
-            positionZ={0}
+            positionZ={2}
             lookAtX={0}
             lookAtY={0}
             lookAtZ={0}
@@ -78,10 +87,13 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
           ))}
 
           {/* Render Robot Geometry */}
-          <TrajectoryDeviceGeometryAnimation
-            sharedState={sharedState}
-            joints={jointPositionDataArray.joints}
-          />
+          {selectedFile ? (
+            <TrajectoryDeviceGeometryAnimation
+              sharedState={sharedState}
+              joints={jointPositionDataArray.joints}
+              urdfFile={selectedFile}
+            />
+          ) : null}
         </Canvas>
       </div>
     </>
