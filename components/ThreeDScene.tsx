@@ -52,12 +52,15 @@ const ThreeDScene: React.FC = () => {
 
   // Handle the change in selection
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedPath = e.target.value;
-    const selectedKey = Object.keys(urdfFiles).find(
-      (key) => urdfFiles[key] === selectedPath,
-    );
-    setSelectedFile(selectedPath);
-    setSelectedKey(selectedKey || null); // Ensure null if no match is found
+    const selectedKey = e.target.value || null; // Ensure null if no value is selected
+    setSelectedKey(selectedKey);
+    if (selectedKey) {
+      // Find the corresponding file path for the selected key
+      const selectedPath = urdfFiles[selectedKey]; // Access the value of the selected key directly
+      setSelectedFile(selectedPath || null); // Set the file path or null if not found
+    } else {
+      setSelectedFile(null); // If no key is selected, set to null
+    }
   };
 
   // Fetch URDF file paths from JSON file in public directory
@@ -139,66 +142,70 @@ const ThreeDScene: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div>
-        <label>Select: </label>
-        <select value={selectedFile || ""} onChange={handleSelectChange}>
-          <option value="" disabled>
-            Select a file
-          </option>{" "}
-          {/* Placeholder */}
-          {Object.entries(urdfFiles).map(([key, file]) => (
-            <option key={key} value={file}>
-              {key}
+      <div className={styles.left}>
+        <div className={styles.controlsContainer}>
+          <label className="label">Embodiment: {selectedKey} </label>
+          <select
+            key={selectedKey || ""}
+            onChange={handleSelectChange}
+            value={selectedKey || ""}
+          >
+            <option value="" disabled>
+              Select a Robot Embodiment
             </option>
-          ))}
-        </select>
-        <div>
-          <p>Robot Embodiment: {selectedKey}</p>
+            {Object.entries(urdfFiles).map(([key]) => (
+              <option key={key} value={key}>
+                {key}
+              </option>
+            ))}
+          </select>
+        </div>
+        {/* Joint sliders and input fields */}
+        <div className={styles.controlsContainer}>
+          {Object.entries(jointValues).map(
+            ([jointName, value]) =>
+              jointName ? (
+                <MySlider
+                  key={jointName} // Add a key for each MySlider component for better performance
+                  jointName={jointName}
+                  value={value}
+                  handleJointChange={handleJointChange}
+                />
+              ) : null, // Return null for joints that don't match
+          )}
         </div>
       </div>
-      <Canvas className={styles.canvas}>
-        <CameraSetup
-          fov={45}
-          aspectRatio={1}
-          near={1}
-          far={500}
-          positionX={0}
-          positionY={-2}
-          positionZ={2}
-          lookAtX={0}
-          lookAtY={0}
-          lookAtZ={0}
-        />
-        <OrbitControls
-          enablePan={true} // Panning is enabled by default, but you can ensure it is enabled
-          panSpeed={1.5} // Adjust pan speed (default is 1)
-          screenSpacePanning={false} // If true, panning moves in screen space, false moves in world space
-        />
-        <ambientLight intensity={0.4} />
-        <directionalLight
-          position={[5, 5, 5]}
-          intensity={1}
-          castShadow
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
-        />
-        <Objects ref={objectRefs} pickedObject={pickedObject} />
-        {robotRef.current && <primitive object={robotRef.current} />}{" "}
-        {/* Add robot to the scene */}
-      </Canvas>
-      {/* Joint sliders and input fields */}
-      <div className={styles.controlsContainer}>
-        {Object.entries(jointValues).map(
-          ([jointName, value]) =>
-            jointName ? (
-              <MySlider
-                key={jointName} // Add a key for each MySlider component for better performance
-                jointName={jointName}
-                value={value}
-                handleJointChange={handleJointChange}
-              />
-            ) : null, // Return null for joints that don't match
-        )}
+      <div className={styles.right}>
+        <Canvas className={styles.canvas}>
+          <CameraSetup
+            fov={45}
+            aspectRatio={1}
+            near={1}
+            far={500}
+            positionX={0}
+            positionY={-2}
+            positionZ={2}
+            lookAtX={0}
+            lookAtY={0}
+            lookAtZ={0}
+          />
+          <OrbitControls
+            enablePan={true} // Panning is enabled by default, but you can ensure it is enabled
+            panSpeed={1.5} // Adjust pan speed (default is 1)
+            screenSpacePanning={false} // If true, panning moves in screen space, false moves in world space
+          />
+          <ambientLight intensity={0.4} />
+          <directionalLight
+            position={[5, 5, 5]}
+            intensity={1}
+            castShadow
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+          />
+          <Objects ref={objectRefs} pickedObject={pickedObject} />
+          {robotRef.current && <primitive object={robotRef.current} />}{" "}
+          {/* Add robot to the scene */}
+        </Canvas>
       </div>
     </div>
   );

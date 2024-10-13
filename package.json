@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "eslint": "eslint . --ext .ts,.tsx,.js,.jsx --fix --cache",
     "format": "npx prettier --write . ",
     "format-python": "nbqa black python_lib && black python_lib"
   },
