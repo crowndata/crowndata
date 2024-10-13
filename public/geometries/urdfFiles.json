@@ -1,4 +1,5 @@
 {
-    "Panda Gazebo": "/geometries/franka_ros/franka_gazebo/test/launch/panda-gazebo.urdf",
-    "DROID": "/geometries/franka_description/panda.urdf"
-  }
+  "Panda Gazebo": "/geometries/franka_ros/franka_gazebo/test/launch/panda-gazebo.urdf",
+  "DROID": "/geometries/franka_description/panda.urdf",
+  "robotiq_c2_model": "/geometries/robotiq/robotiq_2f_c2_gripper_visualization/urdf/robotiq_c2_model.urdf"
+}
