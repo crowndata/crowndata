@@ -20,71 +20,52 @@ const TrajectoryVelocityLine: React.FC<TrajectoryVelocityLineProps> = ({
     1e-4, // Tolerance for comparison
   );
 
+  // Function to create colored line segments
+  const createColorLine = (
+    start: THREE.Vector3,
+    end: THREE.Vector3,
+    color: THREE.Color | string | number,
+  ) => {
+    // Create geometry
+    const geometry = new THREE.BufferGeometry().setFromPoints([start, end]);
+
+    // Create material with the specified color
+    const material = new THREE.LineBasicMaterial({ color });
+
+    // Create the line object
+    return new THREE.Line(geometry, material);
+  };
+
   // Memoize the array of line segments
   const lines = useMemo(() => {
-    // Calculate distances between consecutive points
-    const calculateDistances = (points: THREE.Vector3[]): number[] =>
-      points.slice(1).map((p, i) => p.distanceTo(points[i]));
-
-    // Calculate thickness based on distance, mapping it between min/max
-    const calculateLinewidths = (
-      points: THREE.Vector3[],
-      minLinewidth: number,
-      maxLinewidth: number,
-    ): number[] => {
-      const distances = calculateDistances(points);
-      const [minDistance, maxDistance] = [
-        Math.min(...distances),
-        Math.max(...distances),
-      ];
-      const range = maxDistance - minDistance || 1e-7; // Avoid division by zero
-
-      return distances.map(
-        (distance) =>
-          minLinewidth +
-          ((maxLinewidth - minLinewidth) / range) * (distance - minDistance),
-      );
-    };
-
-    // Create a cylindrical line segment with variable thickness
-    const createThickLine = (
-      start: THREE.Vector3,
-      end: THREE.Vector3,
-      linewidth: number,
+    // Function to calculate interpolated colors
+    const calculateColors = (
+      vectorPoints: THREE.Vector3[],
+      startColor: THREE.Color | string | number = 0xff0000, // Default start color (red)
+      endColor: THREE.Color | string | number = 0x0000ff, // Default end color (blue)
     ) => {
-      const direction = new THREE.Vector3().subVectors(end, start);
-      const midPoint = new THREE.Vector3()
-        .addVectors(start, end)
-        .multiplyScalar(0.5);
-      const length = direction.length();
+      const numSegments = vectorPoints.length - 1; // Number of line segments
+      const colors: (THREE.Color | string | number)[] = [];
 
-      const geometry = new THREE.CylinderGeometry(
-        linewidth,
-        linewidth,
-        length,
-        8,
-      );
-      const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-      const cylinder = new THREE.Mesh(geometry, material);
+      // Convert startColor and endColor to THREE.Color if they are not already
+      const colorStart = new THREE.Color(startColor);
+      const colorEnd = new THREE.Color(endColor);
 
-      // Calculate orientation for the line segment
-      const orientation = new THREE.Matrix4();
-      const up = new THREE.Vector3(0, 1, 0);
-      const rotationAxis = up.clone().cross(direction).normalize();
-      if (rotationAxis.length() > 0) {
-        const angle = Math.acos(up.dot(direction.clone().normalize()));
-        orientation.makeRotationAxis(rotationAxis, angle);
+      // Interpolate color for each segment
+      for (let i = 0; i < numSegments; i++) {
+        const t = numSegments > 1 ? i / (numSegments - 1) : 0; // Handle single-segment case
+        const color = colorStart.clone().lerp(colorEnd, t);
+        colors.push(color);
       }
-      cylinder.applyMatrix4(orientation);
-      cylinder.position.copy(midPoint);
 
-      return cylinder;
+      return colors;
     };
-    const linewidths = calculateLinewidths(vectorPoints, 0.0001, 0.01);
+
+    const colors = calculateColors(vectorPoints);
     return vectorPoints
       .slice(0, -1)
       .map((start, i) =>
-        createThickLine(start, vectorPoints[i + 1], linewidths[i]),
+        createColorLine(start, vectorPoints[i + 1], colors[i]),
       );
   }, [vectorPoints]);
 
