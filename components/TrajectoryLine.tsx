@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 
-import { useFrame } from "@react-three/fiber";
-import React, { useMemo, useRef } from "react";
+import { useThree } from "@react-three/fiber";
+import React, { useEffect, useMemo } from "react";
 import * as THREE from "three";
 
 interface TrajectoryLineProps {
@@ -9,9 +9,6 @@ interface TrajectoryLineProps {
 }
 
 const TrajectoryLine: React.FC<TrajectoryLineProps> = ({ positions }) => {
-  // Correctly typing the ref for a THREE.Line object
-  const lineRef = useRef<THREE.Line>(null);
-
   // Create a BufferGeometry and set its position attribute
   const geometry = useMemo(() => {
     const lineGeometry = new THREE.BufferGeometry();
@@ -34,17 +31,18 @@ const TrajectoryLine: React.FC<TrajectoryLineProps> = ({ positions }) => {
     [],
   );
 
-  // Optionally update or animate the line in the useFrame hook
-  useFrame(() => {
-    if (lineRef.current) {
-      // You can manipulate the lineRef here
-    }
-  });
+  const { scene } = useThree();
 
-  return (
-    // Use <primitive> to render a Three.js object with a ref
-    <primitive object={new THREE.Line(geometry, material)} ref={lineRef} />
-  );
+  useEffect(() => {
+    const line = new THREE.Line(geometry, material);
+    scene.add(line); // Add line to scene when component mounts
+
+    return () => {
+      scene.remove(line); // Remove line when component unmounts
+    };
+  }, [geometry, material, scene]); // Run only when geometry or material changes
+
+  return null; // No JSX since we're adding the object directly to the scene
 };
 
 export default TrajectoryLine;

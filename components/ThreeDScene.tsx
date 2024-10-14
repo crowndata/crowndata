@@ -105,11 +105,12 @@ const ThreeDScene: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.controlsContainer}>
-          <label className="label">Embodiment: {selectedKey} </label>
+          <label className="label">Embodiment:</label>
           <select
             key={selectedKey || ""}
             onChange={handleSelectChange}
             value={selectedKey || ""}
+            className="value"
           >
             <option value="" disabled>
               Select a Robot Embodiment
@@ -164,7 +165,7 @@ const ThreeDScene: React.FC = () => {
             shadow-mapSize-height={1024}
           />
           <Objects ref={objectRefs} pickedObject={pickedObject} />
-          {robotRef.current && <primitive object={robotRef.current} />}{" "}
+          {robotRef.current && <primitive object={robotRef.current} />}
           {/* Add robot to the scene */}
         </Canvas>
       </div>

@@ -8,6 +8,7 @@ import CameraSetup from "@/components/CameraSetup";
 import TrajectoryDeviceGeometryAnimation from "@/components/TrajectoryDeviceGeometryAnimation";
 import TrajectoryDeviceOrientationAnimation from "@/components/TrajectoryDeviceOrientationAnimation";
 import TrajectoryLine from "@/components/TrajectoryLine";
+import TrajectoryVelocityLine from "@/components/TrajectoryVelocityLine";
 import { useInfoData } from "@/hooks/useInfoData";
 import { useJointPositionData } from "@/hooks/useJointPositionData";
 import { useTrajectoryData } from "@/hooks/useTrajectoryData";
@@ -69,6 +70,12 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
           <axesHelper args={[5]} />
 
           {/* Render TrajectoryLines for each joint */}
+          {trajectoryDataArray.map((data, index) => (
+            <TrajectoryVelocityLine
+              key={`trajectory-velocity-${index}`}
+              positions={data.positions}
+            />
+          ))}
           {trajectoryDataArray.map((data, index) => (
             <TrajectoryLine
               key={`trajectory-${index}`}

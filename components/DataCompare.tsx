@@ -55,7 +55,7 @@ const DataCompare: React.FC = () => {
               {/* First Column */}
               <div className="inputGroup">
                 <label htmlFor="data1" className="label">
-                  Data 1:{" "}
+                  Data 1:
                 </label>
                 <input
                   id="data1"
@@ -72,7 +72,7 @@ const DataCompare: React.FC = () => {
               {/* Second Column */}
               <div className="inputGroup">
                 <label htmlFor="data2" className="label">
-                  Data 2:{" "}
+                  Data 2:
                 </label>
                 <input
                   id="data2"
