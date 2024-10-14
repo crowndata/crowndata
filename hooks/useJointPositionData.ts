@@ -20,7 +20,7 @@ export const useJointPositionData = (
         try {
           const response = await fetch(
             `/data/${folderName}/trajectories/joint_positions.json`,
-            { signal }
+            { signal },
           );
           if (!response.ok) {
             throw new Error("Failed to fetch joint positions data");

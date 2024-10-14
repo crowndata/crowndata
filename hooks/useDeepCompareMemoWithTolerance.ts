@@ -38,5 +38,8 @@ export function useDeepCompareMemoWithTolerance<T>(
   }
 
   // Memoize the factory and ensure it's re-created only when dependencies change
-  return useMemo(factory, [factory, dependenciesChanged ? ref.current : dependencies]);
+  return useMemo(factory, [
+    factory,
+    dependenciesChanged ? ref.current : dependencies,
+  ]);
 }
