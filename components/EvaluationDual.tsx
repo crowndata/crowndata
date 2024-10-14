@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import { useTrajectoryDataDual } from "@/hooks/useTrajectoryData";
+import { useTrajectoryData } from "@/hooks/useTrajectoryData";
 
 interface EvaluationDualProps {
   data1: string;
@@ -36,8 +36,8 @@ const EvaluationDual: React.FC<EvaluationDualProps> = ({ data1, data2 }) => {
 
   const joints = useMemo(() => ["cartesian_position"], []);
 
-  const { results1: trajectoryDataArray1, results2: trajectoryDataArray2 } =
-    useTrajectoryDataDual(data1, data2, joints);
+  const trajectoryDataArray1 = useTrajectoryData(data1, joints);
+  const trajectoryDataArray2 = useTrajectoryData(data2, joints);
 
   // Memoize the positions arrays to avoid unnecessary renders
   const positions1 = useMemo(

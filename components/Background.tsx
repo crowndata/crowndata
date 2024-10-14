@@ -40,11 +40,14 @@ const Background = () => {
       "position",
       new THREE.Float32BufferAttribute(starVertices, 3),
     );
+
     const stars = new THREE.Points(starGeometry, starMaterial);
     scene.add(stars);
 
+    let animationFrameId: number;
+
     const animate = () => {
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
       stars.rotation.x += 0.001;
       stars.rotation.y += 0.001;
       renderer.render(scene, camera);
@@ -61,7 +64,12 @@ const Background = () => {
     window.addEventListener("resize", onWindowResize);
 
     return () => {
+      // Clean up the WebGL resources and animations
       window.removeEventListener("resize", onWindowResize);
+      cancelAnimationFrame(animationFrameId);
+      starGeometry.dispose();
+      starMaterial.dispose();
+      renderer.dispose();
       document.body.removeChild(renderer.domElement);
     };
   }, []);

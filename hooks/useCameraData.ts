@@ -17,27 +17,40 @@ export const useCameraData = (
   const [cameraData, setCameraData] = useState<CameraData[][]>([]);
 
   useEffect(() => {
+    let isMounted = true; // Track whether the component is mounted
+
     if (folderName && cameras.length > 0) {
       const fetchCameraData = async () => {
-        const allData: CameraData[][] = await Promise.all(
-          cameras.map(async (camera) => {
-            const response = await fetch(
-              `/data/${folderName}/images/${camera}__image.json`,
-            );
-            const data = await response.json();
-            const formattedData = data.map((row: CameraData) => ({
-              image: row.image,
-            }));
-            return formattedData;
-          }),
-        );
-        setCameraData(allData);
+        try {
+          const allData: CameraData[][] = await Promise.all(
+            cameras.map(async (camera) => {
+              const response = await fetch(
+                `/data/${folderName}/images/${camera}__image.json`,
+              );
+              const data = await response.json();
+              const formattedData = data.map((row: CameraData) => ({
+                image: row.image,
+              }));
+              return formattedData;
+            }),
+          );
+
+          if (isMounted) {
+            setCameraData(allData); // Only update state if component is still mounted
+          }
+        } catch (error) {
+          if (isMounted) {
+            console.error("Error loading JSON files:", error);
+          }
+        }
       };
 
-      fetchCameraData().catch((error) => {
-        console.error("Error loading JSON files:", error);
-      });
+      fetchCameraData();
     }
+
+    return () => {
+      isMounted = false; // Cleanup function to mark component as unmounted
+    };
   }, [folderName, cameras]);
 
   const results = cameraData.map((data) => {

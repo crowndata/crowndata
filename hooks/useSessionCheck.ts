@@ -11,7 +11,7 @@ interface UseSessionCheckReturn {
 }
 
 export const useSessionCheck = (): UseSessionCheckReturn => {
-  const [sessionCheck, setSessionCheck] = useState(true);
+  const [sessionCheck, setSessionCheck] = useState<boolean>(true);
   const router = useRouter();
 
   useEffect(() => {
