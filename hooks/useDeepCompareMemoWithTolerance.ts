@@ -23,14 +23,20 @@ export function useDeepCompareMemoWithTolerance<T>(
   dependencies: [Point3D[]], // Expecting an array of 3D points
   tolerance: number = 1e-4,
 ): T {
-  const ref = useRef<[Point3D[]]>();
+  const ref = useRef<[Point3D[]]>(dependencies); // Initialize with dependencies
 
-  if (
-    !ref.current ||
-    !areArraysEqualWithTolerance(dependencies[0], ref.current[0], tolerance)
-  ) {
+  // Check if the dependencies have changed
+  const dependenciesChanged = !areArraysEqualWithTolerance(
+    dependencies[0],
+    ref.current[0],
+    tolerance,
+  );
+
+  // Update ref only if dependencies have changed
+  if (dependenciesChanged) {
     ref.current = dependencies;
   }
 
-  return useMemo(factory, [factory, ref.current]); // Add factory to the dependency array
+  // Memoize the factory and ensure it's re-created only when dependencies change
+  return useMemo(factory, [factory, dependenciesChanged ? ref.current : dependencies]);
 }

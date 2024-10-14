@@ -12,11 +12,15 @@ export const useJointPositionData = (
   const [joints, setJoints] = useState<{ [key: string]: number[] }>({});
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     if (folderName) {
       const fetchTrajectoryData = async () => {
         try {
           const response = await fetch(
             `/data/${folderName}/trajectories/joint_positions.json`,
+            { signal }
           );
           if (!response.ok) {
             throw new Error("Failed to fetch joint positions data");
@@ -34,13 +38,25 @@ export const useJointPositionData = (
           });
 
           setJoints(transformedData);
-        } catch (error) {
-          console.error("Error loading JSON files:", error);
+        } catch (error: unknown) {
+          if (error instanceof TypeError) {
+            // Handle network or fetch-specific error
+            console.error("There was a network error:", error.message);
+          } else if (error instanceof Error) {
+            // Handle general error
+            console.error("An error occurred:", error.message);
+          } else {
+            console.error("An unknown error occurred");
+          }
         }
       };
 
       fetchTrajectoryData();
     }
+
+    return () => {
+      controller.abort(); // Cleanup fetch request if component unmounts or folderName changes
+    };
   }, [folderName]);
 
   return { joints };

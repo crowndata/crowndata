@@ -8,8 +8,9 @@ export const useInfoData = (folderName: string): InfoData | null => {
   const [infoData, setInfoData] = useState<InfoData | null>(null);
 
   useEffect(() => {
+    let isMounted = true; // Track if the component is still mounted
+
     if (folderName) {
-      // Fetch the JSON file and process the data
       fetch(`/data/${folderName}/information.json`) // Corrected to "camera.json"
         .then((response) => {
           if (!response.ok) {
@@ -18,16 +19,22 @@ export const useInfoData = (folderName: string): InfoData | null => {
           return response.json();
         })
         .then((data) => {
-          if (data && Array.isArray(data.cameras)) {
+          if (isMounted && data && Array.isArray(data.cameras)) {
             setInfoData(data);
           } else {
             throw new Error("Invalid JSON structure");
           }
         })
         .catch((error) => {
-          console.error("Error loading JSON file:", error);
+          if (isMounted) {
+            console.error("Error loading JSON file:", error);
+          }
         });
     }
+
+    return () => {
+      isMounted = false; // Cleanup function to set the flag to false
+    };
   }, [folderName]);
 
   return infoData;

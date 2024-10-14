@@ -28,8 +28,11 @@ export const useURDFFiles = () => {
   // Fetch URDF file paths from JSON file in public directory
   useEffect(() => {
     const fetchURDFFiles = async () => {
+      const abortController = new AbortController(); // Create an AbortController instance
       try {
-        const response = await fetch("/geometries/urdfFiles.json");
+        const response = await fetch("/geometries/urdfFiles.json", {
+          signal: abortController.signal, // Attach the signal to the fetch request
+        });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -39,9 +42,21 @@ export const useURDFFiles = () => {
           setSelectedKey(Object.keys(data)[0] as string);
           setSelectedFile(Object.values(data)[0] as string); // Set the first URDF file as default
         }
-      } catch (error) {
-        console.error("Failed to fetch URDF files:", error);
+      } catch (error: unknown) {
+        if (error instanceof TypeError) {
+          // Handle network or fetch-specific error
+          console.error("There was a network error:", error.message);
+        } else if (error instanceof Error) {
+          // Handle general error
+          console.error("An error occurred:", error.message);
+        } else {
+          console.error("An unknown error occurred");
+        }
       }
+
+      return () => {
+        abortController.abort(); // Abort the fetch request on component unmount
+      };
     };
 
     fetchURDFFiles();

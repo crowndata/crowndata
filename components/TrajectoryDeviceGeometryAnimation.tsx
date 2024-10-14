@@ -28,14 +28,6 @@ const TrajectoryDeviceGeometryAnimation: React.FC<
 
       loader.load(urdfFile, (robot: URDFRobot) => {
         robotCache.current = robot;
-
-        // Set up the robot joints and add it to the scene
-        if (robot) {
-          const robotGroup = robot as unknown as THREE.Group;
-          robotGroup.position.set(0, 0, 0);
-          scene.add(robotGroup);
-          robotRef.current = robotGroup;
-        }
       });
     } else {
       // Update joint values if the robot is already loaded
