@@ -28,6 +28,14 @@ const TrajectoryDeviceGeometryAnimation: React.FC<
 
       loader.load(urdfFile, (robot: URDFRobot) => {
         robotCache.current = robot;
+
+        // Set up the robot joints and add it to the scene
+        if (robot) {
+          const robotGroup = robot as unknown as THREE.Group;
+          robotGroup.position.set(0, 0, 0);
+          scene.add(robotGroup);
+          robotRef.current = robotGroup;
+        }
       });
     } else {
       // Update joint values if the robot is already loaded
@@ -45,11 +53,26 @@ const TrajectoryDeviceGeometryAnimation: React.FC<
       }
     }
 
-    // Clean up
+    // Clean up the robot from the scene
     const currentRobotRef = robotRef.current; // Copy the current ref value
     return () => {
       if (currentRobotRef) {
-        scene.remove(currentRobotRef); // Use the copied ref value in the cleanup
+        scene.remove(currentRobotRef); // Remove the robot from the scene
+
+        // Dispose of all geometries, materials, and textures to prevent memory leaks
+        currentRobotRef.traverse((object) => {
+          if ((object as THREE.Mesh).geometry) {
+            (object as THREE.Mesh).geometry.dispose();
+          }
+          if ((object as THREE.Mesh).material) {
+            const material = (object as THREE.Mesh).material;
+            if (Array.isArray(material)) {
+              material.forEach((mat) => mat.dispose());
+            } else {
+              material.dispose();
+            }
+          }
+        });
       }
     };
   }, [joints, currentPoint, scene, urdfFile]);

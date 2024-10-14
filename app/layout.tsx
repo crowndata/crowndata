@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
+import Background from "@/components/Background";
 import Header from "@/components/Header";
 
 const geistSans = localFont({
@@ -36,6 +37,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
+        <Background />
         <div className="content-container">{children}</div>
       </body>
     </html>

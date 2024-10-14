@@ -37,8 +37,11 @@ const TrajectoryLine: React.FC<TrajectoryLineProps> = ({ positions }) => {
     const line = new THREE.Line(geometry, material);
     scene.add(line); // Add line to scene when component mounts
 
+    // Clean up: Remove the line from the scene and dispose of resources
     return () => {
-      scene.remove(line); // Remove line when component unmounts
+      scene.remove(line);
+      geometry.dispose(); // Dispose of geometry to avoid memory leak
+      material.dispose(); // Dispose of material to avoid memory leak
     };
   }, [geometry, material, scene]); // Run only when geometry or material changes
 
