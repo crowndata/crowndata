@@ -1,9 +1,10 @@
 import "@/styles/globals.css";
 
-import { Slider } from "@mui/material"; // Use Material UI for Slider
+import { Select, SelectItem } from "@nextui-org/select";
+import { Slider } from "@nextui-org/slider";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import URDFLoader, { URDFRobot } from "urdf-loader";
 
@@ -11,43 +12,25 @@ import CameraSetup from "@/components/CameraSetup";
 import Objects from "@/components/Objects";
 import { useURDFFiles } from "@/hooks/useURDFFiles";
 import styles from "@/styles/ThreeDScene.module.css";
+import { urdfFiles } from "@/utils/geometry";
 
-type HandleJointChange = (jointName: string, newValue: number) => void;
-
-interface Props {
-  jointName: string;
-  value: number;
-  handleJointChange: HandleJointChange;
-}
-
-const MySlider: React.FC<Props> = ({ jointName, value, handleJointChange }) => {
-  return (
-    <div className={styles.controlItem}>
-      {/* Display the joint name */}
-      <label className={styles.label}>{jointName}</label>
-      <Slider
-        step={0.01}
-        value={value}
-        onChange={(_event: Event, newValue: number | number[]) => {
-          handleJointChange(jointName, newValue as number);
-        }}
-        min={-Math.PI}
-        max={Math.PI}
-        className={styles.slider}
-      />
-    </div>
-  );
+type JointLimit = {
+  lowerLimit: number;
+  upperLimit: number;
 };
 
 const ThreeDScene: React.FC = () => {
   const [pickedObject] = useState<THREE.Object3D | null>(null);
   const [jointValues, setJointValues] = useState<{ [key: string]: number }>({}); // Object to store joint angles using joint names
+  const [jointLimits, setJointLimits] = useState<{ [key: string]: JointLimit }>(
+    {},
+  ); // Object to store joint angles using joint names
+
   const objectRefs = useRef<THREE.Object3D[]>([]); // Track the objects in the scene
   const robotRef = useRef<THREE.Group | null>(null);
   const robotCache = useRef<URDFRobot | null>(null); // Cache robot globally
 
-  const { urdfFiles, selectedKey, selectedFile, handleSelectChange } =
-    useURDFFiles();
+  const { selectedKey, handleSelectChange } = useURDFFiles();
 
   // Handle joint angle updates
   const handleJointChange = (jointName: string, newValue: number) => {
@@ -61,93 +44,118 @@ const ThreeDScene: React.FC = () => {
   };
 
   useEffect(() => {
-    if (selectedFile) {
+    if (selectedKey) {
       const loader = new URDFLoader();
 
       // Clear the previous robot from the cache before loading a new one
       robotCache.current = null;
+      const selectedFile = selectedKey ? urdfFiles[selectedKey] : null;
 
       // Load the URDF file, skipping mass and inertia
-      loader.load(selectedFile, (robot: URDFRobot) => {
-        // Traverse the robot's links and remove mass and inertia if applicable
-        robot.traverse((object) => {
-          // Check if the object is a URDF link by checking for the presence of mass or inertia properties
-          console.log(object);
+      if (selectedFile) {
+        loader.load(selectedFile, (robot: URDFRobot) => {
+          // Traverse the robot's links and remove mass and inertia if applicable
+          robot.traverse((object) => {
+            // Hide collision geometry if present
+            if (object.name.includes("collision")) {
+              object.visible = false;
+            }
+          });
 
-          // Hide collision geometry if present
-          if (object.name.includes("collision")) {
-            object.visible = false;
-          }
+          // Cache the loaded robot for rendering
+          robotCache.current = robot;
         });
-
-        // Cache the loaded robot for rendering
-        robotCache.current = robot;
-      });
+      }
     }
-  }, [selectedFile]); // Effect will run whenever selectedFile changes
+  }, [selectedKey]); // Effect will run whenever selectedFile changes
 
   useEffect(() => {
-    if (selectedFile && !robotCache.current) {
+    if (selectedKey && !robotCache.current) {
       const loader = new URDFLoader();
+      const selectedFile = selectedKey ? urdfFiles[selectedKey] : null;
+      if (selectedFile) {
+        loader.load(selectedFile, (robot: URDFRobot) => {
+          robotCache.current = robot;
+          const robotGroup = robot as unknown as THREE.Group;
+          robotGroup.position.set(0, 0, 0); // Set position if needed
+          robotRef.current = robotGroup; // Store robot group reference
 
-      loader.load(selectedFile, (robot: URDFRobot) => {
-        robotCache.current = robot;
-        const robotGroup = robot as unknown as THREE.Group;
-        robotGroup.position.set(0, 0, 0); // Set position if needed
-        robotRef.current = robotGroup; // Store robot group reference
+          // Set initial joint values from robot joints
+          const initialJointValues: { [key: string]: number } = {};
+          const initialJointLimits: {
+            [key: string]: { lowerLimit: number; upperLimit: number };
+          } = {};
+          Object.keys(robot.joints).forEach((jointName) => {
+            const joint = robot.joints[jointName];
+            if (joint.jointType === "fixed") {
+              return; // Skip processing this joint
+            }
+            if (joint.type !== "fixed") {
+              // Use strict equality check
+              initialJointValues[jointName] =
+                typeof joint.angle === "number" ? joint.angle : 0; // Ensure angle is a number, otherwise default to 0
 
-        // Set initial joint values from robot joints
-        const initialJointValues: { [key: string]: number } = {};
-        Object.keys(robot.joints).forEach((jointName) => {
-          const joint = robot.joints[jointName];
-          if (joint.jointType === "fixed") {
-            return; // Skip processing this joint
-          }
-          if (joint.type !== "fixed") {
-            // Use strict equality check
-            initialJointValues[jointName] =
-              typeof joint.angle === "number" ? joint.angle : 0; // Ensure angle is a number, otherwise default to 0
-          }
+              initialJointLimits[jointName] = {
+                lowerLimit:
+                  typeof joint.limit.lower === "number"
+                    ? joint.limit.lower
+                    : -Infinity,
+                upperLimit:
+                  typeof joint.limit.upper === "number"
+                    ? joint.limit.upper
+                    : Infinity,
+              };
+            }
+          });
+          setJointLimits(initialJointLimits);
+          setJointValues(initialJointValues); // Update state with initial joint values
         });
-        setJointValues(initialJointValues); // Update state with initial joint values
-      });
+      }
     }
-  }, [selectedFile]);
+  }, [selectedKey]);
 
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-        <div className={styles.controlsContainer}>
-          <label className="label">Embodiment: </label>
-          <select
+        <div className="flex w-full max-w-xs items-center gap-2 primary">
+          <Select
+            label="Embodiment"
+            labelPlacement="inside"
+            variant="underlined"
+            placeholder="Select a model"
+            selectedKeys={selectedKey ? [selectedKey] : []}
             onChange={handleSelectChange}
-            value={selectedKey || ""}
-            className="value"
+            className="max-w-xs w-full primary bg-gray-900"
           >
-            <option value="" disabled>
-              Select a Robot Embodiment
-            </option>
-            {useMemo(
-              () =>
-                Object.entries(urdfFiles).map(([key]) => (
-                  <option key={key} value={key}>
-                    {key}
-                  </option>
-                )),
-              [urdfFiles],
-            )}
-          </select>
+            {Object.keys(urdfFiles).map((key) => (
+              <SelectItem key={key} className="w-full primary bg-gray-900">
+                {key}
+              </SelectItem>
+            ))}
+          </Select>
         </div>
         {/* Joint sliders and input fields */}
         <div className={styles.controlsContainer}>
           {Object.entries(jointValues).map(
             ([jointName, value]) =>
               jointName ? (
-                <MySlider
-                  key={jointName} // Add a key for each MySlider component for better performance
-                  jointName={jointName}
+                <Slider
+                  label={jointName}
+                  size="sm"
+                  step={0.01}
+                  aria-label="control"
+                  key={`control-${jointName}`}
                   value={value}
-                  handleJointChange={handleJointChange}
+                  onChange={(newValue: number | number[]) => {
+                    handleJointChange(jointName, newValue as number);
+                  }}
+                  minValue={
+                    Math.round(jointLimits[jointName].lowerLimit * 100) / 100
+                  }
+                  maxValue={
+                    Math.round(jointLimits[jointName].upperLimit * 100) / 100
+                  }
+                  className="max-w-md w-full"
                 />
               ) : null, // Return null for joints that don't match
           )}

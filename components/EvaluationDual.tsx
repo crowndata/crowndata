@@ -1,5 +1,14 @@
 import "@/styles/globals.css";
 
+import { Card, CardBody, CardHeader } from "@nextui-org/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+} from "@nextui-org/react";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import { useTrajectoryData } from "@/hooks/useTrajectoryData";
@@ -131,27 +140,55 @@ const EvaluationDual: React.FC<EvaluationDualProps> = ({ data1, data2 }) => {
     return <div>Loading...</div>;
   }
 
+  // Create rows from infoData
+  const rows = [
+    {
+      key: "cosineSimilarityScore",
+      name: "Trajectory Cosine Similarity",
+      value: scores.cosineSimilarityScore.toFixed(3),
+    },
+    {
+      key: "calculateSimilarityScore",
+      name: "Trajectory Normalized Distance Similarity",
+      value: scores.calculateSimilarityScore.toFixed(3),
+    },
+  ];
+
+  // Create columns for the table
+  const columns = [
+    { key: "name", label: "Name" },
+    { key: "value", label: "Value" },
+  ];
+
   return (
-    <div className="container">
-      <h3 className="title">Evaluation</h3>
-      <ul className="list">
-        {[
-          {
-            label: "Trajectory Cosine Similarity",
-            value: scores.cosineSimilarityScore.toFixed(3),
-          },
-          {
-            label: "Trajectory Normalized Distance Similarity",
-            value: scores.calculateSimilarityScore.toFixed(3),
-          },
-        ].map((item, index) => (
-          <li key={index} className="listItem">
-            <strong className="label">{item.label}:</strong>
-            <span className="value">{item.value}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Card shadow="sm" className="py-4 w-full">
+      <CardHeader className="pb-0 pt-2 px-4 flex flex-col items-start">
+        <h4 className="font-bold text-lg">Evaluation Compare Metric</h4>
+      </CardHeader>
+      <CardBody className="overflow-visible py-2">
+        <Table
+          hideHeader
+          isStriped
+          isCompact
+          isHeaderSticky
+          aria-label="Evaluation Compare Metric Table"
+        >
+          <TableHeader>
+            {columns.map((column) => (
+              <TableColumn key={column.key}>{column.label}</TableColumn>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.key}>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.value}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </CardBody>
+    </Card>
   );
 };
 

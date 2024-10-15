@@ -1,10 +1,12 @@
 import "@/styles/globals.css";
 
+import { Pagination } from "@nextui-org/react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
 import { useEffect, useState } from "react";
 
 import DataCard from "@/components/DataCard";
+
+import TitleDisplay from "./TitleDisplay";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -50,7 +52,7 @@ const DataCardListing: React.FC = () => {
 
   return (
     <div className="container">
-      <h2 className="title">Data</h2>
+      <TitleDisplay title="Data" />
       <div className="grid">
         {currentFolders.map((folder) => (
           <DataCard key={folder} folderName={folder} />
@@ -59,25 +61,16 @@ const DataCardListing: React.FC = () => {
 
       {/* Pagination */}
       <div className="pagination">
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i + 1}
-            onClick={() => handlePageChange(i + 1)}
-            disabled={currentPage === i + 1}
-            className={`pageButton ${currentPage === i + 1 ? "disabled" : ""}`}
-          >
-            {i + 1}
-          </button>
-        ))}
+        <Pagination
+          variant="bordered"
+          total={totalPages} // Replace 10 with totalPages variable
+          initialPage={currentPage} // Replace 1 with the currentPage variable
+          onChange={handlePageChange}
+          className="flex flex-wrap gap-4 items-center center"
+        />
       </div>
     </div>
   );
 };
 
-export default function Page() {
-  return (
-    <Suspense fallback={<div>Loading data...</div>}>
-      <DataCardListing />
-    </Suspense>
-  );
-}
+export default DataCardListing;
