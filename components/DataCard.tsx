@@ -18,8 +18,8 @@ interface DataCardProps {
 const DataCard: React.FC<DataCardProps> = ({ folderName }) => {
   return (
     <Link href={`/data/${folderName}`}>
-      <Card className="py-4">
-        <CardBody className="overflow-visible py-2">
+      <Card className="py-4 w-full">
+        <CardBody className="py-2 w-full">
           <div className="flex justify-between items-start space-x-4 columns">
             <div className="column">
               <InformationShort folderName={folderName} />

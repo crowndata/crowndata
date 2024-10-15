@@ -75,10 +75,9 @@ body {
   box-sizing: border-box;
   /* Ensure padding is included in width calculation */
   border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.2s ease-in-out;
-  color: #e0e0e0; /* Light text color for contrast */
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Add some padding at the bottom */
@@ -121,27 +120,6 @@ body {
   }
 }
 
-/* Styling the container list */
-.list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Styling individual list items */
-.listItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Align the items to the top for better wrapping */
-  border-bottom: 1px solid #ddd;
-  flex-wrap: wrap; /* Allow wrapping to the next line */
-}
-
-/* Hover effect for list items */
-.listItem:hover {
-  background-color: #f0f0f0;
-}
-
 /* Success and failure symbols */
 .successSymbol {
   color: #00ff00;
@@ -152,6 +130,7 @@ body {
 }
 
 .input {
+  width: 100%;
   text-align: center;
   color: #777;
   word-wrap: break-word; /* Allow text to wrap to the next line */
@@ -183,6 +162,7 @@ body {
 }
 
 .grid {
+  width: 100%;
   /* Ensure it takes full width of the parent */
   display: flex;
   flex-direction: column;
@@ -197,6 +177,7 @@ body {
   align-items: center;
   background-color: #2c2c2c; /* Dark background color */
   border-radius: 8px;
+  padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.2s ease-in-out;

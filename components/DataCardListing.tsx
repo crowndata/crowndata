@@ -53,9 +53,9 @@ const DataCardListing: React.FC = () => {
   return (
     <div className="container">
       <TitleDisplay title="Data" />
-      <div className="grid">
+      <div className="grid w-full">
         {currentFolders.map((folder) => (
-          <DataCard key={folder} folderName={folder} />
+          <DataCard key={folder} folderName={folder}/>
         ))}
       </div>
 

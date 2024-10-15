@@ -37,7 +37,6 @@
 .canvas {
   aspect-ratio: 1;
   display: block;
-  background-color: #f9f9f9;
   margin: 0;
   position: relative;
 }

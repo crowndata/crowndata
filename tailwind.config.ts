@@ -17,12 +17,7 @@ const config: Config = {
         secondary: "#FF4081", // Custom secondary color
         success: "#4CAF50", // Custom success color
         error: "#F44336", // Custom error color
-        text: "#333", // Text color
-        buttonGray: "#d1d5db", // Darker gray for button (gray-300)
-        buttonHoverGray: "#6b7280", // Darker hover gray (gray-500)
-        dropdownGray: "#6b7280", // Lighter background for dropdown (gray-500)
-        dropdownItemGray: "#6b7280", // Light background for items (gray-500)
-        dropdownItemHoverGray: "#d1d5db", // More prominent hover effect for items (gray-300)
+        text: "#ffffff", // Text color
       },
     },
   },
