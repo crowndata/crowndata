@@ -35,10 +35,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextUIProvider>
-          <main className="purple-dark text-foreground bg-background">
-            <Header />
-            {children}
-          </main>
+          <Header />
+          {children}
         </NextUIProvider>
       </body>
     </html>
