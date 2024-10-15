@@ -1,5 +1,7 @@
 import "@/styles/globals.css";
 
+import { Card, CardBody, CardHeader } from "@nextui-org/card";
+
 import CameraImage from "@/components/CameraImage";
 import { useCameraData } from "@/hooks/useCameraData";
 import { useInfoData } from "@/hooks/useInfoData";
@@ -29,24 +31,28 @@ const CameraImageAnimation: React.FC<CameraImageAnimationProps> = ({
   }
 
   return (
-    <div className="imageAnimationContainer">
-      <h2 className="title">Camera Image Animation</h2>
-      <div className="imageGrid">
-        {cameras.map((camera, index) => (
-          <div key={index} className="imageColumn">
-            {cameraDataArray[index] ? (
-              <CameraImage
-                currentPoint={currentPoint}
-                folderName={folderName}
-                images={cameraDataArray[index].images} // Accessing the correct index
-              />
-            ) : (
-              <div>No images available</div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
+    <Card shadow="sm" className="py-4 w-full">
+      <CardHeader className="pb-0 pt-2 px-4 flex flex-col items-start">
+        <h4 className="font-bold text-lg">Camera Image Animation</h4>
+      </CardHeader>
+      <CardBody className="overflow-visible py-2">
+        <div className="imageGrid">
+          {cameras.map((_, index) => (
+            <div key={index} className="imageColumn">
+              {cameraDataArray[index] ? (
+                <CameraImage
+                  currentPoint={currentPoint}
+                  folderName={folderName}
+                  images={cameraDataArray[index].images} // Accessing the correct index
+                />
+              ) : (
+                <div>No images available</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </CardBody>
+    </Card>
   );
 };
 

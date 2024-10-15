@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -73,9 +74,9 @@ export default function SignUp() {
           placeholder="Password"
           className="input"
         />
-        <button type="submit" disabled={loading} className={styles.button}>
+        <Button type="submit" disabled={loading}>
           {loading ? "Signing up..." : "Sign Up with Email"}
-        </button>
+        </Button>
       </form>
 
       {/* Separator */}
@@ -85,11 +86,7 @@ export default function SignUp() {
 
       {/* OAuth Sign Up Options with Logos */}
       <div>
-        <button
-          onClick={() => handleOAuthSignUp("google")}
-          disabled={loading}
-          className={styles.oauthButton}
-        >
+        <Button onClick={() => handleOAuthSignUp("google")} disabled={loading}>
           <Image
             src="/images/google-logo.svg"
             alt="Google logo"
@@ -97,13 +94,9 @@ export default function SignUp() {
             height={20}
           />
           {loading ? "Signing up..." : "Sign up with Google"}
-        </button>
+        </Button>
 
-        <button
-          onClick={() => handleOAuthSignUp("github")}
-          disabled={loading}
-          className={styles.oauthButton}
-        >
+        <Button onClick={() => handleOAuthSignUp("github")} disabled={loading}>
           <Image
             src="/images/github-logo.svg"
             alt="GitHub logo"
@@ -111,7 +104,7 @@ export default function SignUp() {
             height={20}
           />
           {loading ? "Signing up..." : "Sign up with GitHub"}
-        </button>
+        </Button>
       </div>
 
       {errorMessage && <p className={styles.error}>{errorMessage}</p>}

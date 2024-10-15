@@ -2,6 +2,7 @@
 
 import "@/styles/globals.css";
 
+import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation"; // Import from next/navigation
 import { useState } from "react";
@@ -105,18 +106,14 @@ export default function Login() {
           placeholder="Password"
           className="input"
         />
-        <button type="submit" disabled={loading} className={styles.button}>
+        <Button type="submit" disabled={loading}>
           {loading ? "Logging in..." : "Login with Email"}
-        </button>
+        </Button>
 
         {/* Resend email button */}
-        <button
-          onClick={handleResendEmail}
-          disabled={loading}
-          className={styles.button}
-        >
+        <Button type="submit" onClick={handleResendEmail} disabled={loading}>
           {loading ? "Resending..." : "Resend Confirmation Email"}
-        </button>
+        </Button>
       </form>
 
       {/* Separator */}
@@ -126,11 +123,7 @@ export default function Login() {
 
       {/* OAuth Login Options with Logos */}
       <div>
-        <button
-          onClick={() => handleOAuthLogin("google")}
-          disabled={loading}
-          className={styles.oauthButton}
-        >
+        <Button onClick={() => handleOAuthLogin("google")} disabled={loading}>
           <Image
             src="/images/google-logo.svg"
             alt="Google logo"
@@ -138,13 +131,9 @@ export default function Login() {
             height={20}
           />
           {loading ? "Logging in..." : "Login with Google"}
-        </button>
+        </Button>
 
-        <button
-          onClick={() => handleOAuthLogin("github")}
-          disabled={loading}
-          className={styles.oauthButton}
-        >
+        <Button onClick={() => handleOAuthLogin("github")} disabled={loading}>
           <Image
             src="/images/github-logo.svg"
             alt="GitHub logo"
@@ -152,7 +141,7 @@ export default function Login() {
             height={20}
           />
           {loading ? "Logging in..." : "Login with GitHub"}
-        </button>
+        </Button>
       </div>
 
       {errorMessage && <p className={styles.error}>{errorMessage}</p>}

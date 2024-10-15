@@ -70,7 +70,9 @@ const Background = () => {
       starGeometry.dispose();
       starMaterial.dispose();
       renderer.dispose();
-      document.body.removeChild(renderer.domElement);
+      if (renderer.domElement.parentNode) {
+        renderer.domElement.parentNode.removeChild(renderer.domElement);
+      }
     };
   }, []);
 

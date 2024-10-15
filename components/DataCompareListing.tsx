@@ -2,10 +2,12 @@ import "@/styles/globals.css";
 
 import { useEffect, useState } from "react";
 
-import InformationShort from "@/components/InformationShort";
+import Information from "@/components/Information";
 import TrajectoryVisualizer from "@/components/TrajectoryVisualizer";
 import { useInfoData } from "@/hooks/useInfoData";
 import { SharedState } from "@/types/pageInterface";
+
+import Evaluation from "./Evaluation";
 
 interface DataCompareListingProps {
   data1: string;
@@ -73,11 +75,21 @@ const DataCompareListing: React.FC<DataCompareListingProps> = ({
       <div className="columns">
         <div className="column">
           {/* First Column */}
-          <InformationShort folderName={data1} />
+          <Information folderName={data1} />
         </div>
         <div className="column">
           {/* Second Column */}
-          <InformationShort folderName={data2} />
+          <Information folderName={data2} />
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column">
+          {/* First Column */}
+          <Evaluation folderName={data1} />
+        </div>
+        <div className="column">
+          {/* Second Column */}
+          <Evaluation folderName={data2} />
         </div>
       </div>
       <div className="columns">

@@ -14,10 +14,8 @@
   /* Ensure padding is included in width calculation */
   align-items: flex-start;
   /* Make the card take the full width of its container */
-  margin-bottom: 10px;
+  margin-bottom: 0;
   border-radius: 8px;
-  padding: 20px;
-  text-align: center;
   transition: transform 0.2s ease-in-out;
 }
 
@@ -25,9 +23,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 25%;
+  width: 30%;
   margin: 0;
-  /* Reduces margin */
 }
 
 .right {
@@ -36,42 +33,18 @@
   gap: 20px;
   width: 70%;
   margin: 0;
-  /* Reduces margin */
 }
 
 .canvas {
-  width: 70%;
   aspect-ratio: 1;
   display: block;
   background-color: #f9f9f9;
   margin: 0;
+  position: relative;
 }
 
 .controlsContainer {
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-
-.controlItem {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 10px; /* Add spacing between controls */
-}
-
-.label {
-  margin-right: 10px;
-  flex-shrink: 0;
-  width: 100px;
-  text-align: left;
-}
-
-.slider {
-  flex-grow: 1;
-  margin-right: 10px;
-}
-
-.textInput {
-  width: 60px;
 }

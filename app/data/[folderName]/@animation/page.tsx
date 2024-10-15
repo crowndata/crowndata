@@ -32,14 +32,14 @@ export default function Page({ params }: { params: { folderName: string } }) {
 
   return (
     <div className="container">
-      <div className="imageAnimationContainer">
-        <CameraImageAnimation
+      <div className="trajectoryVisualizerContainer">
+        <TrajectoryVisualizer
           sharedState={{ currentPoint, setCurrentPoint }}
           folderName={folderName}
         />
       </div>
-      <div className="trajectoryVisualizerContainer">
-        <TrajectoryVisualizer
+      <div className="imageAnimationContainer">
+        <CameraImageAnimation
           sharedState={{ currentPoint, setCurrentPoint }}
           folderName={folderName}
         />

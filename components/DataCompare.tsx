@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 
+import { Input } from "@nextui-org/input";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useState } from "react";
@@ -53,35 +54,25 @@ const DataCompare: React.FC = () => {
           <div className="column">
             <div className="container">
               {/* First Column */}
-              <div className="inputGroup">
-                <label htmlFor="data1" className="label">
-                  Data 1:
-                </label>
-                <input
-                  id="data1"
-                  type="text"
-                  value={data1}
-                  onChange={handleData1Change}
-                  className="input"
-                />
-              </div>
+              <Input
+                type="text"
+                label="Data 1"
+                placeholder="droid_00000000"
+                value={data1}
+                onChange={handleData1Change}
+              />
             </div>
           </div>
           <div className="column">
             <div className="container">
               {/* Second Column */}
-              <div className="inputGroup">
-                <label htmlFor="data2" className="label">
-                  Data 2:
-                </label>
-                <input
-                  id="data2"
-                  type="text"
-                  value={data2}
-                  onChange={handleData2Change}
-                  className="input"
-                />
-              </div>
+              <Input
+                type="text"
+                label="Data 2"
+                placeholder="droid_00000001"
+                value={data2}
+                onChange={handleData2Change}
+              />
             </div>
           </div>
         </div>

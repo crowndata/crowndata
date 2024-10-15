@@ -1,7 +1,15 @@
 import "@/styles/globals.css";
 
+import { Card, CardBody, CardHeader } from "@nextui-org/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+} from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
-
 // Define the props type for the component
 interface EvaluationProps {
   folderName: string;
@@ -52,26 +60,49 @@ const Evaluation: React.FC<EvaluationProps> = ({ folderName }) => {
     return <div>Loading...</div>;
   }
 
+  // Create rows from infoData
+  const rows = [
+    {
+      key: "coverageScore",
+      name: "Coverage Score",
+      value: coverageScore.coverageScore,
+    },
+  ];
+
+  // Create columns for the table
+  const columns = [
+    { key: "name", label: "Name" },
+    { key: "value", label: "Value" },
+  ];
   return (
-    <div className="container">
-      <h3 className="title">Evaluation</h3>
-      <ul className="list">
-        {[{ label: "Coverage Score", value: coverageScore.coverageScore }].map(
-          (item, index) => (
-            <li key={index} className="listItem">
-              <strong className="label">{item.label}:</strong>
-              <span className="value">
-                {item.value === undefined ? (
-                  <span>N/A</span> // Display the actual value if it's neither success nor failure
-                ) : (
-                  <span>{item.value}</span> // Display the actual value if it's neither success nor failure
-                )}
-              </span>
-            </li>
-          ),
-        )}
-      </ul>
-    </div>
+    <Card shadow="sm" className="py-4 w-full">
+      <CardHeader className="pb-0 pt-2 px-4 flex flex-col items-start">
+        <h4 className="font-bold text-lg">Evaluation Metric</h4>
+      </CardHeader>
+      <CardBody className="overflow-visible py-2">
+        <Table
+          hideHeader
+          isStriped
+          isCompact
+          isHeaderSticky
+          aria-label="Evaluation Metric Table"
+        >
+          <TableHeader>
+            {columns.map((column) => (
+              <TableColumn key={column.key}>{column.label}</TableColumn>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.key}>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.value}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </CardBody>
+    </Card>
   );
 };
 
