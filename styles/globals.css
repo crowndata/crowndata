@@ -175,10 +175,8 @@ body {
   box-sizing: border-box;
   /* Ensure padding is included in width calculation */
   align-items: center;
-  background-color: #2c2c2c; /* Dark background color */
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.2s ease-in-out;
 }
