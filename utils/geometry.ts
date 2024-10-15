@@ -24,7 +24,7 @@ export const urdfFiles: URDFFiles = {
   rm_eco65: "/geometries/ros2_rm_robot/rm_description/urdf/rm_eco65.urdf",
   rm_gen72_gazebo:
     "/geometries/ros2_rm_robot/rm_description/urdf/rm_gen72_gazebo.urdf",
-  rm_eco72: "/geometries/ros2_rm_robot/rm_description/urdf/rm_eco63.urdf",
+  rm_gen72: "/geometries/ros2_rm_robot/rm_description/urdf/rm_gen72.urdf",
   rml_63_gazebo:
     "/geometries/ros2_rm_robot/rm_description/urdf/rml_63_gazebo.urdf",
   rml_63: "/geometries/ros2_rm_robot/rm_description/urdf/rml_63.urdf",
