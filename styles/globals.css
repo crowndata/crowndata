@@ -144,11 +144,11 @@ body {
 
 /* Success and failure symbols */
 .successSymbol {
-  color: green;
+  color: #00ff00;
 }
 
 .failureSymbol {
-  color: red;
+  color: #ff0000;
 }
 
 .input {
