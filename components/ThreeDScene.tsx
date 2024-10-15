@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import { Slider } from "@mui/material"; // Use Material UI for Slider
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React, { useEffect, useMemo,useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import URDFLoader, { URDFRobot } from "urdf-loader";
 
@@ -60,32 +60,31 @@ const ThreeDScene: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (selectedFile) {
+      const loader = new URDFLoader();
 
-useEffect(() => {
-  if (selectedFile) {
-    const loader = new URDFLoader();
+      // Clear the previous robot from the cache before loading a new one
+      robotCache.current = null;
 
-    // Clear the previous robot from the cache before loading a new one
-    robotCache.current = null;
+      // Load the URDF file, skipping mass and inertia
+      loader.load(selectedFile, (robot: URDFRobot) => {
+        // Traverse the robot's links and remove mass and inertia if applicable
+        robot.traverse((object) => {
+          // Check if the object is a URDF link by checking for the presence of mass or inertia properties
+          console.log(object);
 
-    // Load the URDF file, skipping mass and inertia
-    loader.load(selectedFile, (robot: URDFRobot) => {
-      // Traverse the robot's links and remove mass and inertia if applicable
-      robot.traverse((object) => {
-        // Check if the object is a URDF link by checking for the presence of mass or inertia properties
-        console.log(object);
+          // Hide collision geometry if present
+          if (object.name.includes("collision")) {
+            object.visible = false;
+          }
+        });
 
-        // Hide collision geometry if present
-        if (object.name.includes("collision")) {
-          object.visible = false;
-        }
+        // Cache the loaded robot for rendering
+        robotCache.current = robot;
       });
-
-      // Cache the loaded robot for rendering
-      robotCache.current = robot;
-    });
-  }
-}, [selectedFile]); // Effect will run whenever selectedFile changes
+    }
+  }, [selectedFile]); // Effect will run whenever selectedFile changes
 
   useEffect(() => {
     if (selectedFile && !robotCache.current) {
@@ -118,27 +117,27 @@ useEffect(() => {
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-      <div className={styles.controlsContainer}>
-        <label className="label">Embodiment: </label>
-  <select
-    onChange={handleSelectChange}
-    value={selectedKey || ""}
-    className="value"
-  >
-    <option value="" disabled>
-      Select a Robot Embodiment
-    </option>
-    {useMemo(
-      () =>
-        Object.entries(urdfFiles).map(([key]) => (
-          <option key={key} value={key}>
-            {key}
-          </option>
-        )),
-      [urdfFiles]
-    )}
-  </select>
-</div>
+        <div className={styles.controlsContainer}>
+          <label className="label">Embodiment: </label>
+          <select
+            onChange={handleSelectChange}
+            value={selectedKey || ""}
+            className="value"
+          >
+            <option value="" disabled>
+              Select a Robot Embodiment
+            </option>
+            {useMemo(
+              () =>
+                Object.entries(urdfFiles).map(([key]) => (
+                  <option key={key} value={key}>
+                    {key}
+                  </option>
+                )),
+              [urdfFiles],
+            )}
+          </select>
+        </div>
         {/* Joint sliders and input fields */}
         <div className={styles.controlsContainer}>
           {Object.entries(jointValues).map(
@@ -186,7 +185,6 @@ useEffect(() => {
           {robotRef.current && <primitive object={robotRef.current} />}
         </Canvas>
       </div>
-
     </div>
   );
 };

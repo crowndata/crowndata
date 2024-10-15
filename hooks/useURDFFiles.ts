@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback,useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // Custom hook to handle URDF file fetching and selection
 export const useURDFFiles = () => {
@@ -9,15 +9,18 @@ export const useURDFFiles = () => {
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
 
   // Use useCallback to prevent unnecessary recreation of handleUrdfFileChange function
-  const handleUrdfFileChange = useCallback((selectedKey: string | null) => {
-    setSelectedKey(selectedKey);
-    if (selectedKey) {
-      const selectedPath = urdfFiles[selectedKey];
-      setSelectedFile(selectedPath || null);
-    } else {
-      setSelectedFile(null);
-    }
-  }, [urdfFiles]); // Dependency on urdfFiles to ensure the function references the latest state
+  const handleUrdfFileChange = useCallback(
+    (selectedKey: string | null) => {
+      setSelectedKey(selectedKey);
+      if (selectedKey) {
+        const selectedPath = urdfFiles[selectedKey];
+        setSelectedFile(selectedPath || null);
+      } else {
+        setSelectedFile(null);
+      }
+    },
+    [urdfFiles],
+  ); // Dependency on urdfFiles to ensure the function references the latest state
 
   // Handle the change in selection
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
