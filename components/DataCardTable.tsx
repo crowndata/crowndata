@@ -345,6 +345,17 @@ const DataCardTable: React.FC = () => {
         </TableBody>
       </Table>
 
+      {selectedItems?.size === 1 && (
+        <Button
+          onPress={() =>
+            (window.location.href = `/data/${Array.from(selectedItems.entries())[0][0]}`)
+          }
+          className="py-2 px-2 flex justify-center text-center items-center mx-auto w-1/2"
+        >
+          You have selected 1 items! Click to visualize!
+        </Button>
+      )}
+
       {selectedItems?.size === 2 && (
         <Button
           onPress={() =>
