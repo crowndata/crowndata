@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 
-import { Select, SelectItem } from "@nextui-org/select";
+import { Select, SelectItem, SelectSection } from "@nextui-org/select";
 import { Slider } from "@nextui-org/slider";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
@@ -10,9 +10,13 @@ import URDFLoader, { URDFRobot } from "urdf-loader";
 
 import CameraSetup from "@/components/CameraSetup";
 import Objects from "@/components/Objects";
-import { useURDFFiles } from "@/hooks/useURDFFiles";
+import { useURDFFiles } from "@/hooks/useURDFFile";
 import styles from "@/styles/ThreeDScene.module.css";
-import { urdfFiles } from "@/utils/geometry";
+import {
+  armURDFFiles,
+  assemblyURDFFiles,
+  gripperURDFFiles,
+} from "@/utils/geometry";
 
 type JointLimit = {
   lowerLimit: number;
@@ -30,7 +34,7 @@ const ThreeDScene: React.FC = () => {
   const robotRef = useRef<THREE.Group | null>(null);
   const robotCache = useRef<URDFRobot | null>(null); // Cache robot globally
 
-  const { selectedKey, handleSelectChange } = useURDFFiles();
+  const { selectedKey, selectedFile, handleSelectChange } = useURDFFiles();
 
   // Handle joint angle updates
   const handleJointChange = (jointName: string, newValue: number) => {
@@ -49,7 +53,6 @@ const ThreeDScene: React.FC = () => {
 
       // Clear the previous robot from the cache before loading a new one
       robotCache.current = null;
-      const selectedFile = selectedKey ? urdfFiles[selectedKey] : null;
 
       // Load the URDF file, skipping mass and inertia
       if (selectedFile) {
@@ -67,12 +70,11 @@ const ThreeDScene: React.FC = () => {
         });
       }
     }
-  }, [selectedKey]); // Effect will run whenever selectedFile changes
+  }, [selectedKey, selectedFile]); // Effect will run whenever selectedFile changes
 
   useEffect(() => {
     if (selectedKey && !robotCache.current) {
       const loader = new URDFLoader();
-      const selectedFile = selectedKey ? urdfFiles[selectedKey] : null;
       if (selectedFile) {
         loader.load(selectedFile, (robot: URDFRobot) => {
           robotCache.current = robot;
@@ -112,7 +114,7 @@ const ThreeDScene: React.FC = () => {
         });
       }
     }
-  }, [selectedKey]);
+  }, [selectedKey, selectedFile]);
 
   return (
     <div className={styles.container}>
@@ -126,12 +128,29 @@ const ThreeDScene: React.FC = () => {
             selectedKeys={selectedKey ? [selectedKey] : []}
             onChange={handleSelectChange}
             className="max-w-xs w-full primary bg-gray-900"
+            scrollShadowProps={{ isEnabled: false }}
           >
-            {Object.keys(urdfFiles).map((key) => (
-              <SelectItem key={key} className="w-full primary bg-gray-900">
-                {key}
-              </SelectItem>
-            ))}
+            <SelectSection showDivider title="assembly">
+              {Object.keys(assemblyURDFFiles).map((key) => (
+                <SelectItem key={key} className="w-full primary bg-gray-500">
+                  {key}
+                </SelectItem>
+              ))}
+            </SelectSection>
+            <SelectSection showDivider title="arm only">
+              {Object.keys(armURDFFiles).map((key) => (
+                <SelectItem key={key} className="w-full primary bg-gray-500">
+                  {key}
+                </SelectItem>
+              ))}
+            </SelectSection>
+            <SelectSection showDivider title="gripper only">
+              {Object.keys(gripperURDFFiles).map((key) => (
+                <SelectItem key={key} className="w-full primary bg-gray-500">
+                  {key}
+                </SelectItem>
+              ))}
+            </SelectSection>
           </Select>
         </div>
         {/* Joint sliders and input fields */}

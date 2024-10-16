@@ -13,7 +13,7 @@ import TrajectoryVelocityLine from "@/components/TrajectoryVelocityLine";
 import { useInfoData } from "@/hooks/useInfoData";
 import { useJointPositionData } from "@/hooks/useJointPositionData";
 import { useTrajectoryData } from "@/hooks/useTrajectoryData";
-import { useURDFFiles } from "@/hooks/useURDFFiles";
+import { useURDFFiles } from "@/hooks/useURDFFile";
 import { SharedState } from "@/types/pageInterface";
 import { urdfFiles } from "@/utils/geometry";
 
