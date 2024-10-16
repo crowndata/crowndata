@@ -132,21 +132,21 @@ const ThreeDScene: React.FC = () => {
           >
             <SelectSection showDivider title="assembly">
               {Object.keys(assemblyURDFFiles).map((key) => (
-                <SelectItem key={key} className="w-full primary bg-gray-500">
+                <SelectItem key={key} className="w-full primary bg-gray-900">
                   {key}
                 </SelectItem>
               ))}
             </SelectSection>
             <SelectSection showDivider title="arm only">
               {Object.keys(armURDFFiles).map((key) => (
-                <SelectItem key={key} className="w-full primary bg-gray-500">
+                <SelectItem key={key} className="w-full primary bg-gray-900">
                   {key}
                 </SelectItem>
               ))}
             </SelectSection>
             <SelectSection showDivider title="gripper only">
               {Object.keys(gripperURDFFiles).map((key) => (
-                <SelectItem key={key} className="w-full primary bg-gray-500">
+                <SelectItem key={key} className="w-full primary bg-gray-900">
                   {key}
                 </SelectItem>
               ))}

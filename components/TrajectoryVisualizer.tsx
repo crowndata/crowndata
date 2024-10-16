@@ -15,7 +15,6 @@ import { useJointPositionData } from "@/hooks/useJointPositionData";
 import { useTrajectoryData } from "@/hooks/useTrajectoryData";
 import { useURDFFiles } from "@/hooks/useURDFFile";
 import { SharedState } from "@/types/pageInterface";
-import { urdfFiles } from "@/utils/geometry";
 
 // Define the props type for the component
 interface TrajectoryVisualizerProps {
@@ -35,7 +34,7 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
   const trajectoryDataArray = useTrajectoryData(folderName, joints);
   const jointPositionDataArray = useJointPositionData(folderName);
 
-  const { selectedKey, setSelectedKey } = useURDFFiles();
+  const { selectedKey, selectedFile, setSelectedKey } = useURDFFiles();
 
   useEffect(() => {
     if (infoData?.robotEmbodiment) {
@@ -99,13 +98,13 @@ const TrajectoryVisualizer: React.FC<TrajectoryVisualizerProps> = ({
             ))}
 
             {/* Render Robot Geometry */}
-            {selectedKey ? (
+            {selectedKey && selectedFile && (
               <TrajectoryDeviceGeometryAnimation
                 sharedState={sharedState}
                 joints={jointPositionDataArray.joints}
-                urdfFile={urdfFiles[selectedKey]}
+                urdfFile={selectedFile}
               />
-            ) : null}
+            )}
           </Canvas>
         </div>
       </CardBody>
