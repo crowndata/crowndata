@@ -1,3 +1,18 @@
+export interface JsonData {
+  columns: string[];
+  data: string | number[][];
+}
+
+export interface JsonStringData {
+  columns: string[];
+  data: string[][];
+}
+
+export interface JsonNumberData {
+  columns: string[];
+  data: number[][];
+}
+
 export interface InfoData {
   dataName: string;
   timestamp?: string;

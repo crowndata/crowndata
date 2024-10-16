@@ -8,6 +8,7 @@ interface VideoPlayerProps {
   autoPlay?: boolean;
   loop?: boolean;
   muted?: boolean;
+  preload?: string;
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -18,6 +19,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   autoPlay = true,
   loop = true,
   muted = true,
+  preload = "auto",
 }) => {
   return (
     <video
@@ -27,6 +29,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       autoPlay={autoPlay}
       loop={loop}
       muted={muted}
+      preload={preload}
     >
       <source src={src} type="video/mp4" />
       <source src={src.replace(".mp4", ".webm")} type="video/webm" />

@@ -2,64 +2,65 @@
 
 import { useEffect, useState } from "react";
 
-export interface CameraData {
-  image: string;
-}
+import { JsonStringData } from "@/types/dataInterface";
 
 export interface UseCameraDataResult {
-  images: string[];
+  images: { [key: string]: string[] };
 }
 
-export const useCameraData = (
-  folderName: string,
-  cameras: string[],
-): UseCameraDataResult[] => {
-  const [cameraData, setCameraData] = useState<CameraData[][]>([]);
+export const useCameraData = (folderName: string): UseCameraDataResult => {
+  const [images, setImages] = useState<{ [key: string]: string[] }>({});
 
   useEffect(() => {
-    let isMounted = true; // Track whether the component is mounted
+    const controller = new AbortController();
+    const signal = controller.signal;
 
-    if (folderName && cameras.length > 0) {
-      const fetchCameraData = async () => {
+    if (folderName) {
+      const fetchTrajectoryData = async () => {
         try {
-          const allData: CameraData[][] = await Promise.all(
-            cameras.map(async (camera) => {
-              const response = await fetch(
-                `/data/${folderName}/images/${camera}__image.json`,
-              );
-              const data = await response.json();
-              const formattedData = data.map((row: CameraData) => ({
-                image: row.image,
-              }));
-              return formattedData;
-            }),
+          const response = await fetch(
+            `/data/${folderName}/images/camera_images.json`,
+            { signal },
           );
-
-          if (isMounted) {
-            setCameraData(allData); // Only update state if component is still mounted
+          if (!response.ok) {
+            throw new Error("Failed to fetch joint positions data");
           }
-        } catch (error) {
-          if (isMounted) {
-            console.error("Error loading JSON files:", error);
+          const jsonData: JsonStringData = await response.json();
+          const transformedData: { [key: string]: string[] } = {};
+
+          // Initialize empty arrays for each column
+          jsonData.columns.forEach((column) => {
+            transformedData[column] = [];
+          });
+
+          // Populate arrays with data from each row
+          jsonData.data.forEach((row) => {
+            row.forEach((value, index) => {
+              const columnName = jsonData.columns[index];
+              transformedData[columnName].push(value);
+            });
+          });
+          setImages(transformedData);
+        } catch (error: unknown) {
+          if (error instanceof TypeError) {
+            // Handle network or fetch-specific error
+            console.error("There was a network error:", error.message);
+          } else if (error instanceof Error) {
+            // Handle general error
+            console.error("An error occurred:", error.message);
+          } else {
+            console.error("An unknown error occurred");
           }
         }
       };
 
-      fetchCameraData();
+      fetchTrajectoryData();
     }
 
     return () => {
-      isMounted = false; // Cleanup function to mark component as unmounted
+      controller.abort(); // Cleanup fetch request if component unmounts or folderName changes
     };
-  }, [folderName, cameras]);
+  }, [folderName]);
 
-  const results = cameraData.map((data) => {
-    const images: string[] = data.map((step) => step.image as string);
-
-    return {
-      images,
-    };
-  });
-
-  return results;
+  return { images };
 };

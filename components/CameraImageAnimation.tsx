@@ -23,10 +23,10 @@ const CameraImageAnimation: React.FC<CameraImageAnimationProps> = ({
   const cameras = infoData?.cameras ?? [];
 
   // Fetch camera data for the list of cameras
-  const cameraDataArray = useCameraData(folderName, cameras);
+  const cameraDataArray = useCameraData(folderName);
 
   // If cameras or camera data are not loaded yet, show a loading message
-  if (!cameras.length || !cameraDataArray || cameraDataArray.length === 0) {
+  if (!cameras.length || !cameraDataArray || !cameraDataArray.images) {
     return <div>Loading...</div>;
   }
 
@@ -37,13 +37,13 @@ const CameraImageAnimation: React.FC<CameraImageAnimationProps> = ({
       </CardHeader>
       <CardBody className="overflow-visible py-2">
         <div className="imageGrid">
-          {cameras.map((_, index) => (
+          {cameras.map((camera, index) => (
             <div key={index} className="imageColumn">
-              {cameraDataArray[index] ? (
+              {cameraDataArray.images[camera] ? (
                 <CameraImage
                   currentPoint={currentPoint}
                   folderName={folderName}
-                  images={cameraDataArray[index].images} // Accessing the correct index
+                  images={cameraDataArray.images[camera]} // Accessing the correct index
                 />
               ) : (
                 <div>No images available</div>
