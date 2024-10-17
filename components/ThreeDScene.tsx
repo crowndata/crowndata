@@ -13,7 +13,6 @@ import {
 import RobotControl from "./RobotControl";
 
 const ThreeDScene: React.FC = () => {
-
   const { selectedKey, selectedFile, handleSelectChange } = useURDFFiles();
 
   return (
