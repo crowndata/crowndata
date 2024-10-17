@@ -294,7 +294,10 @@ const DataCardTable: React.FC = () => {
                   key={`data-card-row-${column.name}`}
                   className="min-w-[300px]"
                 >
-                  <RenderCell folderName={item} columnKey={column.uid} />
+                  <RenderCell
+                    folderName={item}
+                    columnKeys={columns.map((column) => column.uid)}
+                  />{" "}
                 </TableCell>
               ))}
             </TableRow>
@@ -337,7 +340,7 @@ const DataCardTable: React.FC = () => {
                   key={`data-card-row-${column.name}`}
                   className="min-w-[300px]"
                 >
-                  <RenderCell folderName={item} columnKey={column.uid} />
+                  <RenderCell folderName={item} columnKeys={[column.uid]} />
                 </TableCell>
               ))}
             </TableRow>
@@ -352,7 +355,7 @@ const DataCardTable: React.FC = () => {
           }
           className="py-2 px-2 flex justify-center text-center items-center mx-auto w-1/2"
         >
-          You have selected 1 items! Click to visualize!
+          Click to visualize 1 items!
         </Button>
       )}
 
@@ -363,7 +366,7 @@ const DataCardTable: React.FC = () => {
           }
           className="py-2 px-2 flex justify-center text-center items-center mx-auto w-1/2"
         >
-          You have selected 2 items! Click to compare!
+          Click to compare 2 items!
         </Button>
       )}
     </>
