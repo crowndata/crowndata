@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000006",
+  "startTime": "20230504T134133.000Z",
+  "endTime": "20230504T134434.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "IRIS",
+  "taskDescription": "Take the pen out of the bowl and place it on the table",
+  "subtaskDescription": "Take the pen out of the bowl and place it on the table. Remove the pen from the bowl and place it on the table. Take the marker from the bowl and put it on the table.",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 181,
+  "durationInSeconds": "18.10",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}

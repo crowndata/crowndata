@@ -7,7 +7,7 @@
   "videoSamplingRate": 10,
   "armSamplingRate": 10,
   "sensorSamplingRate": 10,
-  "operatorName": "John Doe",
+  "operatorName": "TRI",
   "taskDescription": "Move the sharpie to the table",
   "subtaskDescription": "Move the sharpie to the table.",
   "taskState": "SUCCESS",

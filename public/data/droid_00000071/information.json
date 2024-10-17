@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000071",
+  "startTime": "20230824T221447.000Z",
+  "endTime": "20230824T222207.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "IPRL",
+  "taskDescription": "move one white object from the right heap to the left, then get the blue-white object and fold it on top of the left heap",
+  "subtaskDescription": "move one white object from the right heap to the left, then get the blue-white object and fold it on top of the left heap. Move the white clothing on the right to the pile of clothes on the left, place the checkered shirt on top of the pile on the left. Arrange the clothes on the bed.",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 440,
+  "durationInSeconds": "44.00",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}
