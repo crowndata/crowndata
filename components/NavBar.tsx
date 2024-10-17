@@ -14,31 +14,32 @@ import Link from "next/link";
 import { useState } from "react";
 
 import LogoutButton from "@/components/LogoutButton";
-import styles from "@/styles/NavBar.module.css";
 
 export default function NavBar() {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const [, setMenuOpen] = useState<boolean>(false);
 
   return (
     <>
-      <Navbar isBordered>
-        {/* Align content to the start (left) */}
-        <NavbarBrand className="pl-2 start">
-          <Link href="/">
-            <Image
-              src="/images/home.svg"
-              alt="Home Icon"
-              width={200}
-              height={60}
-              loading="eager" // Eager loading to ensure it loads quickly
-              priority={true} // Preload image to avoid reloading
-            />
-          </Link>
-        </NavbarBrand>
+      {/* Ensure all components are wrapped within the Navbar */}
+      <Navbar isBordered onMenuOpenChange={setMenuOpen}>
+        <NavbarContent>
+          <NavbarBrand className="relative w-32 h-10 sm:w-48 sm:h-14 pl-2 start">
+            <Link href="/">
+              <Image
+                src="/images/home.svg"
+                alt="Home Icon"
+                width={200}
+                height={60}
+                loading="eager"
+                priority={true}
+              />
+            </Link>
+          </NavbarBrand>
+          <NavbarMenuToggle
+            aria-label="toggle navigation menu"
+            className="sm:hidden"
+          />
+        </NavbarContent>
 
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           <NavbarItem isActive>
@@ -58,9 +59,7 @@ export default function NavBar() {
           <NavbarItem>
             <Link href="/dashboard">Dashboard</Link>
           </NavbarItem>
-        </NavbarContent>
 
-        <NavbarContent justify="end">
           <NavbarItem>
             <Link href="/login">Login</Link>
           </NavbarItem>
@@ -68,21 +67,14 @@ export default function NavBar() {
           <NavbarItem>
             <Link href="/signup">Sign Up</Link>
           </NavbarItem>
+
           <NavbarItem>
             <LogoutButton />
           </NavbarItem>
         </NavbarContent>
 
-        {/* Add NavbarMenuToggle here for mobile */}
-        <NavbarMenuToggle
-          aria-label="toggle navigation menu"
-          onClick={toggleMenu}
-          className="sm:hidden" // This ensures it's hidden on larger screens
-        />
-      </Navbar>
+        {/* The mobile menu inside the Navbar to ensure context */}
 
-      {/* Mobile menu */}
-      {menuOpen && (
         <NavbarMenu>
           <NavbarMenuItem>
             <Link href="/" aria-current="page">
@@ -110,14 +102,7 @@ export default function NavBar() {
             <Link href="/signup">Sign Up</Link>
           </NavbarMenuItem>
         </NavbarMenu>
-      )}
-
-      {/* Add a hamburger icon for mobile */}
-      <div className={styles.hamburger} onClick={toggleMenu}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      </Navbar>
     </>
   );
 }

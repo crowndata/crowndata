@@ -2,12 +2,12 @@
 
 import { Suspense } from "react";
 
-import DataCardListing from "@/components/DataCardListing";
+import DataCardTable from "@/components/DataCardTable";
 
 export default function Page() {
   return (
     <Suspense fallback={<div>Loading data...</div>}>
-      <DataCardListing />
+      <DataCardTable />
     </Suspense>
   );
 }

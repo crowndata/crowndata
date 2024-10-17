@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { JsonNumberData } from "@/types/dataInterface";
+
 export interface UseJointPositionDataResult {
   joints: { [key: string]: number[] };
 }
@@ -25,18 +27,21 @@ export const useJointPositionData = (
           if (!response.ok) {
             throw new Error("Failed to fetch joint positions data");
           }
-          const data = await response.json();
+          const jsonData: JsonNumberData = await response.json();
           const transformedData: { [key: string]: number[] } = {};
 
-          data.forEach((entry: { [key: string]: number }) => {
-            for (const [key, value] of Object.entries(entry)) {
-              if (!transformedData[key]) {
-                transformedData[key] = [];
-              }
-              transformedData[key].push(value);
-            }
+          // Initialize empty arrays for each column
+          jsonData.columns.forEach((column) => {
+            transformedData[column] = [];
           });
 
+          // Populate arrays with data from each row
+          jsonData.data.forEach((row) => {
+            row.forEach((value, index) => {
+              const columnName = jsonData.columns[index];
+              transformedData[columnName].push(value);
+            });
+          });
           setJoints(transformedData);
         } catch (error: unknown) {
           if (error instanceof TypeError) {

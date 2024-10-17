@@ -113,6 +113,9 @@ body {
 @media (max-width: 768px) {
   .columns {
     flex-direction: column; /* Stack the columns vertically */
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr); /* Create two equal columns */
+    gap: 1rem; /* Optional: Add gap between the columns */
   }
 
   .column {
@@ -219,5 +222,5 @@ body {
 
 .trajectoryVisualizerContainer {
   width: 100%;
-  max-width: 800px;
+  max-width: 768px;
 }

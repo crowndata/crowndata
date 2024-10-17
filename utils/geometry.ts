@@ -1,15 +1,14 @@
-type URDFFiles = {
+type URDFFile = {
   [key: string]: string;
 };
 
-export const urdfFiles: URDFFiles = {
-  "Panda Gazebo":
-    "/geometries/franka_ros/franka_gazebo/test/launch/panda-gazebo.urdf",
+export const assemblyURDFFiles: URDFFile = {
   DROID: "/geometries/DROID/panda.urdf",
-  robotiq_c2_model:
-    "/geometries/robotiq/robotiq_2f_c2_gripper_visualization/urdf/robotiq_c2_model.urdf",
-  "robotiq-3f-gripper_articulated":
-    "/geometries/robotiq/robotiq_3f_gripper_visualization/cfg/robotiq-3f-gripper_articulated.urdf",
+};
+
+export const armURDFFiles: URDFFile = {
+  panda_gazebo:
+    "/geometries/franka_ros/franka_gazebo/test/launch/panda-gazebo.urdf",
   rm_65_gazebo:
     "/geometries/ros2_rm_robot/rm_description/urdf/rm_65_gazebo.urdf",
   rm_65: "/geometries/ros2_rm_robot/rm_description/urdf/rm_65.urdf",
@@ -28,4 +27,11 @@ export const urdfFiles: URDFFiles = {
   rml_63_gazebo:
     "/geometries/ros2_rm_robot/rm_description/urdf/rml_63_gazebo.urdf",
   rml_63: "/geometries/ros2_rm_robot/rm_description/urdf/rml_63.urdf",
+};
+
+export const gripperURDFFiles: URDFFile = {
+  robotiq_c2_model:
+    "/geometries/robotiq/robotiq_2f_c2_gripper_visualization/urdf/robotiq_c2_model.urdf",
+  "robotiq-3f-gripper_articulated":
+    "/geometries/robotiq/robotiq_3f_gripper_visualization/cfg/robotiq-3f-gripper_articulated.urdf",
 };
