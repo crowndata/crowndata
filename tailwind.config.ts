@@ -13,11 +13,6 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "#0070F3", // Custom primary color
-        secondary: "#FF4081", // Custom secondary color
-        success: "#4CAF50", // Custom success color
-        error: "#F44336", // Custom error color
-        text: "#ffffff", // Text color
       },
     },
   },
