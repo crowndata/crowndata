@@ -7,7 +7,7 @@
   "videoSamplingRate": 10,
   "armSamplingRate": 10,
   "sensorSamplingRate": 10,
-  "operatorName": "John Doe",
+  "operatorName": "AUTOLab",
   "taskDescription": "pick up an item",
   "subtaskDescription": "reach out and pick up an item",
   "taskState": "FAILURE",

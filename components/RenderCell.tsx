@@ -36,6 +36,9 @@ const RenderCell: React.FC<RenderCellProps> = ({ folderName, columnKeys }) => {
           }}
           description={infoData?.dataSource}
           name={infoData?.dataName}
+          avatarProps={{
+            name: `${infoData?.operatorName}`,
+          }}
         >
           {infoData?.dataSource}
         </User>

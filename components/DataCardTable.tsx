@@ -89,14 +89,15 @@ const DataCardTable: React.FC = () => {
         }
         const folderList: string[] = await res.json();
         setFolders(folderList);
-        setPages(Math.ceil(folderList.length / ITEMS_PER_PAGE));
+        setPages(Math.ceil(folderList.length / rowsPerPage));
+        setPage(1);
       } catch (error) {
         console.error("Error fetching folders:", error);
       }
     };
 
     fetchFolders();
-  }, []);
+  }, [rowsPerPage]);
 
   useEffect(() => {
     const pageParam = searchParams.get("page");
@@ -262,6 +263,7 @@ const DataCardTable: React.FC = () => {
         className="block md:hidden"
         isCompact
         removeWrapper
+        isHeaderSticky
         aria-label="Example table with custom cells, pagination and sorting"
         bottomContent={bottomContent}
         bottomContentPlacement="outside"
@@ -296,7 +298,7 @@ const DataCardTable: React.FC = () => {
                 >
                   <RenderCell
                     folderName={item}
-                    columnKeys={columns.map((column) => column.uid)}
+                    columnKeys={headerColumns.map((column) => column.uid)}
                   />{" "}
                 </TableCell>
               ))}
@@ -308,6 +310,7 @@ const DataCardTable: React.FC = () => {
         className="hidden md:block"
         isCompact
         removeWrapper
+        isHeaderSticky
         aria-label="Example table with custom cells, pagination and sorting"
         bottomContent={bottomContent}
         bottomContentPlacement="outside"

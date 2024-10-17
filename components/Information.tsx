@@ -117,8 +117,8 @@ const Information: React.FC<InformationProps> = ({ folderName }) => {
             <TableBody>
               {rows.map((row) => (
                 <TableRow key={row.key}>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>
+                  <TableCell className="w-1/3">{row.name}</TableCell>
+                  <TableCell className="w-2/3">
                     {row.value === undefined ? (
                       "N/A"
                     ) : row.name === "Data Source" ? (

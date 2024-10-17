@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000024",
+  "startTime": "20231130T141048.000Z",
+  "endTime": "20231130T142834.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "AUTOLab",
+  "taskDescription": "Put the tissues in the rubbish bin",
+  "subtaskDescription": "Put the tissues in the rubbish bin. Place the crumpled up paper inside the mixed paper bin on the right. Put the pieces of paper in the right bin.",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 1066,
+  "durationInSeconds": "106.60",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}

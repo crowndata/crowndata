@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000096",
+  "startTime": "20230417T160325.000Z",
+  "endTime": "20230417T160902.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "IRIS",
+  "taskDescription": "Get the marker from the table and place it in the colorless cup",
+  "subtaskDescription": "Get the marker from the table and place it in the colorless cup. Put the red marker in the cup. Take the marker from the table and put it in the jug.",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 337,
+  "durationInSeconds": "33.70",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}
