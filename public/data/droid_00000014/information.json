@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000014",
+  "startTime": "20231014T210637.000Z",
+  "endTime": "20231014T211232.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "IPRL",
+  "taskDescription": "pick up an item",
+  "subtaskDescription": "reach out and pick up an item",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 355,
+  "durationInSeconds": "35.50",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}
