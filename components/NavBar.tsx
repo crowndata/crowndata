@@ -53,7 +53,7 @@ export default function NavBar() {
           </NavbarItem>
 
           <NavbarItem>
-            <Link href="/data/compare">Compare</Link>
+            <Link href="/rerun">Rerun.io</Link>
           </NavbarItem>
 
           <NavbarItem>

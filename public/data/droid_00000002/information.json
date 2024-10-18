@@ -7,7 +7,7 @@
   "videoSamplingRate": 10,
   "armSamplingRate": 10,
   "sensorSamplingRate": 10,
-  "operatorName": "John Doe",
+  "operatorName": "TRI",
   "taskDescription": "Put one green sachet in the grey bowl",
   "subtaskDescription": "Put one green sachet in the grey bowl.",
   "taskState": "SUCCESS",
