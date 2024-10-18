@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000091",
+  "startTime": "20230817T173416.000Z",
+  "endTime": "20230817T173556.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "AUTOLab",
+  "taskDescription": "Put the yellow cube inside the blue cup",
+  "subtaskDescription": "Put the yellow cube inside the blue cup. Pick up the yellow tube and put it in the cup. Pick up the yellow object on the table and put it in the cup.",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 100,
+  "durationInSeconds": "10.00",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}

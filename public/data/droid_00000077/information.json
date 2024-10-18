@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000077",
+  "startTime": "20230429T202846.000Z",
+  "endTime": "20230429T203026.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "PennPAL",
+  "taskDescription": "Close the drawer",
+  "subtaskDescription": "Close the drawer. Close the drawer. Close the drawer.",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 100,
+  "durationInSeconds": "10.00",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}

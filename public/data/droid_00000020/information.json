@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000020",
+  "startTime": "20230605T144546.000Z",
+  "endTime": "20230605T144855.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "IRIS",
+  "taskDescription": "Slide the black lid off",
+  "subtaskDescription": "Slide the black lid off. Open the phone. Slide the cover off the calculator.",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 189,
+  "durationInSeconds": "18.90",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}
