@@ -4,8 +4,10 @@ type URDFFile = {
 
 export const assemblyURDFFiles: URDFFile = {
   DROID: "/geometries/DROID/panda.urdf",
-  rm_65_gazebo_dual_gripper:
+  rm_65_gazebo_dual:
     "/geometries/ros2_rm_robot/rm_description/urdf/rm_65_gazebo_dual.urdf",
+  rm_65_gazebo_dual_gripper:
+    "/geometries/ros2_rm_robot/rm_description/urdf/rm_65_gazebo_dual_gripper.urdf",
 };
 
 export const armURDFFiles: URDFFile = {
@@ -36,4 +38,5 @@ export const gripperURDFFiles: URDFFile = {
     "/geometries/robotiq/robotiq_2f_c2_gripper_visualization/urdf/robotiq_c2_model.urdf",
   "robotiq-3f-gripper_articulated":
     "/geometries/robotiq/robotiq_3f_gripper_visualization/cfg/robotiq-3f-gripper_articulated.urdf",
+  "RMG24_description":"/geometries/RMG24_description/urdf/RMG24_description.urdf",
 };
