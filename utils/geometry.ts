@@ -5,7 +5,7 @@ type URDFFile = {
 export const assemblyURDFFiles: URDFFile = {
   DROID: "/geometries/DROID/panda.urdf",
   rm_65_gazebo_dual_gripper:
-    "/geometries/ros2_rm_robot/rm_description/urdf/rm_65_gazebo_dual_gripper.urdf",
+    "/geometries/ros2_rm_robot/rm_description/urdf/rm_65_gazebo_dual.urdf",
 };
 
 export const armURDFFiles: URDFFile = {
