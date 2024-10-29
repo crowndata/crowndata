@@ -448,6 +448,172 @@
       velocity="3.92" />
   </joint>
 
+  <!-- gripper arm connect 1 -->
+  <joint name="joint8" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    <parent link="Link6"/>
+    <child link="base_link_g"/>
+  </joint>
+<!-- gripper 1--> 
+
+<link
+    name="base_link_g">
+    <inertial>
+      <origin
+        xyz="4.891E-05 -5.4407E-05 0.04689"
+        rpy="0 0 0" />
+      <mass
+        value="0.17393" />
+      <inertia
+        ixx="6.6604E-05"
+        ixy="-7.1616E-07"
+        ixz="-3.2951E-07"
+        iyy="0.00011614"
+        iyz="1.1612E-07"
+        izz="0.00012473" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Link_finger1">
+    <inertial>
+      <origin
+        xyz="-0.0083779 -0.0014014 0.016575"
+        rpy="0 0 0" />
+      <mass
+        value="0.019443" />
+      <inertia
+        ixx="4.0976E-06"
+        ixy="2.6578E-08"
+        ixz="-4.8182E-07"
+        iyy="3.8635E-06"
+        iyz="6.1731E-08"
+        izz="1.6965E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/Link_finger1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/Link_finger1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint_finger1"
+    type="prismatic">
+    <origin
+      xyz="0 0 0.0891"
+      rpy="0 0 0" />
+    <parent
+      link="base_link_g" />
+    <child
+      link="Link_finger1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="0.0325"
+      effort="10"
+      velocity="0.1" />
+  </joint>
+  <link
+    name="Link_finger2">
+    <inertial>
+      <origin
+        xyz="0.0083779 0.001392 0.016575"
+        rpy="0 0 0" />
+      <mass
+        value="0.019443" />
+      <inertia
+        ixx="4.0976E-06"
+        ixy="2.6578E-08"
+        ixz="4.8182E-07"
+        iyy="3.8635E-06"
+        iyz="-6.1731E-08"
+        izz="1.6965E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/Link_finger2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/Link_finger2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint_finger2"
+    type="prismatic">
+    <origin
+      xyz="0 0 0.0891"
+      rpy="0 0 0" />
+    <parent
+      link="base_link_g" />
+    <child
+      link="Link_finger2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0.0325"
+      effort="10"
+      velocity="0.1" />
+    <mimic joint="Joint_finger1" multiplier="1"  offset="0"/>
+  </joint>
+
 <!-- arm 1 and arm 2 connection-->
   <joint
     name="joint_base"
@@ -907,5 +1073,172 @@
       upper="6.28"
       effort="10"
       velocity="3.92" />
+  </joint>
+
+
+  <!-- gripper arm connect 2 -->
+  <joint name="joint8_2" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    <parent link="Link6_2"/>
+    <child link="base_link_g_2"/>
+  </joint>
+<!-- gripper 2--> 
+
+<link
+    name="base_link_g_2">
+    <inertial>
+      <origin
+        xyz="4.891E-05 -5.4407E-05 0.04689"
+        rpy="0 0 0" />
+      <mass
+        value="0.17393" />
+      <inertia
+        ixx="6.6604E-05"
+        ixy="-7.1616E-07"
+        ixz="-3.2951E-07"
+        iyy="0.00011614"
+        iyz="1.1612E-07"
+        izz="0.00012473" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Link_finger1_2">
+    <inertial>
+      <origin
+        xyz="-0.0083779 -0.0014014 0.016575"
+        rpy="0 0 0" />
+      <mass
+        value="0.019443" />
+      <inertia
+        ixx="4.0976E-06"
+        ixy="2.6578E-08"
+        ixz="-4.8182E-07"
+        iyy="3.8635E-06"
+        iyz="6.1731E-08"
+        izz="1.6965E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/Link_finger1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/Link_finger1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint_finger1_2"
+    type="prismatic">
+    <origin
+      xyz="0 0 0.0891"
+      rpy="0 0 0" />
+    <parent
+      link="base_link_g_2" />
+    <child
+      link="Link_finger1_2" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="0.0325"
+      effort="10"
+      velocity="0.1" />
+  </joint>
+  <link
+    name="Link_finger2_2">
+    <inertial>
+      <origin
+        xyz="0.0083779 0.001392 0.016575"
+        rpy="0 0 0" />
+      <mass
+        value="0.019443" />
+      <inertia
+        ixx="4.0976E-06"
+        ixy="2.6578E-08"
+        ixz="4.8182E-07"
+        iyy="3.8635E-06"
+        iyz="-6.1731E-08"
+        izz="1.6965E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/Link_finger2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../../../RMG24_description/meshes/Link_finger2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint_finger2_2"
+    type="prismatic">
+    <origin
+      xyz="0 0 0.0891"
+      rpy="0 0 0" />
+    <parent
+      link="base_link_g_2" />
+    <child
+      link="Link_finger2_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0.0325"
+      effort="10"
+      velocity="0.1" />
+    <mimic joint="Joint_finger1_2" multiplier="1"  offset="0"/>
   </joint>
 </robot>
