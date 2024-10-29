@@ -448,14 +448,28 @@
       velocity="3.92" />
   </joint>
 
+<!-- arm 1 and arm 2 connection-->
+  <joint
+    name="joint_base"
+    type="fixed">
+    <origin
+      xyz="1.02 0 0"
+      rpy="0 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="base_link_2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
 
 <!-- arm 2-->
 <link
     name="base_link_2">
     <inertial>
       <origin
-        xyz="1.02-0.000433277303987328 -3.54664423471128E-05 0.0599427668933796"
-        rpy="0 0 3.14159" />
+        xyz="0.000433277303987328 -3.54664423471128E-05 0.0599427668933796"
+        rpy="0 0 0" />
       <mass
         value="0.841070778135659" />
       <!-- <inertia
@@ -476,8 +490,8 @@
     </inertial>
     <visual>
       <origin
-        xyz="1.02 0 0"
-        rpy="0 0 3.14159" />
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
         <!-- <mesh filename="../meshes/rm_65_arm/base_link.STL" /> -->
         <mesh filename="../meshes/rm_65_arm/base_link.STL" />
@@ -490,8 +504,8 @@
     </visual>
     <collision>
       <origin
-        xyz="1.02 0 0"
-        rpy="0 0 3.14159" />
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
         <mesh
           filename="../meshes/rm_65_arm/base_link.STL" />
@@ -550,8 +564,8 @@
     name="joint1_2"
     type="revolute">
     <origin
-      xyz="1.02 0 0.2405"
-      rpy="0 0 3.14159" />
+      xyz="0 0 0.2405"
+      rpy="0 0 0" />
     <parent
       link="base_link_2" />
     <child
@@ -894,5 +908,4 @@
       effort="10"
       velocity="3.92" />
   </joint>
-
 </robot>
