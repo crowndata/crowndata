@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000050",
+  "startTime": "20231119T224503.000Z",
+  "endTime": "20231119T230730.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "AUTOLab",
+  "taskDescription": "Put the towel on the table into the box",
+  "subtaskDescription": "Put the towel on the table into the box.",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 1347,
+  "durationInSeconds": "134.70",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}

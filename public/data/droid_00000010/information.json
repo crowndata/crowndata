@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000010",
+  "startTime": "20231205T104025.000Z",
+  "endTime": "20231205T104622.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "TRI",
+  "taskDescription": "Move the pan to the right",
+  "subtaskDescription": "Move the pan to the right.",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 357,
+  "durationInSeconds": "35.70",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}

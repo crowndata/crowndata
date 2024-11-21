@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000070",
+  "startTime": "20231024T102340.000Z",
+  "endTime": "20231024T102520.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "RAIL",
+  "taskDescription": "Move the green plush to the left",
+  "subtaskDescription": "Move the green plush to the left. Move the pee plush toy. Move the plush toy on the stove plate to the counter.",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 100,
+  "durationInSeconds": "10.00",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}

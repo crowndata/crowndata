@@ -1,0 +1,26 @@
+{
+  "dataName": "droid_00000093",
+  "startTime": "20231019T001307.000Z",
+  "endTime": "20231019T001637.000Z",
+  "robotEmbodiment": "DROID",
+  "robotSerialNumber": "DROID123456",
+  "videoSamplingRate": 10,
+  "armSamplingRate": 10,
+  "sensorSamplingRate": 10,
+  "operatorName": "PennPAL",
+  "taskDescription": "Move the faucet to the center of the sink",
+  "subtaskDescription": "Move the faucet to the center of the sink. Make the tap face forward. Turn the tap nozzle to the left.",
+  "taskState": "SUCCESS",
+  "subtaskState": "SUCCESS",
+  "dataLength": 210,
+  "durationInSeconds": "21.00",
+  "cameras": [
+    "exterior_image_1_left",
+    "exterior_image_2_left",
+    "wrist_image_left"
+  ],
+  "joints": [
+    "cartesian_position"
+  ],
+  "dataSource": "https://droid-dataset.github.io/droid/the-droid-dataset"
+}
